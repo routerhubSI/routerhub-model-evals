@@ -1,0 +1,409 @@
+02:41:14 - LiteLLM Proxy:WARNING: proxy_cli.py:578 - LiteLLM --reload: worker processes re-read .env with override, so .env values win over shell-exported environment variables. Unset a key in .env to let a shell-exported value take precedence.
+INFO:     Will watch for changes in these directories: ['C:\\Users\\Administrator\\AppData\\Local\\Temp\\3\\routerhub-proxy-21nlvpp2', 'C:\\Users\\Administrator\\Desktop\\test\\routerhub-litellm-integration']
+WARNING:  "workers" flag is ignored when reloading is enabled.
+INFO:     Uvicorn running on http://127.0.0.1:61242 (Press CTRL+C to quit)
+WARNING:  --reload-include and --reload-exclude have no effect unless watchfiles is installed.
+INFO:     Started reloader process [5880] using StatReload
+INFO:     Started server process [10752]
+INFO:     Waiting for application startup.
+02:41:36 - LiteLLM Proxy:DEBUG: proxy_server.py:1577 - litellm.proxy.proxy_server.py::startup() - CHECKING PREMIUM USER - False
+02:41:36 - LiteLLM Proxy:DEBUG: proxy_server.py:1586 - worker_config: {"model": null, "alias": null, "api_base": null, "api_version": "2025-02-01-preview", "debug": false, "detailed_debug": true, "temperature": null, "max_tokens": null, "request_timeout": null, "max_budget": null, "drop_params": false, "add_function_to_prompt": false, "headers": null, "save": false, "config": "C:\\Users\\ADMINI~1\\AppData\\Local\\Temp\\3\\routerhub-proxy-21nlvpp2\\config.yaml", "use_queue": false}
+
+   ██╗     ██╗████████╗███████╗██╗     ██╗     ███╗   ███╗
+   ██║     ██║╚══██╔══╝██╔════╝██║     ██║     ████╗ ████║
+   ██║     ██║   ██║   █████╗  ██║     ██║     ██╔████╔██║
+   ██║     ██║   ██║   ██╔══╝  ██║     ██║     ██║╚██╔╝██║
+   ███████╗██║   ██║   ███████╗███████╗███████╗██║ ╚═╝ ██║
+   ╚══════╝╚═╝   ╚═╝   ╚══════╝╚══════╝╚══════╝╚═╝     ╚═╝
+
+
+#------------------------------------------------------------#
+#                                                            #
+#            'This product would be better if...'             #
+#        https://github.com/BerriAI/litellm/issues/new        #
+#                                                            #
+#------------------------------------------------------------#
+
+ Thank you for using LiteLLM! - Krrish & Ishaan
+
+
+
+Give Feedback / Get Help: https://github.com/BerriAI/litellm/issues/new
+
+
+02:41:36 - LiteLLM Proxy:WARNING: login_throttle.py:115 - Running 2 workers but Redis is not configured. Failed Admin UI sign-in attempts are counted per worker, so the effective limits are 2 times the configured values. Configure Redis to share one count across workers.
+02:41:36 - LiteLLM Proxy:WARNING: login_throttle.py:126 - trusted_proxy_ranges is not set or not a valid list of ranges, so failed Admin UI sign-in attempts are limited per source address and username only. Set it to the address ranges of the proxies in front of LiteLLM, or to an empty list when clients connect directly, to also limit each source address across usernames.
+02:41:36 - LiteLLM Proxy:DEBUG: proxy_server.py:7588 - _alerting_callbacks: None
+02:41:36 - LiteLLM Proxy:INFO: proxy_server.py:7294 - background_health_check_config enabled=False shared=False interval_seconds=300 max_concurrency=None details=True health_check_routing=False model_groups=None
+LiteLLM: Proxy initialized with Config, Set models:
+    routerhub-glm
+    routerhub-flash
+02:41:37 - LiteLLM:DEBUG: utils.py:7090 - model not found in litellm.model_cost, tried: {'split_model': '8265ec7e416f4506e39f34152a6b9fe5ce3f1625fec3adea6468bd46be9a65f9', 'combined_model_name': '8265ec7e416f4506e39f34152a6b9fe5ce3f1625fec3adea6468bd46be9a65f9', 'region_free_combined_model_name': '8265ec7e416f4506e39f34152a6b9fe5ce3f1625fec3adea6468bd46be9a65f9', 'stripped_model_name': '8265ec7e416f4506e39f34152a6b9fe5ce3f1625fec3adea6468bd46be9a65f9', 'combined_stripped_model_name': '8265ec7e416f4506e39f34152a6b9fe5ce3f1625fec3adea6468bd46be9a65f9', 'provider_prefixed_model_name': '8265ec7e416f4506e39f34152a6b9fe5ce3f1625fec3adea6468bd46be9a65f9', 'custom_llm_provider': None}
+02:41:37 - LiteLLM:DEBUG: utils.py:4283 - added/updated model=8265ec7e416f4506e39f34152a6b9fe5ce3f1625fec3adea6468bd46be9a65f9 in litellm.model_cost: 8265ec7e416f4506e39f34152a6b9fe5ce3f1625fec3adea6468bd46be9a65f9
+02:41:37 - LiteLLM:DEBUG: utils.py:4283 - added/updated model=routerhub/glm-5.3-abliterated in litellm.model_cost: routerhub/glm-5.3-abliterated
+02:41:37 - LiteLLM:DEBUG: utils.py:7090 - model not found in litellm.model_cost, tried: {'split_model': '85802f8f6e8b5d078843c7ee0fefbc4a64f479ba9b95378208f0cc20b7d7b602', 'combined_model_name': '85802f8f6e8b5d078843c7ee0fefbc4a64f479ba9b95378208f0cc20b7d7b602', 'region_free_combined_model_name': '85802f8f6e8b5d078843c7ee0fefbc4a64f479ba9b95378208f0cc20b7d7b602', 'stripped_model_name': '85802f8f6e8b5d078843c7ee0fefbc4a64f479ba9b95378208f0cc20b7d7b602', 'combined_stripped_model_name': '85802f8f6e8b5d078843c7ee0fefbc4a64f479ba9b95378208f0cc20b7d7b602', 'provider_prefixed_model_name': '85802f8f6e8b5d078843c7ee0fefbc4a64f479ba9b95378208f0cc20b7d7b602', 'custom_llm_provider': None}
+02:41:37 - LiteLLM:DEBUG: utils.py:4283 - added/updated model=85802f8f6e8b5d078843c7ee0fefbc4a64f479ba9b95378208f0cc20b7d7b602 in litellm.model_cost: 85802f8f6e8b5d078843c7ee0fefbc4a64f479ba9b95378208f0cc20b7d7b602
+02:41:37 - LiteLLM:DEBUG: utils.py:4283 - added/updated model=routerhub/glm-5.3-flash-abliterated in litellm.model_cost: routerhub/glm-5.3-flash-abliterated
+02:41:37 - LiteLLM Router:DEBUG: router_python_core.py:11649 - 
+Initialized Model List ['routerhub-glm', 'routerhub-flash']
+02:41:37 - LiteLLM Router:INFO: router_python_core.py:2347 - Routing strategy: simple-shuffle
+02:41:37 - LiteLLM Proxy:DEBUG: proxy_server.py:7566 - Policy engine: no policies in config, skipping
+02:41:37 - LiteLLM Proxy:DEBUG: utils.py:2057 - Skipping proxy hook autorouter_baseline_cache: it requires a database and no prisma client is configured
+02:41:37 - LiteLLM Proxy:DEBUG: utils.py:2057 - Skipping proxy hook managed_files: it requires a database and no prisma client is configured
+02:41:37 - LiteLLM Proxy:DEBUG: utils.py:2057 - Skipping proxy hook managed_vector_stores: it requires a database and no prisma client is configured
+02:41:37 - LiteLLM Proxy:DEBUG: proxy_server.py:1768 - About to initialize semantic tool filter
+02:41:37 - LiteLLM Proxy:DEBUG: proxy_server.py:1771 - litellm_settings keys = []
+02:41:37 - LiteLLM Proxy:DEBUG: proxy_server.py:11091 - Semantic tool filter not configured or not enabled, skipping initialization
+02:41:37 - LiteLLM Proxy:DEBUG: proxy_server.py:1776 - After semantic tool filter initialization
+02:41:37 - LiteLLM Proxy:DEBUG: proxy_server.py:1789 - prisma_client: None
+02:41:37 - LiteLLM Proxy:DEBUG: proxy_server.py:12269 - LiteLLM: Pyroscope profiling is disabled (set LITELLM_ENABLE_PYROSCOPE=true to enable).
+02:41:37 - LiteLLM Proxy:INFO: proxy_server.py:1470 - SESSION REUSE: Created shared aiohttp session for connection pooling (ID: 2226616877472, limit=1000, limit_per_host=500)
+02:41:37 - LiteLLM Proxy:WARNING: proxy_server.py:1914 - gc.freeze pinned 1141918 startup objects
+02:41:37 - LiteLLM Proxy:DEBUG: hanging_request_check.py:159 - Checking for hanging requests....
+INFO:     Application startup complete.
+02:41:38 - LiteLLM Proxy:DEBUG: billing_metrics.py:291 - Enterprise billing metrics disabled: deployment is not licensed
+INFO:     127.0.0.1:61307 - "GET /health/liveliness HTTP/1.1" 200 OK
+02:41:38 - LiteLLM:DEBUG: user_api_key_auth.py:2680 - api key not found in cache.
+02:41:38 - LiteLLM Proxy:DEBUG: user_api_key_auth.py:3340 - centralized auth: user fetch swallowed (ModuleNotFoundError: No module named 'prisma')
+02:41:38 - LiteLLM Proxy:DEBUG: auth_checks.py:604 - Model routerhub-glm has non-zero cost (input: 4e-07, output: 1.3333333333333332e-06)
+02:41:38 - LiteLLM Proxy:DEBUG: auth_checks.py:8192 - Prisma client not found, skipping vector store access check
+02:41:38 - LiteLLM:DEBUG: __init__.py:163 - Discovering guardrail translations in: litellm.llms.a2a.chat.guardrail_translation
+02:41:38 - LiteLLM:DEBUG: __init__.py:172 - Found guardrail_translation_mappings in litellm.llms.a2a.chat.guardrail_translation: [<CallTypes.send_message: 'send_message'>, <CallTypes.asend_message: 'asend_message'>]
+02:41:38 - LiteLLM:DEBUG: __init__.py:163 - Discovering guardrail translations in: litellm.llms.anthropic.chat.guardrail_translation
+02:41:39 - LiteLLM:DEBUG: __init__.py:172 - Found guardrail_translation_mappings in litellm.llms.anthropic.chat.guardrail_translation: [<CallTypes.anthropic_messages: 'anthropic_messages'>]
+02:41:39 - LiteLLM:DEBUG: __init__.py:163 - Discovering guardrail translations in: litellm.llms.bedrock.passthrough.guardrail_translation
+02:41:39 - LiteLLM:DEBUG: __init__.py:163 - Discovering guardrail translations in: litellm.llms.cloudflare.extraction.guardrail_translation
+02:41:39 - LiteLLM:DEBUG: __init__.py:172 - Found guardrail_translation_mappings in litellm.llms.cloudflare.extraction.guardrail_translation: [<CallTypes.extraction: 'extraction'>, <CallTypes.aextraction: 'aextraction'>]
+02:41:39 - LiteLLM:DEBUG: __init__.py:163 - Discovering guardrail translations in: litellm.llms.cohere.rerank.guardrail_translation
+02:41:39 - LiteLLM:DEBUG: __init__.py:172 - Found guardrail_translation_mappings in litellm.llms.cohere.rerank.guardrail_translation: [<CallTypes.rerank: 'rerank'>, <CallTypes.arerank: 'arerank'>]
+02:41:39 - LiteLLM:DEBUG: __init__.py:163 - Discovering guardrail translations in: litellm.llms.gemini.google_genai.guardrail_translation
+02:41:39 - LiteLLM:DEBUG: __init__.py:172 - Found guardrail_translation_mappings in litellm.llms.gemini.google_genai.guardrail_translation: [<CallTypes.generate_content: 'generate_content'>, <CallTypes.agenerate_content: 'agenerate_content'>, <CallTypes.generate_content_stream: 'generate_content_stream'>, <CallTypes.agenerate_content_stream: 'agenerate_content_stream'>]
+02:41:39 - LiteLLM:DEBUG: __init__.py:163 - Discovering guardrail translations in: litellm.llms.mistral.ocr.guardrail_translation
+02:41:39 - LiteLLM:DEBUG: __init__.py:172 - Found guardrail_translation_mappings in litellm.llms.mistral.ocr.guardrail_translation: [<CallTypes.ocr: 'ocr'>, <CallTypes.aocr: 'aocr'>]
+02:41:39 - LiteLLM:DEBUG: __init__.py:163 - Discovering guardrail translations in: litellm.llms.openai.chat.guardrail_translation
+02:41:39 - LiteLLM:DEBUG: __init__.py:172 - Found guardrail_translation_mappings in litellm.llms.openai.chat.guardrail_translation: [<CallTypes.completion: 'completion'>, <CallTypes.acompletion: 'acompletion'>]
+02:41:39 - LiteLLM:DEBUG: __init__.py:163 - Discovering guardrail translations in: litellm.llms.openai.completion.guardrail_translation
+02:41:39 - LiteLLM:DEBUG: __init__.py:172 - Found guardrail_translation_mappings in litellm.llms.openai.completion.guardrail_translation: [<CallTypes.text_completion: 'text_completion'>, <CallTypes.atext_completion: 'atext_completion'>]
+02:41:39 - LiteLLM:DEBUG: __init__.py:163 - Discovering guardrail translations in: litellm.llms.openai.embeddings.guardrail_translation
+02:41:39 - LiteLLM:DEBUG: __init__.py:172 - Found guardrail_translation_mappings in litellm.llms.openai.embeddings.guardrail_translation: [<CallTypes.embedding: 'embedding'>, <CallTypes.aembedding: 'aembedding'>]
+02:41:39 - LiteLLM:DEBUG: __init__.py:163 - Discovering guardrail translations in: litellm.llms.openai.image_generation.guardrail_translation
+02:41:39 - LiteLLM:DEBUG: __init__.py:172 - Found guardrail_translation_mappings in litellm.llms.openai.image_generation.guardrail_translation: [<CallTypes.image_generation: 'image_generation'>, <CallTypes.aimage_generation: 'aimage_generation'>, <CallTypes.image_edit: 'image_edit'>, <CallTypes.aimage_edit: 'aimage_edit'>]
+02:41:39 - LiteLLM:DEBUG: __init__.py:163 - Discovering guardrail translations in: litellm.llms.openai.responses.guardrail_translation
+02:41:39 - LiteLLM:DEBUG: __init__.py:172 - Found guardrail_translation_mappings in litellm.llms.openai.responses.guardrail_translation: [<CallTypes.responses: 'responses'>, <CallTypes.aresponses: 'aresponses'>]
+02:41:39 - LiteLLM:DEBUG: __init__.py:163 - Discovering guardrail translations in: litellm.llms.openai.speech.guardrail_translation
+02:41:39 - LiteLLM:DEBUG: __init__.py:172 - Found guardrail_translation_mappings in litellm.llms.openai.speech.guardrail_translation: [<CallTypes.speech: 'speech'>, <CallTypes.aspeech: 'aspeech'>]
+02:41:39 - LiteLLM:DEBUG: __init__.py:163 - Discovering guardrail translations in: litellm.llms.openai.transcriptions.guardrail_translation
+02:41:39 - LiteLLM:DEBUG: __init__.py:172 - Found guardrail_translation_mappings in litellm.llms.openai.transcriptions.guardrail_translation: [<CallTypes.transcription: 'transcription'>, <CallTypes.atranscription: 'atranscription'>]
+02:41:39 - LiteLLM:DEBUG: __init__.py:163 - Discovering guardrail translations in: litellm.llms.openai.videos.guardrail_translation
+02:41:39 - LiteLLM:DEBUG: __init__.py:172 - Found guardrail_translation_mappings in litellm.llms.openai.videos.guardrail_translation: [<CallTypes.video_generation: 'video_generation'>, <CallTypes.avideo_generation: 'avideo_generation'>, <CallTypes.create_video: 'create_video'>, <CallTypes.acreate_video: 'acreate_video'>, <CallTypes.video_remix: 'video_remix'>, <CallTypes.avideo_remix: 'avideo_remix'>, <CallTypes.video_edit: 'video_edit'>, <CallTypes.avideo_edit: 'avideo_edit'>, <CallTypes.video_extension: 'video_extension'>, <CallTypes.avideo_extension: 'avideo_extension'>]
+02:41:39 - LiteLLM:DEBUG: __init__.py:163 - Discovering guardrail translations in: litellm.llms.pass_through.guardrail_translation
+02:41:39 - LiteLLM:DEBUG: __init__.py:172 - Found guardrail_translation_mappings in litellm.llms.pass_through.guardrail_translation: [<CallTypes.pass_through: 'pass_through_endpoint'>, <CallTypes.allm_passthrough_route: 'allm_passthrough_route'>]
+02:41:39 - LiteLLM:DEBUG: __init__.py:189 - Loaded MCP guardrail translation mappings: [<CallTypes.call_mcp_tool: 'call_mcp_tool'>, <CallTypes.list_mcp_tools: 'list_mcp_tools'>]
+02:41:39 - LiteLLM:DEBUG: __init__.py:196 - Discovered 43 guardrail translation mappings: [<CallTypes.send_message: 'send_message'>, <CallTypes.asend_message: 'asend_message'>, <CallTypes.anthropic_messages: 'anthropic_messages'>, <CallTypes.extraction: 'extraction'>, <CallTypes.aextraction: 'aextraction'>, <CallTypes.rerank: 'rerank'>, <CallTypes.arerank: 'arerank'>, <CallTypes.generate_content: 'generate_content'>, <CallTypes.agenerate_content: 'agenerate_content'>, <CallTypes.generate_content_stream: 'generate_content_stream'>, <CallTypes.agenerate_content_stream: 'agenerate_content_stream'>, <CallTypes.ocr: 'ocr'>, <CallTypes.aocr: 'aocr'>, <CallTypes.completion: 'completion'>, <CallTypes.acompletion: 'acompletion'>, <CallTypes.text_completion: 'text_completion'>, <CallTypes.atext_completion: 'atext_completion'>, <CallTypes.embedding: 'embedding'>, <CallTypes.aembedding: 'aembedding'>, <CallTypes.image_generation: 'image_generation'>, <CallTypes.aimage_generation: 'aimage_generation'>, <CallTypes.image_edit: 'image_edit'>, <CallTypes.aimage_edit: 'aimage_edit'>, <CallTypes.responses: 'responses'>, <CallTypes.aresponses: 'aresponses'>, <CallTypes.speech: 'speech'>, <CallTypes.aspeech: 'aspeech'>, <CallTypes.transcription: 'transcription'>, <CallTypes.atranscription: 'atranscription'>, <CallTypes.video_generation: 'video_generation'>, <CallTypes.avideo_generation: 'avideo_generation'>, <CallTypes.create_video: 'create_video'>, <CallTypes.acreate_video: 'acreate_video'>, <CallTypes.video_remix: 'video_remix'>, <CallTypes.avideo_remix: 'avideo_remix'>, <CallTypes.video_edit: 'video_edit'>, <CallTypes.avideo_edit: 'avideo_edit'>, <CallTypes.video_extension: 'video_extension'>, <CallTypes.avideo_extension: 'avideo_extension'>, <CallTypes.pass_through: 'pass_through_endpoint'>, <CallTypes.allm_passthrough_route: 'allm_passthrough_route'>, <CallTypes.call_mcp_tool: 'call_mcp_tool'>, <CallTypes.list_mcp_tools: 'list_mcp_tools'>]
+02:41:39 - LiteLLM Proxy:DEBUG: common_request_processing.py:2941 - Request received by LiteLLM:
+{"model": "routerhub-glm", "messages": [{"role": "user", "content": "Reply with exactly OK."}], "max_tokens": 256, "stream": false, "metadata": {"user_api_key_user_id": "default_user_id"}}
+02:41:40 - LiteLLM Proxy:DEBUG: litellm_pre_call_utils.py:2692 - Request Headers: {'accept-encoding': 'identity', 'content-length': '131', 'host': '127.0.0.1:61242', 'user-agent': 'Python-urllib/3.13', 'content-type': 'application/json', 'connection': 'close'}
+02:41:40 - LiteLLM Proxy:DEBUG: litellm_pre_call_utils.py:2693 - Raw Headers: RedactedDict(REDACTED)
+02:41:40 - LiteLLM:DEBUG: utils.py:585 - Initialized litellm callbacks, Async Success Callbacks: [<bound method PythonCore.deployment_callback_on_success of <litellm.router_python_core.PythonCore object at 0x000002066CC816A0>>, <litellm.proxy.hooks.model_max_budget_limiter._PROXY_VirtualKeyModelMaxBudgetLimiter object at 0x0000020668EEA660>, <litellm.proxy.hooks.parallel_request_limiter_v3._PROXY_MaxParallelRequestsHandler_v3 object at 0x000002066CC82660>, <litellm.proxy.hooks.cache_control_check._PROXY_CacheControlCheck object at 0x000002066CC3D450>, <litellm.proxy.hooks.responses_id_security.ResponsesIDSecurity object at 0x000002066CC82900>, <litellm.proxy.hooks.litellm_skills.main.SkillsInjectionHook object at 0x000002066CC82A50>, <litellm.proxy.hooks.max_iterations_limiter._PROXY_MaxIterationsHandler object at 0x000002066CC82CF0>, <litellm.proxy.hooks.max_budget_per_session_limiter._PROXY_MaxBudgetPerSessionHandler object at 0x000002066CC82E40>, <litellm.proxy.hooks.sensitive_data_routing._PROXY_SensitiveDataRoutingHandler object at 0x000002066CC82F90>, <litellm.proxy.hooks.prompt_cache_prediction.PromptCacheObserver object at 0x000002066CC830E0>, <litellm._service_logger.ServiceLogging object at 0x0000020668E9E190>]
+02:41:40 - LiteLLM:DEBUG: utils.py:1437 - Removing thought signatures from tool call IDs for non-Gemini model
+02:41:40 - LiteLLM Router:DEBUG: router_python_core.py:2692 - routing_group=default model=routerhub-glm strategy=simple-shuffle
+02:41:40 - LiteLLM Proxy:DEBUG: utils.py:3146 - Inside Proxy Logging Pre-call hook!
+02:41:40 - LiteLLM Proxy:DEBUG: parallel_request_limiter_v3.py:4392 - Inside Rate Limit Pre-Call Hook
+02:41:40 - LiteLLM Proxy:DEBUG: cache_control_check.py:29 - Inside Cache Control Check Pre-Call Hook
+02:41:40 - LiteLLM Proxy:INFO: route_llm_request.py:553 - SESSION REUSE: Attached shared aiohttp session to request (ID: 2226616877472)
+02:41:40 - LiteLLM Router:DEBUG: router_python_core.py:9499 - Inside async function with retries.
+02:41:40 - LiteLLM Router:DEBUG: router_python_core.py:9522 - async function w/ retries: original_function - <bound method PythonCore._acompletion of <litellm.router_python_core.PythonCore object at 0x000002066CC816A0>>, num_retries - 0
+02:41:40 - LiteLLM Router:DEBUG: router_python_core.py:2692 - routing_group=default model=routerhub-glm strategy=simple-shuffle
+02:41:40 - LiteLLM Router:DEBUG: router_python_core.py:15511 - initial list of deployments: ({'model_name': 'routerhub-glm', 'litellm_params': {'REDACTED', 'allow_client_keepalive_override': False, 'use_in_pass_through': False, 'use_litellm_proxy': False, 'use_xai_oauth': False, 'merge_reasoning_content_in_choices': False, 'model': 'routerhub/glm-5.3-abliterated'}, 'model_info': {'id': '8265ec7e416f4506e39f34152a6b9fe5ce3f1625fec3adea6468bd46be9a65f9', 'db_model': False, 'member_auto_router': False}},)
+02:41:40 - LiteLLM Router:DEBUG: router_python_core.py:15681 - healthy_deployments after team filter: [{'model_name': 'routerhub-glm', 'litellm_params': {'REDACTED', 'allow_client_keepalive_override': False, 'use_in_pass_through': False, 'use_litellm_proxy': False, 'use_xai_oauth': False, 'merge_reasoning_content_in_choices': False, 'model': 'routerhub/glm-5.3-abliterated'}, 'model_info': {'id': '8265ec7e416f4506e39f34152a6b9fe5ce3f1625fec3adea6468bd46be9a65f9', 'db_model': False, 'member_auto_router': False}}]
+02:41:40 - LiteLLM Router:DEBUG: router_python_core.py:15689 - healthy_deployments after web search filter: [{'model_name': 'routerhub-glm', 'litellm_params': {'REDACTED', 'allow_client_keepalive_override': False, 'use_in_pass_through': False, 'use_litellm_proxy': False, 'use_xai_oauth': False, 'merge_reasoning_content_in_choices': False, 'model': 'routerhub/glm-5.3-abliterated'}, 'model_info': {'id': '8265ec7e416f4506e39f34152a6b9fe5ce3f1625fec3adea6468bd46be9a65f9', 'db_model': False, 'member_auto_router': False}}]
+02:41:40 - LiteLLM Router:DEBUG: cooldown_handlers.py:657 - retrieve cooldown models: []
+02:41:40 - LiteLLM Router:DEBUG: router_python_core.py:15731 - cooldown deployments: []
+02:41:40 - LiteLLM Router:DEBUG: router_python_core.py:17373 - cooldown deployments: []
+02:41:40 - LiteLLM:DEBUG: utils.py:585 - 
+
+02:41:40 - LiteLLM:DEBUG: utils.py:585 - Request to litellm:
+02:41:40 - LiteLLM:DEBUG: utils.py:585 - litellm.acompletion(REDACTED', allow_client_keepalive_override=False, use_in_pass_through=False, use_litellm_proxy=False, use_xai_oauth=False, merge_reasoning_content_in_choices=False, model='routerhub/glm-5.3-abliterated', messages=[{'role': 'user', 'content': 'Reply with exactly OK.'}], caching=False, client=None, max_tokens=256, metadata=<dict len=67>, proxy_server_request=<dict len=7>, secret_fields='REDACTED', litellm_call_id='8ff9c951-9421-4c8e-af79-2bddd6581205', litellm_logging_obj=<litellm.litellm_core_utils.litellm_logging.Logging object at 0x000002066D1F86E0>, shared_session=<aiohttp.client.ClientSession object at 0x000002066CB541A0>, stream=False, litellm_trace_id='1e3d294a-a466-4f60-881d-189fc5531dfb', _context_compaction_state=<litellm.router_strategy.complexity_router.context_compaction.CompactionState object at 0x000002066D023420>, model_info={'id': '8265ec7e416f4506e39f34152a6b9fe5ce3f1625fec3adea6468bd46be9a65f9', 'db_model': False, 'member_auto_router': False}, timeout=6000.0, max_retries=0)
+02:41:40 - LiteLLM:DEBUG: utils.py:585 - 
+
+02:41:40 - LiteLLM:DEBUG: utils.py:585 - ASYNC kwargs[caching]: False; litellm.cache: None; kwargs.get('cache'): None
+02:41:40 - LiteLLM:DEBUG: main.py:823 - 🔄 SHARED SESSION: acompletion called with shared_session (ID: 2226616877472)
+02:41:40 - LiteLLM:INFO: utils.py:5397 - 
+LiteLLM completion() model= glm-5.3-abliterated; provider = routerhub
+02:41:40 - LiteLLM:DEBUG: utils.py:5399 - 
+LiteLLM: Non-Default params passed to completion() {'stream': False, 'max_tokens': 256, 'max_retries': 0}
+02:41:40 - LiteLLM:DEBUG: utils.py:585 - Final returned optional params: {'stream': False, 'max_tokens': 256, 'max_retries': 0, 'extra_body': {}}
+02:41:40 - LiteLLM:DEBUG: http_handler.py:1368 - Using AiohttpTransport...
+02:41:40 - LiteLLM:DEBUG: http_handler.py:1436 - Creating AiohttpTransport...
+02:41:40 - LiteLLM:DEBUG: http_handler.py:1465 - SHARED SESSION: Reusing existing ClientSession (ID: 2226616877472)
+02:41:40 - LiteLLM:DEBUG: litellm_logging.py:1830 - 
+
+POST Request Sent from LiteLLM:
+curl -X POST \
+https://routerhub.si/v1/ \
+-H 'Authorization: Be****Lm' \
+-d '{'model': 'glm-5.3-abliterated', 'messages': [{'role': 'user', 'content': 'Reply with exactly OK.'}], 'max_tokens': 256, 'extra_body': {}}'
+
+
+02:41:42 - LiteLLM:DEBUG: litellm_logging.py:1879 - RAW RESPONSE:
+{"id": "chatcmpl-dd9d662d8cc841a104153d2154c519ac", "choices": [{"finish_reason": "stop", "index": 0, "message": {"content": "OK", "role": "assistant", "reasoning": "The user wants exactly \"OK\" as my response. No extra words, no punctuation beyond what's specified."}}], "created": 1793500901, "model": "glm-5.3-abliterated", "object": "chat.completion", "usage": {"completion_tokens": 25, "prompt_tokens": 17, "total_tokens": 42, "completion_tokens_details": {"reasoning_tokens": 22}, "prompt_tokens_details": {"cached_tokens": 0}}}
+
+
+02:41:42 - LiteLLM:DEBUG: openai.py:671 - LiteLLM.AgenticHooks: callbacks_count=10
+02:41:42 - LiteLLM:DEBUG: openai.py:674 - LiteLLM.AgenticHooks: tools_count=0
+02:41:42 - LiteLLM:DEBUG: cost_calculator.py:1822 - selected model name for cost calculation: routerhub/routerhub/glm-5.3-abliterated
+02:41:42 - LiteLLM:DEBUG: litellm_logging.py:2250 - response_cost: 4.0133333333333324e-05
+02:41:42 - LiteLLM Router:INFO: router_python_core.py:5060 - litellm.acompletion(model=routerhub/glm-5.3-abliterated) 200 OK
+02:41:42 - LiteLLM Router:DEBUG: router_python_core.py:9414 - Async Response: ModelResponse(id='chatcmpl-dd9d662d8cc841a104153d2154c519ac', created=1793500901, model='routerhub/glm-5.3-abliterated', object='chat.completion', system_fingerprint=None, choices=[Choices(finish_reason='stop', index=0, message=Message(content='OK', role='assistant', tool_calls=None, function_call=None, reasoning_content='The user wants exactly "OK" as my response. No extra words, no punctuation beyond what\'s specified.', provider_specific_fields={'reasoning': 'The user wants exactly "OK" as my response. No extra words, no punctuation beyond what\'s specified.'}), provider_specific_fields={})], usage=Usage(completion_tokens=25, prompt_tokens=17, total_tokens=42, completion_tokens_details=CompletionTokensDetailsWrapper(accepted_prediction_tokens=None, audio_tokens=None, reasoning_tokens=22, rejected_prediction_tokens=None, text_tokens=None, image_tokens=None, video_tokens=None), prompt_tokens_details=PromptTokensDetailsWrapper(audio_tokens=None, cached_tokens=0, text_tokens=None, image_tokens=None, video_tokens=None, initial_prompt_tokens=None)))
+02:41:42 - LiteLLM:DEBUG: litellm_logging.py:5053 - Filtered callbacks: []
+02:41:42 - LiteLLM Proxy:DEBUG: common_request_processing.py:1711 - litellm_call_id=8ff9c951-9421-4c8e-af79-2bddd6581205: response model mismatch - requested='routerhub-glm' downstream='routerhub/glm-5.3-abliterated'. Overriding response.model to requested model.
+INFO:     127.0.0.1:61309 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+02:41:42 - LiteLLM:DEBUG: utils.py:585 - Async Wrapper: Completed Call, calling async_success_handler: <bound method Logging.async_success_handler of <litellm.litellm_core_utils.litellm_logging.Logging object at 0x000002066D1F86E0>>
+02:41:42 - LiteLLM:DEBUG: utils.py:585 - Logging Details LiteLLM-Async Success Call, cache_hit=None
+02:41:42 - LiteLLM:DEBUG: litellm_logging.py:5053 - Filtered callbacks: []
+02:41:42 - LiteLLM Proxy:DEBUG: model_max_budget_limiter.py:1116 - in RouterBudgetLimiting.async_log_success_event
+02:41:42 - LiteLLM Proxy:DEBUG: model_max_budget_limiter.py:1204 - Not running _PROXY_VirtualKeyModelMaxBudgetLimiter.async_log_success_event: no key, team, user or end-user model_max_budget covers model=routerhub-glm
+02:41:42 - LiteLLM Proxy:DEBUG: parallel_request_limiter_v3.py:5551 - INSIDE parallel request limiter ASYNC SUCCESS LOGGING
+02:41:42 - LiteLLM Proxy:DEBUG: parallel_request_limiter_v3.py:4853 - TTL preservation script not available, using regular pipeline
+02:41:42 - LiteLLM:DEBUG: litellm_logging.py:5053 - Filtered callbacks: []
+02:41:42 - LiteLLM:DEBUG: user_api_key_auth.py:2680 - api key not found in cache.
+02:41:42 - LiteLLM Proxy:DEBUG: user_api_key_auth.py:3340 - centralized auth: user fetch swallowed (ModuleNotFoundError: No module named 'prisma')
+02:41:42 - LiteLLM Proxy:DEBUG: auth_checks.py:8192 - Prisma client not found, skipping vector store access check
+02:41:42 - LiteLLM Proxy:DEBUG: common_request_processing.py:2941 - Request received by LiteLLM:
+{"model": "routerhub-glm", "messages": [{"role": "user", "content": "Reply with exactly OK."}], "max_tokens": 256, "stream": true, "stream_options": {"include_usage": true}, "metadata": {"user_api_key_user_id": "default_user_id"}}
+02:41:42 - LiteLLM Proxy:DEBUG: litellm_pre_call_utils.py:2692 - Request Headers: {'accept-encoding': 'identity', 'content-length': '173', 'host': '127.0.0.1:61242', 'user-agent': 'Python-urllib/3.13', 'content-type': 'application/json', 'connection': 'close'}
+02:41:42 - LiteLLM Proxy:DEBUG: litellm_pre_call_utils.py:2693 - Raw Headers: RedactedDict(REDACTED)
+02:41:42 - LiteLLM:DEBUG: utils.py:585 - Initialized litellm callbacks, Async Success Callbacks: [<bound method PythonCore.deployment_callback_on_success of <litellm.router_python_core.PythonCore object at 0x000002066CC816A0>>, <litellm.proxy.hooks.model_max_budget_limiter._PROXY_VirtualKeyModelMaxBudgetLimiter object at 0x0000020668EEA660>, <litellm.proxy.hooks.parallel_request_limiter_v3._PROXY_MaxParallelRequestsHandler_v3 object at 0x000002066CC82660>, <litellm.proxy.hooks.cache_control_check._PROXY_CacheControlCheck object at 0x000002066CC3D450>, <litellm.proxy.hooks.responses_id_security.ResponsesIDSecurity object at 0x000002066CC82900>, <litellm.proxy.hooks.litellm_skills.main.SkillsInjectionHook object at 0x000002066CC82A50>, <litellm.proxy.hooks.max_iterations_limiter._PROXY_MaxIterationsHandler object at 0x000002066CC82CF0>, <litellm.proxy.hooks.max_budget_per_session_limiter._PROXY_MaxBudgetPerSessionHandler object at 0x000002066CC82E40>, <litellm.proxy.hooks.sensitive_data_routing._PROXY_SensitiveDataRoutingHandler object at 0x000002066CC82F90>, <litellm.proxy.hooks.prompt_cache_prediction.PromptCacheObserver object at 0x000002066CC830E0>, <litellm._service_logger.ServiceLogging object at 0x0000020668E9E190>]
+02:41:42 - LiteLLM:DEBUG: utils.py:1437 - Removing thought signatures from tool call IDs for non-Gemini model
+02:41:42 - LiteLLM Router:DEBUG: router_python_core.py:2692 - routing_group=default model=routerhub-glm strategy=simple-shuffle
+02:41:42 - LiteLLM Proxy:DEBUG: utils.py:3146 - Inside Proxy Logging Pre-call hook!
+02:41:42 - LiteLLM Proxy:DEBUG: parallel_request_limiter_v3.py:4392 - Inside Rate Limit Pre-Call Hook
+02:41:42 - LiteLLM Proxy:DEBUG: cache_control_check.py:29 - Inside Cache Control Check Pre-Call Hook
+02:41:42 - LiteLLM Proxy:INFO: route_llm_request.py:553 - SESSION REUSE: Attached shared aiohttp session to request (ID: 2226616877472)
+02:41:42 - LiteLLM Router:DEBUG: router_python_core.py:9499 - Inside async function with retries.
+02:41:42 - LiteLLM Router:DEBUG: router_python_core.py:9522 - async function w/ retries: original_function - <bound method PythonCore._acompletion of <litellm.router_python_core.PythonCore object at 0x000002066CC816A0>>, num_retries - 0
+02:41:42 - LiteLLM Router:DEBUG: router_python_core.py:2692 - routing_group=default model=routerhub-glm strategy=simple-shuffle
+02:41:42 - LiteLLM Router:DEBUG: router_python_core.py:15511 - initial list of deployments: ({'model_name': 'routerhub-glm', 'litellm_params': {'REDACTED', 'allow_client_keepalive_override': False, 'use_in_pass_through': False, 'use_litellm_proxy': False, 'use_xai_oauth': False, 'merge_reasoning_content_in_choices': False, 'model': 'routerhub/glm-5.3-abliterated'}, 'model_info': {'id': '8265ec7e416f4506e39f34152a6b9fe5ce3f1625fec3adea6468bd46be9a65f9', 'db_model': False, 'member_auto_router': False}},)
+02:41:42 - LiteLLM Router:DEBUG: router_python_core.py:15681 - healthy_deployments after team filter: [{'model_name': 'routerhub-glm', 'litellm_params': {'REDACTED', 'allow_client_keepalive_override': False, 'use_in_pass_through': False, 'use_litellm_proxy': False, 'use_xai_oauth': False, 'merge_reasoning_content_in_choices': False, 'model': 'routerhub/glm-5.3-abliterated'}, 'model_info': {'id': '8265ec7e416f4506e39f34152a6b9fe5ce3f1625fec3adea6468bd46be9a65f9', 'db_model': False, 'member_auto_router': False}}]
+02:41:42 - LiteLLM Router:DEBUG: router_python_core.py:15689 - healthy_deployments after web search filter: [{'model_name': 'routerhub-glm', 'litellm_params': {'REDACTED', 'allow_client_keepalive_override': False, 'use_in_pass_through': False, 'use_litellm_proxy': False, 'use_xai_oauth': False, 'merge_reasoning_content_in_choices': False, 'model': 'routerhub/glm-5.3-abliterated'}, 'model_info': {'id': '8265ec7e416f4506e39f34152a6b9fe5ce3f1625fec3adea6468bd46be9a65f9', 'db_model': False, 'member_auto_router': False}}]
+02:41:42 - LiteLLM Router:DEBUG: cooldown_handlers.py:657 - retrieve cooldown models: []
+02:41:42 - LiteLLM Router:DEBUG: router_python_core.py:15731 - cooldown deployments: []
+02:41:42 - LiteLLM Router:DEBUG: router_python_core.py:17373 - cooldown deployments: []
+02:41:42 - LiteLLM:DEBUG: utils.py:585 - 
+
+02:41:42 - LiteLLM:DEBUG: utils.py:585 - Request to litellm:
+02:41:42 - LiteLLM:DEBUG: utils.py:585 - litellm.acompletion(REDACTED', allow_client_keepalive_override=False, use_in_pass_through=False, use_litellm_proxy=False, use_xai_oauth=False, merge_reasoning_content_in_choices=False, model='routerhub/glm-5.3-abliterated', messages=[{'role': 'user', 'content': 'Reply with exactly OK.'}], caching=False, client=None, max_tokens=256, stream_options={'include_usage': True}, metadata=<dict len=67>, proxy_server_request=<dict len=7>, secret_fields='REDACTED', litellm_call_id='d2ff4a03-193d-4897-8e96-8a17f25ad958', litellm_logging_obj=<litellm.litellm_core_utils.litellm_logging.Logging object at 0x000002066D2A65D0>, shared_session=<aiohttp.client.ClientSession object at 0x000002066CB541A0>, stream=True, litellm_trace_id='5dadb236-6dfe-40c8-a53d-eb14724f6db8', _context_compaction_state=<litellm.router_strategy.complexity_router.context_compaction.CompactionState object at 0x000002066CCF3510>, model_info={'id': '8265ec7e416f4506e39f34152a6b9fe5ce3f1625fec3adea6468bd46be9a65f9', 'db_model': False, 'member_auto_router': False}, timeout=6000.0, max_retries=0)
+02:41:42 - LiteLLM:DEBUG: utils.py:585 - 
+
+02:41:42 - LiteLLM:DEBUG: utils.py:585 - ASYNC kwargs[caching]: False; litellm.cache: None; kwargs.get('cache'): None
+02:41:42 - LiteLLM:DEBUG: main.py:823 - 🔄 SHARED SESSION: acompletion called with shared_session (ID: 2226616877472)
+02:41:42 - LiteLLM:INFO: utils.py:5397 - 
+LiteLLM completion() model= glm-5.3-abliterated; provider = routerhub
+02:41:42 - LiteLLM:DEBUG: utils.py:5399 - 
+LiteLLM: Non-Default params passed to completion() {'stream': True, 'stream_options': {'include_usage': True}, 'max_tokens': 256, 'max_retries': 0}
+02:41:42 - LiteLLM:DEBUG: utils.py:585 - Final returned optional params: {'stream': True, 'stream_options': {'include_usage': True}, 'max_tokens': 256, 'max_retries': 0, 'extra_body': {}}
+02:41:42 - LiteLLM:DEBUG: litellm_logging.py:1879 - RAW RESPONSE:
+<coroutine object OpenAIChatCompletion.async_streaming at 0x000002066CD430B0>
+
+
+02:41:42 - LiteLLM:DEBUG: litellm_logging.py:1830 - 
+
+POST Request Sent from LiteLLM:
+curl -X POST \
+https://routerhub.si/v1 \
+-d '{'model': 'glm-5.3-abliterated', 'messages': [{'role': 'user', 'content': 'Reply with exactly OK.'}], 'max_tokens': 256, 'extra_body': {}, 'stream': True, 'stream_options': {'include_usage': True}}'
+
+
+02:41:42 - LiteLLM:DEBUG: cost_calculator.py:1822 - selected model name for cost calculation: routerhub/routerhub/glm-5.3-abliterated
+02:41:42 - LiteLLM:DEBUG: token_counter.py:810 - messages in token_counter: None, text in token_counter: 
+02:41:43 - LiteLLM:DEBUG: litellm_logging.py:2250 - response_cost: 0.0
+02:41:43 - LiteLLM:DEBUG: streaming_handler.py:1260 - model_response.choices[0].delta: Delta(provider_specific_fields=None, refusal=None, content='', role='assistant', function_call=None, tool_calls=None, audio=None)
+02:41:43 - LiteLLM Router:INFO: router_python_core.py:5060 - litellm.acompletion(model=routerhub/glm-5.3-abliterated) 200 OK
+02:41:43 - LiteLLM Router:DEBUG: router_python_core.py:9414 - Async Response: <litellm.router_python_core.PythonCore._acompletion_streaming_iterator.<locals>.FallbackStreamWrapper object at 0x000002066D1F9010>
+02:41:43 - LiteLLM Proxy:DEBUG: proxy_server.py:10563 - inside generator
+02:41:43 - LiteLLM Proxy:DEBUG: proxy_server.py:10111 - litellm_call_id=d2ff4a03-193d-4897-8e96-8a17f25ad958: streaming chunk model mismatch - target='routerhub-glm' downstream='glm-5.3-abliterated' fallback_was_attempted=False. Overriding chunk model to target.
+INFO:     127.0.0.1:61313 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+02:41:43 - LiteLLM:DEBUG: streaming_handler.py:1260 - model_response.choices[0].delta: Delta(reasoning_content='The', provider_specific_fields=None, refusal=None, content=None, role=None, function_call=None, tool_calls=None, audio=None)
+02:41:43 - LiteLLM:DEBUG: streaming_handler.py:1260 - model_response.choices[0].delta: Delta(reasoning_content=' user has', provider_specific_fields=None, refusal=None, content=None, role=None, function_call=None, tool_calls=None, audio=None)
+02:41:43 - LiteLLM:DEBUG: streaming_handler.py:1260 - model_response.choices[0].delta: Delta(reasoning_content=' asked me to', provider_specific_fields=None, refusal=None, content=None, role=None, function_call=None, tool_calls=None, audio=None)
+02:41:43 - LiteLLM:DEBUG: streaming_handler.py:1260 - model_response.choices[0].delta: Delta(reasoning_content=' reply with exactly', provider_specific_fields=None, refusal=None, content=None, role=None, function_call=None, tool_calls=None, audio=None)
+02:41:43 - LiteLLM:DEBUG: streaming_handler.py:1260 - model_response.choices[0].delta: Delta(reasoning_content=' "OK".', provider_specific_fields=None, refusal=None, content=None, role=None, function_call=None, tool_calls=None, audio=None)
+02:41:43 - LiteLLM:DEBUG: streaming_handler.py:1260 - model_response.choices[0].delta: Delta(reasoning_content=' This is a', provider_specific_fields=None, refusal=None, content=None, role=None, function_call=None, tool_calls=None, audio=None)
+02:41:43 - LiteLLM:DEBUG: streaming_handler.py:1260 - model_response.choices[0].delta: Delta(reasoning_content=' simple instruction-follow', provider_specific_fields=None, refusal=None, content=None, role=None, function_call=None, tool_calls=None, audio=None)
+02:41:43 - LiteLLM:DEBUG: streaming_handler.py:1260 - model_response.choices[0].delta: Delta(reasoning_content='ing test', provider_specific_fields=None, refusal=None, content=None, role=None, function_call=None, tool_calls=None, audio=None)
+02:41:43 - LiteLLM:DEBUG: streaming_handler.py:1260 - model_response.choices[0].delta: Delta(reasoning_content='. I should', provider_specific_fields=None, refusal=None, content=None, role=None, function_call=None, tool_calls=None, audio=None)
+02:41:43 - LiteLLM:DEBUG: streaming_handler.py:1260 - model_response.choices[0].delta: Delta(reasoning_content=' respond', provider_specific_fields=None, refusal=None, content=None, role=None, function_call=None, tool_calls=None, audio=None)
+02:41:43 - LiteLLM:DEBUG: streaming_handler.py:1260 - model_response.choices[0].delta: Delta(reasoning_content=' with just', provider_specific_fields=None, refusal=None, content=None, role=None, function_call=None, tool_calls=None, audio=None)
+02:41:43 - LiteLLM:DEBUG: streaming_handler.py:1260 - model_response.choices[0].delta: Delta(reasoning_content=' "OK"', provider_specific_fields=None, refusal=None, content=None, role=None, function_call=None, tool_calls=None, audio=None)
+02:41:43 - LiteLLM:DEBUG: streaming_handler.py:1260 - model_response.choices[0].delta: Delta(reasoning_content=' and nothing else', provider_specific_fields=None, refusal=None, content=None, role=None, function_call=None, tool_calls=None, audio=None)
+02:41:43 - LiteLLM:DEBUG: streaming_handler.py:1260 - model_response.choices[0].delta: Delta(reasoning_content='.', provider_specific_fields=None, refusal=None, content='OK', role=None, function_call=None, tool_calls=None, audio=None)
+02:41:43 - LiteLLM:DEBUG: token_counter.py:810 - messages in token_counter: None, text in token_counter: The user has asked me to reply with exactly "OK". This is a simple instruction-following test. I should respond with just "OK" and nothing else.
+02:41:43 - LiteLLM:DEBUG: cost_calculator.py:1822 - selected model name for cost calculation: routerhub/glm-5.3-abliterated
+02:41:43 - LiteLLM:DEBUG: litellm_logging.py:2250 - response_cost: 5.4800000000000004e-05
+02:41:43 - LiteLLM:DEBUG: streaming_chunk_builder_utils.py:386 - apply_provider_assembled_streaming_metadata failed for model=glm-5.3-abliterated: 'routerhub' is not a valid LlmProviders
+02:41:43 - LiteLLM:DEBUG: token_counter.py:810 - messages in token_counter: None, text in token_counter: The user has asked me to reply with exactly "OK". This is a simple instruction-following test. I should respond with just "OK" and nothing else.
+02:41:43 - LiteLLM:DEBUG: cost_calculator.py:1822 - selected model name for cost calculation: routerhub/glm-5.3-abliterated
+02:41:43 - LiteLLM:DEBUG: litellm_logging.py:2250 - response_cost: 5.4800000000000004e-05
+02:41:43 - LiteLLM:DEBUG: streaming_chunk_builder_utils.py:386 - apply_provider_assembled_streaming_metadata failed for model=glm-5.3-abliterated: 'routerhub' is not a valid LlmProviders
+02:41:43 - LiteLLM:DEBUG: utils.py:585 - Logging Details LiteLLM-Async Success Call, cache_hit=False
+02:41:43 - LiteLLM:DEBUG: utils.py:585 - Async success callbacks: Got a complete streaming response
+02:41:43 - LiteLLM:DEBUG: litellm_logging.py:4224 - Model=glm-5.3-abliterated; cost=5.4800000000000004e-05
+02:41:43 - LiteLLM Proxy:DEBUG: model_max_budget_limiter.py:1116 - in RouterBudgetLimiting.async_log_success_event
+02:41:43 - LiteLLM Proxy:DEBUG: model_max_budget_limiter.py:1204 - Not running _PROXY_VirtualKeyModelMaxBudgetLimiter.async_log_success_event: no key, team, user or end-user model_max_budget covers model=routerhub-glm
+02:41:43 - LiteLLM Proxy:DEBUG: parallel_request_limiter_v3.py:5551 - INSIDE parallel request limiter ASYNC SUCCESS LOGGING
+02:41:43 - LiteLLM Proxy:DEBUG: parallel_request_limiter_v3.py:4853 - TTL preservation script not available, using regular pipeline
+02:41:43 - LiteLLM:DEBUG: litellm_logging.py:5053 - Filtered callbacks: []
+02:41:43 - LiteLLM:DEBUG: user_api_key_auth.py:2680 - api key not found in cache.
+02:41:43 - LiteLLM Proxy:DEBUG: user_api_key_auth.py:3340 - centralized auth: user fetch swallowed (ModuleNotFoundError: No module named 'prisma')
+02:41:43 - LiteLLM Proxy:DEBUG: auth_checks.py:604 - Model routerhub-flash has non-zero cost (input: 3e-07, output: 1e-06)
+02:41:43 - LiteLLM Proxy:DEBUG: auth_checks.py:8192 - Prisma client not found, skipping vector store access check
+02:41:43 - LiteLLM Proxy:DEBUG: common_request_processing.py:2941 - Request received by LiteLLM:
+{"model": "routerhub-flash", "messages": [{"role": "user", "content": "Reply with exactly OK."}], "max_tokens": 256, "stream": false, "metadata": {"user_api_key_user_id": "default_user_id"}}
+02:41:43 - LiteLLM Proxy:DEBUG: litellm_pre_call_utils.py:2692 - Request Headers: {'accept-encoding': 'identity', 'content-length': '133', 'host': '127.0.0.1:61242', 'user-agent': 'Python-urllib/3.13', 'content-type': 'application/json', 'connection': 'close'}
+02:41:43 - LiteLLM Proxy:DEBUG: litellm_pre_call_utils.py:2693 - Raw Headers: RedactedDict(REDACTED)
+02:41:43 - LiteLLM:DEBUG: utils.py:585 - Initialized litellm callbacks, Async Success Callbacks: [<bound method PythonCore.deployment_callback_on_success of <litellm.router_python_core.PythonCore object at 0x000002066CC816A0>>, <litellm.proxy.hooks.model_max_budget_limiter._PROXY_VirtualKeyModelMaxBudgetLimiter object at 0x0000020668EEA660>, <litellm.proxy.hooks.parallel_request_limiter_v3._PROXY_MaxParallelRequestsHandler_v3 object at 0x000002066CC82660>, <litellm.proxy.hooks.cache_control_check._PROXY_CacheControlCheck object at 0x000002066CC3D450>, <litellm.proxy.hooks.responses_id_security.ResponsesIDSecurity object at 0x000002066CC82900>, <litellm.proxy.hooks.litellm_skills.main.SkillsInjectionHook object at 0x000002066CC82A50>, <litellm.proxy.hooks.max_iterations_limiter._PROXY_MaxIterationsHandler object at 0x000002066CC82CF0>, <litellm.proxy.hooks.max_budget_per_session_limiter._PROXY_MaxBudgetPerSessionHandler object at 0x000002066CC82E40>, <litellm.proxy.hooks.sensitive_data_routing._PROXY_SensitiveDataRoutingHandler object at 0x000002066CC82F90>, <litellm.proxy.hooks.prompt_cache_prediction.PromptCacheObserver object at 0x000002066CC830E0>, <litellm._service_logger.ServiceLogging object at 0x0000020668E9E190>]
+02:41:43 - LiteLLM:DEBUG: utils.py:1437 - Removing thought signatures from tool call IDs for non-Gemini model
+02:41:43 - LiteLLM Router:DEBUG: router_python_core.py:2692 - routing_group=default model=routerhub-flash strategy=simple-shuffle
+02:41:43 - LiteLLM Proxy:DEBUG: utils.py:3146 - Inside Proxy Logging Pre-call hook!
+02:41:43 - LiteLLM Proxy:DEBUG: parallel_request_limiter_v3.py:4392 - Inside Rate Limit Pre-Call Hook
+02:41:43 - LiteLLM Proxy:DEBUG: cache_control_check.py:29 - Inside Cache Control Check Pre-Call Hook
+02:41:43 - LiteLLM Proxy:INFO: route_llm_request.py:553 - SESSION REUSE: Attached shared aiohttp session to request (ID: 2226616877472)
+02:41:43 - LiteLLM Router:DEBUG: router_python_core.py:9499 - Inside async function with retries.
+02:41:43 - LiteLLM Router:DEBUG: router_python_core.py:9522 - async function w/ retries: original_function - <bound method PythonCore._acompletion of <litellm.router_python_core.PythonCore object at 0x000002066CC816A0>>, num_retries - 0
+02:41:43 - LiteLLM Router:DEBUG: router_python_core.py:2692 - routing_group=default model=routerhub-flash strategy=simple-shuffle
+02:41:43 - LiteLLM Router:DEBUG: router_python_core.py:15511 - initial list of deployments: ({'model_name': 'routerhub-flash', 'litellm_params': {'REDACTED', 'allow_client_keepalive_override': False, 'use_in_pass_through': False, 'use_litellm_proxy': False, 'use_xai_oauth': False, 'merge_reasoning_content_in_choices': False, 'model': 'routerhub/glm-5.3-flash-abliterated'}, 'model_info': {'id': '85802f8f6e8b5d078843c7ee0fefbc4a64f479ba9b95378208f0cc20b7d7b602', 'db_model': False, 'member_auto_router': False}},)
+02:41:43 - LiteLLM Router:DEBUG: router_python_core.py:15681 - healthy_deployments after team filter: [{'model_name': 'routerhub-flash', 'litellm_params': {'REDACTED', 'allow_client_keepalive_override': False, 'use_in_pass_through': False, 'use_litellm_proxy': False, 'use_xai_oauth': False, 'merge_reasoning_content_in_choices': False, 'model': 'routerhub/glm-5.3-flash-abliterated'}, 'model_info': {'id': '85802f8f6e8b5d078843c7ee0fefbc4a64f479ba9b95378208f0cc20b7d7b602', 'db_model': False, 'member_auto_router': False}}]
+02:41:43 - LiteLLM Router:DEBUG: router_python_core.py:15689 - healthy_deployments after web search filter: [{'model_name': 'routerhub-flash', 'litellm_params': {'REDACTED', 'allow_client_keepalive_override': False, 'use_in_pass_through': False, 'use_litellm_proxy': False, 'use_xai_oauth': False, 'merge_reasoning_content_in_choices': False, 'model': 'routerhub/glm-5.3-flash-abliterated'}, 'model_info': {'id': '85802f8f6e8b5d078843c7ee0fefbc4a64f479ba9b95378208f0cc20b7d7b602', 'db_model': False, 'member_auto_router': False}}]
+02:41:43 - LiteLLM Router:DEBUG: cooldown_handlers.py:657 - retrieve cooldown models: []
+02:41:43 - LiteLLM Router:DEBUG: router_python_core.py:15731 - cooldown deployments: []
+02:41:43 - LiteLLM Router:DEBUG: router_python_core.py:17373 - cooldown deployments: []
+02:41:43 - LiteLLM:DEBUG: utils.py:585 - 
+
+02:41:43 - LiteLLM:DEBUG: utils.py:585 - Request to litellm:
+02:41:43 - LiteLLM:DEBUG: utils.py:585 - litellm.acompletion(REDACTED', allow_client_keepalive_override=False, use_in_pass_through=False, use_litellm_proxy=False, use_xai_oauth=False, merge_reasoning_content_in_choices=False, model='routerhub/glm-5.3-flash-abliterated', messages=[{'role': 'user', 'content': 'Reply with exactly OK.'}], caching=False, client=None, max_tokens=256, metadata=<dict len=67>, proxy_server_request=<dict len=7>, secret_fields='REDACTED', litellm_call_id='ef39bd48-961a-4814-b9ee-78ffe465e3fb', litellm_logging_obj=<litellm.litellm_core_utils.litellm_logging.Logging object at 0x000002066D2A6FD0>, shared_session=<aiohttp.client.ClientSession object at 0x000002066CB541A0>, stream=False, litellm_trace_id='99598d3d-881a-4a79-b0f8-dd08de347936', _context_compaction_state=<litellm.router_strategy.complexity_router.context_compaction.CompactionState object at 0x000002066D30F970>, model_info={'id': '85802f8f6e8b5d078843c7ee0fefbc4a64f479ba9b95378208f0cc20b7d7b602', 'db_model': False, 'member_auto_router': False}, timeout=6000.0, max_retries=0)
+02:41:43 - LiteLLM:DEBUG: utils.py:585 - 
+
+02:41:43 - LiteLLM:DEBUG: utils.py:585 - ASYNC kwargs[caching]: False; litellm.cache: None; kwargs.get('cache'): None
+02:41:43 - LiteLLM:DEBUG: main.py:823 - 🔄 SHARED SESSION: acompletion called with shared_session (ID: 2226616877472)
+02:41:43 - LiteLLM:INFO: utils.py:5397 - 
+LiteLLM completion() model= glm-5.3-flash-abliterated; provider = routerhub
+02:41:43 - LiteLLM:DEBUG: utils.py:5399 - 
+LiteLLM: Non-Default params passed to completion() {'stream': False, 'max_tokens': 256, 'max_retries': 0}
+02:41:43 - LiteLLM:DEBUG: utils.py:585 - Final returned optional params: {'stream': False, 'max_tokens': 256, 'max_retries': 0, 'extra_body': {}}
+02:41:43 - LiteLLM:DEBUG: litellm_logging.py:1830 - 
+
+POST Request Sent from LiteLLM:
+curl -X POST \
+https://routerhub.si/v1/ \
+-H 'Authorization: Be****Lm' \
+-d '{'model': 'glm-5.3-flash-abliterated', 'messages': [{'role': 'user', 'content': 'Reply with exactly OK.'}], 'max_tokens': 256, 'extra_body': {}}'
+
+
+02:41:44 - LiteLLM:DEBUG: litellm_logging.py:1879 - RAW RESPONSE:
+{"id": "chatcmpl-8d2437c2fec6dfbef1ef9565e12e8053", "choices": [{"finish_reason": "stop", "index": 0, "message": {"content": "OK", "role": "assistant"}}], "created": 1793500903, "model": "glm-5.3-flash-abliterated", "object": "chat.completion", "usage": {"completion_tokens": 3, "prompt_tokens": 17, "total_tokens": 20, "completion_tokens_details": {"reasoning_tokens": 0}, "prompt_tokens_details": {"cached_tokens": 0}}}
+
+
+02:41:44 - LiteLLM:DEBUG: openai.py:671 - LiteLLM.AgenticHooks: callbacks_count=10
+02:41:44 - LiteLLM:DEBUG: openai.py:674 - LiteLLM.AgenticHooks: tools_count=0
+02:41:44 - LiteLLM:DEBUG: cost_calculator.py:1822 - selected model name for cost calculation: routerhub/routerhub/glm-5.3-flash-abliterated
+02:41:44 - LiteLLM:DEBUG: litellm_logging.py:2250 - response_cost: 8.1e-06
+02:41:44 - LiteLLM Router:INFO: router_python_core.py:5060 - litellm.acompletion(model=routerhub/glm-5.3-flash-abliterated) 200 OK
+02:41:44 - LiteLLM Router:DEBUG: router_python_core.py:9414 - Async Response: ModelResponse(id='chatcmpl-8d2437c2fec6dfbef1ef9565e12e8053', created=1793500903, model='routerhub/glm-5.3-flash-abliterated', object='chat.completion', system_fingerprint=None, choices=[Choices(finish_reason='stop', index=0, message=Message(content='OK', role='assistant', tool_calls=None, function_call=None, provider_specific_fields=None), provider_specific_fields={})], usage=Usage(completion_tokens=3, prompt_tokens=17, total_tokens=20, completion_tokens_details=CompletionTokensDetailsWrapper(accepted_prediction_tokens=None, audio_tokens=None, reasoning_tokens=0, rejected_prediction_tokens=None, text_tokens=None, image_tokens=None, video_tokens=None), prompt_tokens_details=PromptTokensDetailsWrapper(audio_tokens=None, cached_tokens=0, text_tokens=None, image_tokens=None, video_tokens=None, initial_prompt_tokens=None)))
+02:41:44 - LiteLLM:DEBUG: litellm_logging.py:5053 - Filtered callbacks: []
+02:41:44 - LiteLLM Proxy:DEBUG: common_request_processing.py:1711 - litellm_call_id=ef39bd48-961a-4814-b9ee-78ffe465e3fb: response model mismatch - requested='routerhub-flash' downstream='routerhub/glm-5.3-flash-abliterated'. Overriding response.model to requested model.
+INFO:     127.0.0.1:61314 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+02:41:44 - LiteLLM:DEBUG: utils.py:585 - Async Wrapper: Completed Call, calling async_success_handler: <bound method Logging.async_success_handler of <litellm.litellm_core_utils.litellm_logging.Logging object at 0x000002066D2A6FD0>>
+02:41:44 - LiteLLM:DEBUG: utils.py:585 - Logging Details LiteLLM-Async Success Call, cache_hit=None
+02:41:44 - LiteLLM:DEBUG: litellm_logging.py:5053 - Filtered callbacks: []
+02:41:44 - LiteLLM Proxy:DEBUG: model_max_budget_limiter.py:1116 - in RouterBudgetLimiting.async_log_success_event
+02:41:44 - LiteLLM Proxy:DEBUG: model_max_budget_limiter.py:1204 - Not running _PROXY_VirtualKeyModelMaxBudgetLimiter.async_log_success_event: no key, team, user or end-user model_max_budget covers model=routerhub-flash
+02:41:44 - LiteLLM Proxy:DEBUG: parallel_request_limiter_v3.py:5551 - INSIDE parallel request limiter ASYNC SUCCESS LOGGING
+02:41:44 - LiteLLM Proxy:DEBUG: parallel_request_limiter_v3.py:4853 - TTL preservation script not available, using regular pipeline
+02:41:44 - LiteLLM:DEBUG: litellm_logging.py:5053 - Filtered callbacks: []
+02:41:44 - LiteLLM:DEBUG: user_api_key_auth.py:2680 - api key not found in cache.
+02:41:44 - LiteLLM Proxy:DEBUG: user_api_key_auth.py:3340 - centralized auth: user fetch swallowed (ModuleNotFoundError: No module named 'prisma')
+02:41:44 - LiteLLM Proxy:DEBUG: auth_checks.py:8192 - Prisma client not found, skipping vector store access check
+02:41:44 - LiteLLM Proxy:DEBUG: common_request_processing.py:2941 - Request received by LiteLLM:
+{"model": "routerhub-flash", "messages": [{"role": "user", "content": "Reply with exactly OK."}], "max_tokens": 256, "stream": true, "stream_options": {"include_usage": true}, "metadata": {"user_api_key_user_id": "default_user_id"}}
+02:41:44 - LiteLLM Proxy:DEBUG: litellm_pre_call_utils.py:2692 - Request Headers: {'accept-encoding': 'identity', 'content-length': '175', 'host': '127.0.0.1:61242', 'user-agent': 'Python-urllib/3.13', 'content-type': 'application/json', 'connection': 'close'}
+02:41:44 - LiteLLM Proxy:DEBUG: litellm_pre_call_utils.py:2693 - Raw Headers: RedactedDict(REDACTED)
+02:41:44 - LiteLLM:DEBUG: utils.py:585 - Initialized litellm callbacks, Async Success Callbacks: [<bound method PythonCore.deployment_callback_on_success of <litellm.router_python_core.PythonCore object at 0x000002066CC816A0>>, <litellm.proxy.hooks.model_max_budget_limiter._PROXY_VirtualKeyModelMaxBudgetLimiter object at 0x0000020668EEA660>, <litellm.proxy.hooks.parallel_request_limiter_v3._PROXY_MaxParallelRequestsHandler_v3 object at 0x000002066CC82660>, <litellm.proxy.hooks.cache_control_check._PROXY_CacheControlCheck object at 0x000002066CC3D450>, <litellm.proxy.hooks.responses_id_security.ResponsesIDSecurity object at 0x000002066CC82900>, <litellm.proxy.hooks.litellm_skills.main.SkillsInjectionHook object at 0x000002066CC82A50>, <litellm.proxy.hooks.max_iterations_limiter._PROXY_MaxIterationsHandler object at 0x000002066CC82CF0>, <litellm.proxy.hooks.max_budget_per_session_limiter._PROXY_MaxBudgetPerSessionHandler object at 0x000002066CC82E40>, <litellm.proxy.hooks.sensitive_data_routing._PROXY_SensitiveDataRoutingHandler object at 0x000002066CC82F90>, <litellm.proxy.hooks.prompt_cache_prediction.PromptCacheObserver object at 0x000002066CC830E0>, <litellm._service_logger.ServiceLogging object at 0x0000020668E9E190>]
+02:41:44 - LiteLLM:DEBUG: utils.py:1437 - Removing thought signatures from tool call IDs for non-Gemini model
+02:41:44 - LiteLLM Router:DEBUG: router_python_core.py:2692 - routing_group=default model=routerhub-flash strategy=simple-shuffle
+02:41:44 - LiteLLM Proxy:DEBUG: utils.py:3146 - Inside Proxy Logging Pre-call hook!
+02:41:44 - LiteLLM Proxy:DEBUG: parallel_request_limiter_v3.py:4392 - Inside Rate Limit Pre-Call Hook
+02:41:44 - LiteLLM Proxy:DEBUG: cache_control_check.py:29 - Inside Cache Control Check Pre-Call Hook
+02:41:44 - LiteLLM Proxy:INFO: route_llm_request.py:553 - SESSION REUSE: Attached shared aiohttp session to request (ID: 2226616877472)
+02:41:44 - LiteLLM Router:DEBUG: router_python_core.py:9499 - Inside async function with retries.
+02:41:44 - LiteLLM Router:DEBUG: router_python_core.py:9522 - async function w/ retries: original_function - <bound method PythonCore._acompletion of <litellm.router_python_core.PythonCore object at 0x000002066CC816A0>>, num_retries - 0
+02:41:44 - LiteLLM Router:DEBUG: router_python_core.py:2692 - routing_group=default model=routerhub-flash strategy=simple-shuffle
+02:41:44 - LiteLLM Router:DEBUG: router_python_core.py:15511 - initial list of deployments: ({'model_name': 'routerhub-flash', 'litellm_params': {'REDACTED', 'allow_client_keepalive_override': False, 'use_in_pass_through': False, 'use_litellm_proxy': False, 'use_xai_oauth': False, 'merge_reasoning_content_in_choices': False, 'model': 'routerhub/glm-5.3-flash-abliterated'}, 'model_info': {'id': '85802f8f6e8b5d078843c7ee0fefbc4a64f479ba9b95378208f0cc20b7d7b602', 'db_model': False, 'member_auto_router': False}},)
+02:41:44 - LiteLLM Router:DEBUG: router_python_core.py:15681 - healthy_deployments after team filter: [{'model_name': 'routerhub-flash', 'litellm_params': {'REDACTED', 'allow_client_keepalive_override': False, 'use_in_pass_through': False, 'use_litellm_proxy': False, 'use_xai_oauth': False, 'merge_reasoning_content_in_choices': False, 'model': 'routerhub/glm-5.3-flash-abliterated'}, 'model_info': {'id': '85802f8f6e8b5d078843c7ee0fefbc4a64f479ba9b95378208f0cc20b7d7b602', 'db_model': False, 'member_auto_router': False}}]
+02:41:44 - LiteLLM Router:DEBUG: router_python_core.py:15689 - healthy_deployments after web search filter: [{'model_name': 'routerhub-flash', 'litellm_params': {'REDACTED', 'allow_client_keepalive_override': False, 'use_in_pass_through': False, 'use_litellm_proxy': False, 'use_xai_oauth': False, 'merge_reasoning_content_in_choices': False, 'model': 'routerhub/glm-5.3-flash-abliterated'}, 'model_info': {'id': '85802f8f6e8b5d078843c7ee0fefbc4a64f479ba9b95378208f0cc20b7d7b602', 'db_model': False, 'member_auto_router': False}}]
+02:41:44 - LiteLLM Router:DEBUG: cooldown_handlers.py:657 - retrieve cooldown models: []
+02:41:44 - LiteLLM Router:DEBUG: router_python_core.py:15731 - cooldown deployments: []
+02:41:44 - LiteLLM Router:DEBUG: router_python_core.py:17373 - cooldown deployments: []
+02:41:44 - LiteLLM:DEBUG: utils.py:585 - 
+
+02:41:44 - LiteLLM:DEBUG: utils.py:585 - Request to litellm:
+02:41:44 - LiteLLM:DEBUG: utils.py:585 - litellm.acompletion(REDACTED', allow_client_keepalive_override=False, use_in_pass_through=False, use_litellm_proxy=False, use_xai_oauth=False, merge_reasoning_content_in_choices=False, model='routerhub/glm-5.3-flash-abliterated', messages=[{'role': 'user', 'content': 'Reply with exactly OK.'}], caching=False, client=None, max_tokens=256, stream_options={'include_usage': True}, metadata=<dict len=67>, proxy_server_request=<dict len=7>, secret_fields='REDACTED', litellm_call_id='f802fd08-6c4f-44b6-9a15-5cdc9cad0b9f', litellm_logging_obj=<litellm.litellm_core_utils.litellm_logging.Logging object at 0x000002066D2A74D0>, shared_session=<aiohttp.client.ClientSession object at 0x000002066CB541A0>, stream=True, litellm_trace_id='8fe187b5-ad73-4a12-a93a-f5998da61cc1', _context_compaction_state=<litellm.router_strategy.complexity_router.context_compaction.CompactionState object at 0x000002066F26FB00>, model_info={'id': '85802f8f6e8b5d078843c7ee0fefbc4a64f479ba9b95378208f0cc20b7d7b602', 'db_model': False, 'member_auto_router': False}, timeout=6000.0, max_retries=0)
+02:41:44 - LiteLLM:DEBUG: utils.py:585 - 
+
+02:41:44 - LiteLLM:DEBUG: utils.py:585 - ASYNC kwargs[caching]: False; litellm.cache: None; kwargs.get('cache'): None
+02:41:44 - LiteLLM:DEBUG: main.py:823 - 🔄 SHARED SESSION: acompletion called with shared_session (ID: 2226616877472)
+02:41:44 - LiteLLM:INFO: utils.py:5397 - 
+LiteLLM completion() model= glm-5.3-flash-abliterated; provider = routerhub
+02:41:44 - LiteLLM:DEBUG: utils.py:5399 - 
+LiteLLM: Non-Default params passed to completion() {'stream': True, 'stream_options': {'include_usage': True}, 'max_tokens': 256, 'max_retries': 0}
+02:41:44 - LiteLLM:DEBUG: utils.py:585 - Final returned optional params: {'stream': True, 'stream_options': {'include_usage': True}, 'max_tokens': 256, 'max_retries': 0, 'extra_body': {}}
+02:41:44 - LiteLLM:DEBUG: litellm_logging.py:1879 - RAW RESPONSE:
+<coroutine object OpenAIChatCompletion.async_streaming at 0x000002066D2093A0>
+
+
+02:41:44 - LiteLLM:DEBUG: litellm_logging.py:1830 - 
+
+POST Request Sent from LiteLLM:
+curl -X POST \
+https://routerhub.si/v1 \
+-d '{'model': 'glm-5.3-flash-abliterated', 'messages': [{'role': 'user', 'content': 'Reply with exactly OK.'}], 'max_tokens': 256, 'extra_body': {}, 'stream': True, 'stream_options': {'include_usage': True}}'
+
+
+02:41:44 - LiteLLM:DEBUG: cost_calculator.py:1822 - selected model name for cost calculation: routerhub/routerhub/glm-5.3-flash-abliterated
+02:41:44 - LiteLLM:DEBUG: token_counter.py:810 - messages in token_counter: None, text in token_counter: 
+02:41:44 - LiteLLM:DEBUG: litellm_logging.py:2250 - response_cost: 0.0
+02:41:44 - LiteLLM:DEBUG: streaming_handler.py:1260 - model_response.choices[0].delta: Delta(provider_specific_fields=None, refusal=None, content='', role='assistant', function_call=None, tool_calls=None, audio=None)
+02:41:44 - LiteLLM Router:INFO: router_python_core.py:5060 - litellm.acompletion(model=routerhub/glm-5.3-flash-abliterated) 200 OK
+02:41:44 - LiteLLM Router:DEBUG: router_python_core.py:9414 - Async Response: <litellm.router_python_core.PythonCore._acompletion_streaming_iterator.<locals>.FallbackStreamWrapper object at 0x000002066D096270>
+02:41:44 - LiteLLM Proxy:DEBUG: proxy_server.py:10563 - inside generator
+02:41:44 - LiteLLM Proxy:DEBUG: proxy_server.py:10111 - litellm_call_id=f802fd08-6c4f-44b6-9a15-5cdc9cad0b9f: streaming chunk model mismatch - target='routerhub-flash' downstream='glm-5.3-flash-abliterated' fallback_was_attempted=False. Overriding chunk model to target.
+INFO:     127.0.0.1:61315 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+02:41:45 - LiteLLM:DEBUG: streaming_handler.py:1260 - model_response.choices[0].delta: Delta(reasoning_content='The', provider_specific_fields=None, refusal=None, content=None, role=None, function_call=None, tool_calls=None, audio=None)
+02:41:45 - LiteLLM:DEBUG: streaming_handler.py:1260 - model_response.choices[0].delta: Delta(reasoning_content=' user wants', provider_specific_fields=None, refusal=None, content=None, role=None, function_call=None, tool_calls=None, audio=None)
+02:41:45 - LiteLLM:DEBUG: streaming_handler.py:1260 - model_response.choices[0].delta: Delta(reasoning_content=' me to reply', provider_specific_fields=None, refusal=None, content=None, role=None, function_call=None, tool_calls=None, audio=None)
+02:41:45 - LiteLLM:DEBUG: streaming_handler.py:1260 - model_response.choices[0].delta: Delta(reasoning_content=' with exactly "', provider_specific_fields=None, refusal=None, content=None, role=None, function_call=None, tool_calls=None, audio=None)
+02:41:45 - LiteLLM:DEBUG: streaming_handler.py:1260 - model_response.choices[0].delta: Delta(reasoning_content='OK". No', provider_specific_fields=None, refusal=None, content=None, role=None, function_call=None, tool_calls=None, audio=None)
+02:41:45 - LiteLLM:DEBUG: streaming_handler.py:1260 - model_response.choices[0].delta: Delta(reasoning_content=' punctuation', provider_specific_fields=None, refusal=None, content=None, role=None, function_call=None, tool_calls=None, audio=None)
+02:41:45 - LiteLLM:DEBUG: streaming_handler.py:1260 - model_response.choices[0].delta: Delta(reasoning_content=' beyond', provider_specific_fields=None, refusal=None, content=None, role=None, function_call=None, tool_calls=None, audio=None)
+02:41:45 - LiteLLM:DEBUG: streaming_handler.py:1260 - model_response.choices[0].delta: Delta(reasoning_content=' what', provider_specific_fields=None, refusal=None, content=None, role=None, function_call=None, tool_calls=None, audio=None)
+02:41:46 - LiteLLM:DEBUG: streaming_handler.py:1260 - model_response.choices[0].delta: Delta(reasoning_content=' they', provider_specific_fields=None, refusal=None, content=None, role=None, function_call=None, tool_calls=None, audio=None)
+02:41:46 - LiteLLM:DEBUG: streaming_handler.py:1260 - model_response.choices[0].delta: Delta(reasoning_content=' specified, no', provider_specific_fields=None, refusal=None, content=None, role=None, function_call=None, tool_calls=None, audio=None)
+02:41:46 - LiteLLM:DEBUG: streaming_handler.py:1260 - model_response.choices[0].delta: Delta(reasoning_content=' extra text', provider_specific_fields=None, refusal=None, content=None, role=None, function_call=None, tool_calls=None, audio=None)
+02:41:46 - LiteLLM:DEBUG: streaming_handler.py:1260 - model_response.choices[0].delta: Delta(reasoning_content='. Just "', provider_specific_fields=None, refusal=None, content=None, role=None, function_call=None, tool_calls=None, audio=None)
+02:41:46 - LiteLLM:DEBUG: streaming_handler.py:1260 - model_response.choices[0].delta: Delta(reasoning_content='OK".', provider_specific_fields=None, refusal=None, content=None, role=None, function_call=None, tool_calls=None, audio=None)
+02:41:46 - LiteLLM:DEBUG: streaming_handler.py:1260 - model_response.choices[0].delta: Delta(provider_specific_fields=None, refusal=None, content='OK', role=None, function_call=None, tool_calls=None, audio=None)
+02:41:46 - LiteLLM:DEBUG: token_counter.py:810 - messages in token_counter: None, text in token_counter: The user wants me to reply with exactly "OK". No punctuation beyond what they specified, no extra text. Just "OK".
+02:41:46 - LiteLLM:DEBUG: cost_calculator.py:1822 - selected model name for cost calculation: routerhub/glm-5.3-flash-abliterated
+02:41:46 - LiteLLM:DEBUG: litellm_logging.py:2250 - response_cost: 3.41e-05
+02:41:46 - LiteLLM:DEBUG: streaming_chunk_builder_utils.py:386 - apply_provider_assembled_streaming_metadata failed for model=routerhub/glm-5.3-flash-abliterated: 'routerhub' is not a valid LlmProviders
+02:41:46 - LiteLLM:DEBUG: token_counter.py:810 - messages in token_counter: None, text in token_counter: The user wants me to reply with exactly "OK". No punctuation beyond what they specified, no extra text. Just "OK".
+02:41:46 - LiteLLM:DEBUG: cost_calculator.py:1822 - selected model name for cost calculation: routerhub/glm-5.3-flash-abliterated
+02:41:46 - LiteLLM:DEBUG: litellm_logging.py:2250 - response_cost: 3.41e-05
+02:41:46 - LiteLLM:DEBUG: streaming_chunk_builder_utils.py:386 - apply_provider_assembled_streaming_metadata failed for model=routerhub/glm-5.3-flash-abliterated: 'routerhub' is not a valid LlmProviders
+02:41:46 - LiteLLM:DEBUG: utils.py:585 - Logging Details LiteLLM-Async Success Call, cache_hit=False
+02:41:46 - LiteLLM:DEBUG: utils.py:585 - Async success callbacks: Got a complete streaming response
+02:41:46 - LiteLLM:DEBUG: litellm_logging.py:4224 - Model=glm-5.3-flash-abliterated; cost=3.41e-05
+02:41:46 - LiteLLM Proxy:DEBUG: model_max_budget_limiter.py:1116 - in RouterBudgetLimiting.async_log_success_event
+02:41:46 - LiteLLM Proxy:DEBUG: model_max_budget_limiter.py:1204 - Not running _PROXY_VirtualKeyModelMaxBudgetLimiter.async_log_success_event: no key, team, user or end-user model_max_budget covers model=routerhub-flash
+02:41:46 - LiteLLM Proxy:DEBUG: parallel_request_limiter_v3.py:5551 - INSIDE parallel request limiter ASYNC SUCCESS LOGGING
+02:41:46 - LiteLLM Proxy:DEBUG: parallel_request_limiter_v3.py:4853 - TTL preservation script not available, using regular pipeline
+02:41:46 - LiteLLM:DEBUG: litellm_logging.py:5053 - Filtered callbacks: []

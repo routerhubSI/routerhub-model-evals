@@ -1,0 +1,13 @@
+{
+  "scope": "Provider-prefix resolution only, not a baseline proxy inference run",
+  "base_registry_commit": "187f936cb3457cb8cdfbf541593588929d502bf4",
+  "before": {
+    "resolved": false,
+    "exception": "BadRequestError"
+  },
+  "after": {
+    "resolved": true
+  },
+  "original_registry_restored": true,
+  "inference_requests": 0
+}

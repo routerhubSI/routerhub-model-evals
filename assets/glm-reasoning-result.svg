@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675" role="img" aria-labelledby="title desc">
+  <title id="title">GLM 5.3 Abliterated, reasoning configuration comparison</title>
+  <desc id="desc">Three default-effort attempts exhausted a 4096-token budget with no code. Three low-effort attempts each passed 17 public upload-repair tests. Median low-effort request time was 3.31 seconds. A small hosted-endpoint experiment by RouterHub on November 1, 2026.</desc>
+  <rect width="1200" height="675" fill="#09100c"/>
+  <g font-family="Arial, sans-serif">
+    <text x="64" y="76" fill="#b1f779" font-size="24" font-weight="700">RouterHub / recorded model experiment</text>
+    <text x="64" y="145" fill="#edf5ee" font-size="42" font-weight="700">GLM 5.3 Abliterated</text>
+    <text x="64" y="190" fill="#91a79a" font-size="24">Same upload-repair task. Same 4,096-token cap.</text>
+    <rect x="64" y="235" width="516" height="265" rx="8" fill="#101a14" stroke="#21382a"/>
+    <rect x="604" y="235" width="532" height="265" rx="8" fill="#101a14" stroke="#b1f779"/>
+    <text x="92" y="282" fill="#91a79a" font-size="22">Default reasoning</text>
+    <text x="92" y="355" fill="#edf5ee" font-size="56" font-weight="700">No code returned</text>
+    <text x="92" y="407" fill="#91a79a" font-size="22">3/3 attempts exhausted the budget</text>
+    <text x="92" y="454" fill="#91a79a" font-size="20">Failures preserved in the public report</text>
+    <text x="632" y="282" fill="#b1f779" font-size="22">reasoning_effort = low</text>
+    <text x="632" y="355" fill="#b1f779" font-size="56" font-weight="700">17/17 tests passed</text>
+    <text x="632" y="407" fill="#edf5ee" font-size="22">In each of 3 attempts</text>
+    <text x="632" y="454" fill="#91a79a" font-size="20">3.31 s median complete-request time</text>
+    <text x="64" y="550" fill="#edf5ee" font-size="22">Prompts, raw outputs, sandbox logs and failures are public.</text>
+    <text x="64" y="594" fill="#91a79a" font-size="18">Toy task, not a security audit or a general speed guarantee. Recorded 1 Nov 2026.</text>
+    <text x="64" y="635" fill="#b1f779" font-size="18">github.com/routerhubSI/routerhub-model-evals</text>
+  </g>
+</svg>

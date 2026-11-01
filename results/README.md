@@ -3,7 +3,8 @@
 Live responses were collected on November 1, 2026 with explicit credit-use
 approval. `2026-11-01` contains three attempts per model with default reasoning
 settings. `2026-11-01-low` repeats the same task with `reasoning_effort=low`.
-Sandbox scoring is pending. Raw responses include failed and truncated attempts.
+Sandbox scoring is complete. Each cohort's `sandbox` folder contains the actual
+test reports. Raw responses include failed and truncated attempts.
 
 The `api-smoke` folder contains successful direct non-streaming and streaming
 Chat Completions checks for the two GLM abliterated catalogue entries. These

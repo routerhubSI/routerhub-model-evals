@@ -1,0 +1,132 @@
+{
+  "sandbox": "Docker, no network, non-root, read-only, resource-limited",
+  "benchmark_commit": "0221a78b9e7d74a4939b33e0e57235ca4ccffeef",
+  "image_id": "sha256:c2f06a12ba5e610b9af93db56897abd611e152848048a5cf3daa4a4df29358e8",
+  "authored_reference": {
+    "run": "routerhub-trusted-fixture-ife24cqk",
+    "requested_model": "authored-reference-not-a-model",
+    "finish_reason": null,
+    "passed": 17,
+    "total": 17,
+    "candidate_executed": true,
+    "status": "evaluated",
+    "failed": 0,
+    "errors": 0,
+    "skipped": 0,
+    "candidate_sha256": "e5bc37d9a0f60c8bdaac3a29e1de1e382fa0c84c43fb291eee044596790e85d6",
+    "container_exit_code": 0
+  },
+  "results": [
+    {
+      "run": "glm-5.3-abliterated-run-01",
+      "requested_model": "glm-5.3-abliterated",
+      "finish_reason": "length",
+      "passed": 0,
+      "total": 17,
+      "candidate_executed": false,
+      "status": "no-code-returned"
+    },
+    {
+      "run": "glm-5.3-abliterated-run-02",
+      "requested_model": "glm-5.3-abliterated",
+      "finish_reason": "length",
+      "passed": 0,
+      "total": 17,
+      "candidate_executed": false,
+      "status": "no-code-returned"
+    },
+    {
+      "run": "glm-5.3-abliterated-run-03",
+      "requested_model": "glm-5.3-abliterated",
+      "finish_reason": "length",
+      "passed": 0,
+      "total": 17,
+      "candidate_executed": false,
+      "status": "no-code-returned"
+    },
+    {
+      "run": "glm-5.3-run-01",
+      "requested_model": "glm-5.3",
+      "finish_reason": "stop",
+      "passed": 17,
+      "total": 17,
+      "candidate_executed": true,
+      "status": "evaluated",
+      "failed": 0,
+      "errors": 0,
+      "skipped": 0,
+      "candidate_sha256": "af8bde6fed4ef996966350df4c670a764672227442f364f54af22eff3c30177f",
+      "container_exit_code": 0
+    },
+    {
+      "run": "glm-5.3-run-02",
+      "requested_model": "glm-5.3",
+      "finish_reason": "stop",
+      "passed": 17,
+      "total": 17,
+      "candidate_executed": true,
+      "status": "evaluated",
+      "failed": 0,
+      "errors": 0,
+      "skipped": 0,
+      "candidate_sha256": "02e913e28dfdc992c4c7426ab49ffa66e79217b7f81ac71b193145b294e68bcb",
+      "container_exit_code": 0
+    },
+    {
+      "run": "glm-5.3-run-03",
+      "requested_model": "glm-5.3",
+      "finish_reason": "stop",
+      "passed": 17,
+      "total": 17,
+      "candidate_executed": true,
+      "status": "evaluated",
+      "failed": 0,
+      "errors": 0,
+      "skipped": 0,
+      "candidate_sha256": "8b9732a9de9188d97d09b1c181fd618366cad225a4f9f54e1292be73ae6eb96e",
+      "container_exit_code": 0
+    },
+    {
+      "run": "glm-5.3-uncensored-run-01",
+      "requested_model": "glm-5.3-uncensored",
+      "finish_reason": "stop",
+      "passed": 0,
+      "total": 17,
+      "candidate_executed": true,
+      "status": "evaluated",
+      "failed": 0,
+      "errors": 17,
+      "skipped": 0,
+      "candidate_sha256": "e758a2c38ef2b967fb903eff199c5f4509200a58d33ddc7c22c309493d87d363",
+      "container_exit_code": 1
+    },
+    {
+      "run": "glm-5.3-uncensored-run-02",
+      "requested_model": "glm-5.3-uncensored",
+      "finish_reason": "stop",
+      "passed": 17,
+      "total": 17,
+      "candidate_executed": true,
+      "status": "evaluated",
+      "failed": 0,
+      "errors": 0,
+      "skipped": 0,
+      "candidate_sha256": "9d6739a571719569f1742cae859d036cc88916c6ca8b62e34d20a1337a8398c9",
+      "container_exit_code": 0
+    },
+    {
+      "run": "glm-5.3-uncensored-run-03",
+      "requested_model": "glm-5.3-uncensored",
+      "finish_reason": "stop",
+      "passed": 17,
+      "total": 17,
+      "candidate_executed": true,
+      "status": "evaluated",
+      "failed": 0,
+      "errors": 0,
+      "skipped": 0,
+      "candidate_sha256": "29a83c623a240ae07e586ad7b135c5104704a2a2e30c8d71a4ecb73aa1be5054",
+      "container_exit_code": 0
+    }
+  ]
+}

@@ -4,7 +4,10 @@ A reproducible, local coding task for comparing standard, uncensored and
 abliterated model entries. The first task asks a model to repair an insecure
 Flask file-upload endpoint without breaking valid uploads.
 
-**Live responses have been collected; sandbox scoring is in progress.** This repository contains a
+**Recorded results are available in [RESULTS.md](RESULTS.md).** All three model
+entries passed all 17 tests in each of three low-effort attempts. The default
+abliterated attempts exhausted the reasoning budget without returning code.
+This repository contains a
 vulnerable fixture, an authored reference solution, independent acceptance tests,
 a fixed prompt and an opt-in response collector. Passing reference tests checks
 the harness, not the performance of a model.
@@ -13,7 +16,7 @@ The first authorized collection is under `results/2026-11-01`. Three abliterated
 attempts exhausted their 4,096-token budget in reasoning and returned no code.
 Those failures are retained. `results/2026-11-01-low` is a separately labelled
 follow-up cohort with `reasoning_effort=low` on all three model IDs. Candidate
-scoring runs only in the isolated container workflow, never on this workstation.
+scoring ran only in the isolated container workflow, never on this workstation.
 
 Maintained by [RouterHub](https://routerhub.si/?utm_source=github&utm_medium=readme&utm_campaign=routerhub-model-evals),
 a commercial API gateway. RouterHub links are first-party commercial links.
@@ -58,7 +61,7 @@ Set `ROUTERHUB_API_KEY` privately in the terminal, outside source files and comm
 recordings. Do not include a real key in an issue, commit, screenshot or video.
 
 ```sh
-python collect.py --model glm-5.3-abliterated --out results/glm-abliterated-run-01 --allow-paid
+python collect.py --model glm-5.3-abliterated --out results/glm-abliterated-run-01 --reasoning-effort low --allow-paid
 ```
 
 Without `--allow-paid`, the collector exits before making any network request.
@@ -77,6 +80,9 @@ output budget for `glm-5.3`, `glm-5.3-uncensored` and `glm-5.3-abliterated`. Che
 [current IDs, supported APIs and prices](https://routerhub.si/models) first.
 Run repeated independent attempts and retain failures, rather than selecting only
 the best answer. Hosted aliases are not proof of identical upstream checkpoints.
+Use the same reasoning setting for every model in a comparison. The recorded
+default and low-effort cohorts are reported separately. The sample uses low
+because the default abliterated runs exhausted their token budget on this task.
 
 ## Evaluate generated code only in a disposable sandbox
 
@@ -89,7 +95,8 @@ fixed tests and read-only candidate. Run as a non-root user with no network,
 read-only root filesystem, dropped capabilities, no-new-privileges, CPU/memory/PID
 limits and a bounded writable temporary filesystem. Do not mount your home,
 Docker socket, checkout credentials or host environment. The sandbox procedure is
-in `docs/SANDBOX.md`. Its execution has not been validated on this workstation.
+in `docs/SANDBOX.md`. It was verified on disposable GitHub Linux runners, not on
+this Windows workstation.
 
 ## Publish the evidence, then the demonstration
 

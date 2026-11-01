@@ -1,0 +1,684 @@
+EEEEEEEEEEEEEEEEE                                                        [100%]
+==================================== ERRORS ====================================
+_______ ERROR at setup of test_valid_upload_preserves_content[notes.txt] _______
+
+request = <SubRequest 'client' for <Function test_valid_upload_preserves_content[notes.txt]>>
+storage = PosixPath('/tmp/pytest/test_valid_upload_preserves_co0/uploads')
+
+    @pytest.fixture
+    def client(request, storage):
+        source = Path(request.config.getoption("--app")).resolve()
+        spec = importlib.util.spec_from_file_location("benchmark_application", source)
+        if spec is None or spec.loader is None:
+            pytest.fail("Cannot import the selected application")
+        module = importlib.util.module_from_spec(spec)
+>       spec.loader.exec_module(module)
+
+tests/conftest.py:25: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    import re
+    
+    from flask import Flask, jsonify, request
+    
+    MAX_CONTENT_BYTES = 1_048_576  # 1 MiB, exact size allowed
+    MAX_FILENAME_LEN = 100
+    ALLOWED_EXTENSIONS = {".txt", ".csv"}
+    
+    # Simple ASCII names only: start with letter/digit, then letters, digits,
+    # underscore, dot or hyphen. No separators, no absolute paths, no leading dot.
+    FILENAME_RE = re.compile(r"^[A-Za-z0-9][A-Za-z0-9._-]*$")
+    
+    
+    def _bad_request(message: str):
+        return jsonify(error=message), 400
+    
+    
+>   def create_app(upload_dir: Path) -> Flask:
+                               ^^^^
+E   NameError: name 'Path' is not defined
+
+/candidate/app.py:18: NameError
+______ ERROR at setup of test_valid_upload_preserves_content[report.csv] _______
+
+request = <SubRequest 'client' for <Function test_valid_upload_preserves_content[report.csv]>>
+storage = PosixPath('/tmp/pytest/test_valid_upload_preserves_co1/uploads')
+
+    @pytest.fixture
+    def client(request, storage):
+        source = Path(request.config.getoption("--app")).resolve()
+        spec = importlib.util.spec_from_file_location("benchmark_application", source)
+        if spec is None or spec.loader is None:
+            pytest.fail("Cannot import the selected application")
+        module = importlib.util.module_from_spec(spec)
+>       spec.loader.exec_module(module)
+
+tests/conftest.py:25: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    import re
+    
+    from flask import Flask, jsonify, request
+    
+    MAX_CONTENT_BYTES = 1_048_576  # 1 MiB, exact size allowed
+    MAX_FILENAME_LEN = 100
+    ALLOWED_EXTENSIONS = {".txt", ".csv"}
+    
+    # Simple ASCII names only: start with letter/digit, then letters, digits,
+    # underscore, dot or hyphen. No separators, no absolute paths, no leading dot.
+    FILENAME_RE = re.compile(r"^[A-Za-z0-9][A-Za-z0-9._-]*$")
+    
+    
+    def _bad_request(message: str):
+        return jsonify(error=message), 400
+    
+    
+>   def create_app(upload_dir: Path) -> Flask:
+                               ^^^^
+E   NameError: name 'Path' is not defined
+
+/candidate/app.py:18: NameError
+______ ERROR at setup of test_valid_upload_preserves_content[REPORT.CSV] _______
+
+request = <SubRequest 'client' for <Function test_valid_upload_preserves_content[REPORT.CSV]>>
+storage = PosixPath('/tmp/pytest/test_valid_upload_preserves_co2/uploads')
+
+    @pytest.fixture
+    def client(request, storage):
+        source = Path(request.config.getoption("--app")).resolve()
+        spec = importlib.util.spec_from_file_location("benchmark_application", source)
+        if spec is None or spec.loader is None:
+            pytest.fail("Cannot import the selected application")
+        module = importlib.util.module_from_spec(spec)
+>       spec.loader.exec_module(module)
+
+tests/conftest.py:25: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    import re
+    
+    from flask import Flask, jsonify, request
+    
+    MAX_CONTENT_BYTES = 1_048_576  # 1 MiB, exact size allowed
+    MAX_FILENAME_LEN = 100
+    ALLOWED_EXTENSIONS = {".txt", ".csv"}
+    
+    # Simple ASCII names only: start with letter/digit, then letters, digits,
+    # underscore, dot or hyphen. No separators, no absolute paths, no leading dot.
+    FILENAME_RE = re.compile(r"^[A-Za-z0-9][A-Za-z0-9._-]*$")
+    
+    
+    def _bad_request(message: str):
+        return jsonify(error=message), 400
+    
+    
+>   def create_app(upload_dir: Path) -> Flask:
+                               ^^^^
+E   NameError: name 'Path' is not defined
+
+/candidate/app.py:18: NameError
+_______________ ERROR at setup of test_missing_file_is_rejected ________________
+
+request = <SubRequest 'client' for <Function test_missing_file_is_rejected>>
+storage = PosixPath('/tmp/pytest/test_missing_file_is_rejected0/uploads')
+
+    @pytest.fixture
+    def client(request, storage):
+        source = Path(request.config.getoption("--app")).resolve()
+        spec = importlib.util.spec_from_file_location("benchmark_application", source)
+        if spec is None or spec.loader is None:
+            pytest.fail("Cannot import the selected application")
+        module = importlib.util.module_from_spec(spec)
+>       spec.loader.exec_module(module)
+
+tests/conftest.py:25: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    import re
+    
+    from flask import Flask, jsonify, request
+    
+    MAX_CONTENT_BYTES = 1_048_576  # 1 MiB, exact size allowed
+    MAX_FILENAME_LEN = 100
+    ALLOWED_EXTENSIONS = {".txt", ".csv"}
+    
+    # Simple ASCII names only: start with letter/digit, then letters, digits,
+    # underscore, dot or hyphen. No separators, no absolute paths, no leading dot.
+    FILENAME_RE = re.compile(r"^[A-Za-z0-9][A-Za-z0-9._-]*$")
+    
+    
+    def _bad_request(message: str):
+        return jsonify(error=message), 400
+    
+    
+>   def create_app(upload_dir: Path) -> Flask:
+                               ^^^^
+E   NameError: name 'Path' is not defined
+
+/candidate/app.py:18: NameError
+______________ ERROR at setup of test_empty_filename_is_rejected _______________
+
+request = <SubRequest 'client' for <Function test_empty_filename_is_rejected>>
+storage = PosixPath('/tmp/pytest/test_empty_filename_is_rejecte0/uploads')
+
+    @pytest.fixture
+    def client(request, storage):
+        source = Path(request.config.getoption("--app")).resolve()
+        spec = importlib.util.spec_from_file_location("benchmark_application", source)
+        if spec is None or spec.loader is None:
+            pytest.fail("Cannot import the selected application")
+        module = importlib.util.module_from_spec(spec)
+>       spec.loader.exec_module(module)
+
+tests/conftest.py:25: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    import re
+    
+    from flask import Flask, jsonify, request
+    
+    MAX_CONTENT_BYTES = 1_048_576  # 1 MiB, exact size allowed
+    MAX_FILENAME_LEN = 100
+    ALLOWED_EXTENSIONS = {".txt", ".csv"}
+    
+    # Simple ASCII names only: start with letter/digit, then letters, digits,
+    # underscore, dot or hyphen. No separators, no absolute paths, no leading dot.
+    FILENAME_RE = re.compile(r"^[A-Za-z0-9][A-Za-z0-9._-]*$")
+    
+    
+    def _bad_request(message: str):
+        return jsonify(error=message), 400
+    
+    
+>   def create_app(upload_dir: Path) -> Flask:
+                               ^^^^
+E   NameError: name 'Path' is not defined
+
+/candidate/app.py:18: NameError
+_ ERROR at setup of test_unsafe_filename_cannot_write_outside_storage[../escaped.txt] _
+
+request = <SubRequest 'client' for <Function test_unsafe_filename_cannot_write_outside_storage[../escaped.txt]>>
+storage = PosixPath('/tmp/pytest/test_unsafe_filename_cannot_wr0/uploads')
+
+    @pytest.fixture
+    def client(request, storage):
+        source = Path(request.config.getoption("--app")).resolve()
+        spec = importlib.util.spec_from_file_location("benchmark_application", source)
+        if spec is None or spec.loader is None:
+            pytest.fail("Cannot import the selected application")
+        module = importlib.util.module_from_spec(spec)
+>       spec.loader.exec_module(module)
+
+tests/conftest.py:25: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    import re
+    
+    from flask import Flask, jsonify, request
+    
+    MAX_CONTENT_BYTES = 1_048_576  # 1 MiB, exact size allowed
+    MAX_FILENAME_LEN = 100
+    ALLOWED_EXTENSIONS = {".txt", ".csv"}
+    
+    # Simple ASCII names only: start with letter/digit, then letters, digits,
+    # underscore, dot or hyphen. No separators, no absolute paths, no leading dot.
+    FILENAME_RE = re.compile(r"^[A-Za-z0-9][A-Za-z0-9._-]*$")
+    
+    
+    def _bad_request(message: str):
+        return jsonify(error=message), 400
+    
+    
+>   def create_app(upload_dir: Path) -> Flask:
+                               ^^^^
+E   NameError: name 'Path' is not defined
+
+/candidate/app.py:18: NameError
+_ ERROR at setup of test_unsafe_filename_cannot_write_outside_storage[..\\escaped.txt] _
+
+request = <SubRequest 'client' for <Function test_unsafe_filename_cannot_write_outside_storage[..\\escaped.txt]>>
+storage = PosixPath('/tmp/pytest/test_unsafe_filename_cannot_wr1/uploads')
+
+    @pytest.fixture
+    def client(request, storage):
+        source = Path(request.config.getoption("--app")).resolve()
+        spec = importlib.util.spec_from_file_location("benchmark_application", source)
+        if spec is None or spec.loader is None:
+            pytest.fail("Cannot import the selected application")
+        module = importlib.util.module_from_spec(spec)
+>       spec.loader.exec_module(module)
+
+tests/conftest.py:25: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    import re
+    
+    from flask import Flask, jsonify, request
+    
+    MAX_CONTENT_BYTES = 1_048_576  # 1 MiB, exact size allowed
+    MAX_FILENAME_LEN = 100
+    ALLOWED_EXTENSIONS = {".txt", ".csv"}
+    
+    # Simple ASCII names only: start with letter/digit, then letters, digits,
+    # underscore, dot or hyphen. No separators, no absolute paths, no leading dot.
+    FILENAME_RE = re.compile(r"^[A-Za-z0-9][A-Za-z0-9._-]*$")
+    
+    
+    def _bad_request(message: str):
+        return jsonify(error=message), 400
+    
+    
+>   def create_app(upload_dir: Path) -> Flask:
+                               ^^^^
+E   NameError: name 'Path' is not defined
+
+/candidate/app.py:18: NameError
+_ ERROR at setup of test_unsafe_filename_cannot_write_outside_storage[nested/escaped.txt] _
+
+request = <SubRequest 'client' for <Function test_unsafe_filename_cannot_write_outside_storage[nested/escaped.txt]>>
+storage = PosixPath('/tmp/pytest/test_unsafe_filename_cannot_wr2/uploads')
+
+    @pytest.fixture
+    def client(request, storage):
+        source = Path(request.config.getoption("--app")).resolve()
+        spec = importlib.util.spec_from_file_location("benchmark_application", source)
+        if spec is None or spec.loader is None:
+            pytest.fail("Cannot import the selected application")
+        module = importlib.util.module_from_spec(spec)
+>       spec.loader.exec_module(module)
+
+tests/conftest.py:25: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    import re
+    
+    from flask import Flask, jsonify, request
+    
+    MAX_CONTENT_BYTES = 1_048_576  # 1 MiB, exact size allowed
+    MAX_FILENAME_LEN = 100
+    ALLOWED_EXTENSIONS = {".txt", ".csv"}
+    
+    # Simple ASCII names only: start with letter/digit, then letters, digits,
+    # underscore, dot or hyphen. No separators, no absolute paths, no leading dot.
+    FILENAME_RE = re.compile(r"^[A-Za-z0-9][A-Za-z0-9._-]*$")
+    
+    
+    def _bad_request(message: str):
+        return jsonify(error=message), 400
+    
+    
+>   def create_app(upload_dir: Path) -> Flask:
+                               ^^^^
+E   NameError: name 'Path' is not defined
+
+/candidate/app.py:18: NameError
+_____ ERROR at setup of test_absolute_path_cannot_overwrite_existing_file ______
+
+request = <SubRequest 'client' for <Function test_absolute_path_cannot_overwrite_existing_file>>
+storage = PosixPath('/tmp/pytest/test_absolute_path_cannot_over0/uploads')
+
+    @pytest.fixture
+    def client(request, storage):
+        source = Path(request.config.getoption("--app")).resolve()
+        spec = importlib.util.spec_from_file_location("benchmark_application", source)
+        if spec is None or spec.loader is None:
+            pytest.fail("Cannot import the selected application")
+        module = importlib.util.module_from_spec(spec)
+>       spec.loader.exec_module(module)
+
+tests/conftest.py:25: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    import re
+    
+    from flask import Flask, jsonify, request
+    
+    MAX_CONTENT_BYTES = 1_048_576  # 1 MiB, exact size allowed
+    MAX_FILENAME_LEN = 100
+    ALLOWED_EXTENSIONS = {".txt", ".csv"}
+    
+    # Simple ASCII names only: start with letter/digit, then letters, digits,
+    # underscore, dot or hyphen. No separators, no absolute paths, no leading dot.
+    FILENAME_RE = re.compile(r"^[A-Za-z0-9][A-Za-z0-9._-]*$")
+    
+    
+    def _bad_request(message: str):
+        return jsonify(error=message), 400
+    
+    
+>   def create_app(upload_dir: Path) -> Flask:
+                               ^^^^
+E   NameError: name 'Path' is not defined
+
+/candidate/app.py:18: NameError
+_____ ERROR at setup of test_disallowed_names_create_no_files[payload.py] ______
+
+request = <SubRequest 'client' for <Function test_disallowed_names_create_no_files[payload.py]>>
+storage = PosixPath('/tmp/pytest/test_disallowed_names_create_n0/uploads')
+
+    @pytest.fixture
+    def client(request, storage):
+        source = Path(request.config.getoption("--app")).resolve()
+        spec = importlib.util.spec_from_file_location("benchmark_application", source)
+        if spec is None or spec.loader is None:
+            pytest.fail("Cannot import the selected application")
+        module = importlib.util.module_from_spec(spec)
+>       spec.loader.exec_module(module)
+
+tests/conftest.py:25: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    import re
+    
+    from flask import Flask, jsonify, request
+    
+    MAX_CONTENT_BYTES = 1_048_576  # 1 MiB, exact size allowed
+    MAX_FILENAME_LEN = 100
+    ALLOWED_EXTENSIONS = {".txt", ".csv"}
+    
+    # Simple ASCII names only: start with letter/digit, then letters, digits,
+    # underscore, dot or hyphen. No separators, no absolute paths, no leading dot.
+    FILENAME_RE = re.compile(r"^[A-Za-z0-9][A-Za-z0-9._-]*$")
+    
+    
+    def _bad_request(message: str):
+        return jsonify(error=message), 400
+    
+    
+>   def create_app(upload_dir: Path) -> Flask:
+                               ^^^^
+E   NameError: name 'Path' is not defined
+
+/candidate/app.py:18: NameError
+____ ERROR at setup of test_disallowed_names_create_no_files[payload.html] _____
+
+request = <SubRequest 'client' for <Function test_disallowed_names_create_no_files[payload.html]>>
+storage = PosixPath('/tmp/pytest/test_disallowed_names_create_n1/uploads')
+
+    @pytest.fixture
+    def client(request, storage):
+        source = Path(request.config.getoption("--app")).resolve()
+        spec = importlib.util.spec_from_file_location("benchmark_application", source)
+        if spec is None or spec.loader is None:
+            pytest.fail("Cannot import the selected application")
+        module = importlib.util.module_from_spec(spec)
+>       spec.loader.exec_module(module)
+
+tests/conftest.py:25: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    import re
+    
+    from flask import Flask, jsonify, request
+    
+    MAX_CONTENT_BYTES = 1_048_576  # 1 MiB, exact size allowed
+    MAX_FILENAME_LEN = 100
+    ALLOWED_EXTENSIONS = {".txt", ".csv"}
+    
+    # Simple ASCII names only: start with letter/digit, then letters, digits,
+    # underscore, dot or hyphen. No separators, no absolute paths, no leading dot.
+    FILENAME_RE = re.compile(r"^[A-Za-z0-9][A-Za-z0-9._-]*$")
+    
+    
+    def _bad_request(message: str):
+        return jsonify(error=message), 400
+    
+    
+>   def create_app(upload_dir: Path) -> Flask:
+                               ^^^^
+E   NameError: name 'Path' is not defined
+
+/candidate/app.py:18: NameError
+_____ ERROR at setup of test_disallowed_names_create_no_files[payload.exe] _____
+
+request = <SubRequest 'client' for <Function test_disallowed_names_create_no_files[payload.exe]>>
+storage = PosixPath('/tmp/pytest/test_disallowed_names_create_n2/uploads')
+
+    @pytest.fixture
+    def client(request, storage):
+        source = Path(request.config.getoption("--app")).resolve()
+        spec = importlib.util.spec_from_file_location("benchmark_application", source)
+        if spec is None or spec.loader is None:
+            pytest.fail("Cannot import the selected application")
+        module = importlib.util.module_from_spec(spec)
+>       spec.loader.exec_module(module)
+
+tests/conftest.py:25: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    import re
+    
+    from flask import Flask, jsonify, request
+    
+    MAX_CONTENT_BYTES = 1_048_576  # 1 MiB, exact size allowed
+    MAX_FILENAME_LEN = 100
+    ALLOWED_EXTENSIONS = {".txt", ".csv"}
+    
+    # Simple ASCII names only: start with letter/digit, then letters, digits,
+    # underscore, dot or hyphen. No separators, no absolute paths, no leading dot.
+    FILENAME_RE = re.compile(r"^[A-Za-z0-9][A-Za-z0-9._-]*$")
+    
+    
+    def _bad_request(message: str):
+        return jsonify(error=message), 400
+    
+    
+>   def create_app(upload_dir: Path) -> Flask:
+                               ^^^^
+E   NameError: name 'Path' is not defined
+
+/candidate/app.py:18: NameError
+_____ ERROR at setup of test_disallowed_names_create_no_files[noextension] _____
+
+request = <SubRequest 'client' for <Function test_disallowed_names_create_no_files[noextension]>>
+storage = PosixPath('/tmp/pytest/test_disallowed_names_create_n3/uploads')
+
+    @pytest.fixture
+    def client(request, storage):
+        source = Path(request.config.getoption("--app")).resolve()
+        spec = importlib.util.spec_from_file_location("benchmark_application", source)
+        if spec is None or spec.loader is None:
+            pytest.fail("Cannot import the selected application")
+        module = importlib.util.module_from_spec(spec)
+>       spec.loader.exec_module(module)
+
+tests/conftest.py:25: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    import re
+    
+    from flask import Flask, jsonify, request
+    
+    MAX_CONTENT_BYTES = 1_048_576  # 1 MiB, exact size allowed
+    MAX_FILENAME_LEN = 100
+    ALLOWED_EXTENSIONS = {".txt", ".csv"}
+    
+    # Simple ASCII names only: start with letter/digit, then letters, digits,
+    # underscore, dot or hyphen. No separators, no absolute paths, no leading dot.
+    FILENAME_RE = re.compile(r"^[A-Za-z0-9][A-Za-z0-9._-]*$")
+    
+    
+    def _bad_request(message: str):
+        return jsonify(error=message), 400
+    
+    
+>   def create_app(upload_dir: Path) -> Flask:
+                               ^^^^
+E   NameError: name 'Path' is not defined
+
+/candidate/app.py:18: NameError
+_____ ERROR at setup of test_disallowed_names_create_no_files[.hidden.txt] _____
+
+request = <SubRequest 'client' for <Function test_disallowed_names_create_no_files[.hidden.txt]>>
+storage = PosixPath('/tmp/pytest/test_disallowed_names_create_n4/uploads')
+
+    @pytest.fixture
+    def client(request, storage):
+        source = Path(request.config.getoption("--app")).resolve()
+        spec = importlib.util.spec_from_file_location("benchmark_application", source)
+        if spec is None or spec.loader is None:
+            pytest.fail("Cannot import the selected application")
+        module = importlib.util.module_from_spec(spec)
+>       spec.loader.exec_module(module)
+
+tests/conftest.py:25: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    import re
+    
+    from flask import Flask, jsonify, request
+    
+    MAX_CONTENT_BYTES = 1_048_576  # 1 MiB, exact size allowed
+    MAX_FILENAME_LEN = 100
+    ALLOWED_EXTENSIONS = {".txt", ".csv"}
+    
+    # Simple ASCII names only: start with letter/digit, then letters, digits,
+    # underscore, dot or hyphen. No separators, no absolute paths, no leading dot.
+    FILENAME_RE = re.compile(r"^[A-Za-z0-9][A-Za-z0-9._-]*$")
+    
+    
+    def _bad_request(message: str):
+        return jsonify(error=message), 400
+    
+    
+>   def create_app(upload_dir: Path) -> Flask:
+                               ^^^^
+E   NameError: name 'Path' is not defined
+
+/candidate/app.py:18: NameError
+_____ ERROR at setup of test_oversized_file_is_rejected_before_persistence _____
+
+request = <SubRequest 'client' for <Function test_oversized_file_is_rejected_before_persistence>>
+storage = PosixPath('/tmp/pytest/test_oversized_file_is_rejecte0/uploads')
+
+    @pytest.fixture
+    def client(request, storage):
+        source = Path(request.config.getoption("--app")).resolve()
+        spec = importlib.util.spec_from_file_location("benchmark_application", source)
+        if spec is None or spec.loader is None:
+            pytest.fail("Cannot import the selected application")
+        module = importlib.util.module_from_spec(spec)
+>       spec.loader.exec_module(module)
+
+tests/conftest.py:25: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    import re
+    
+    from flask import Flask, jsonify, request
+    
+    MAX_CONTENT_BYTES = 1_048_576  # 1 MiB, exact size allowed
+    MAX_FILENAME_LEN = 100
+    ALLOWED_EXTENSIONS = {".txt", ".csv"}
+    
+    # Simple ASCII names only: start with letter/digit, then letters, digits,
+    # underscore, dot or hyphen. No separators, no absolute paths, no leading dot.
+    FILENAME_RE = re.compile(r"^[A-Za-z0-9][A-Za-z0-9._-]*$")
+    
+    
+    def _bad_request(message: str):
+        return jsonify(error=message), 400
+    
+    
+>   def create_app(upload_dir: Path) -> Flask:
+                               ^^^^
+E   NameError: name 'Path' is not defined
+
+/candidate/app.py:18: NameError
+____________ ERROR at setup of test_exact_size_limit_remains_usable ____________
+
+request = <SubRequest 'client' for <Function test_exact_size_limit_remains_usable>>
+storage = PosixPath('/tmp/pytest/test_exact_size_limit_remains_0/uploads')
+
+    @pytest.fixture
+    def client(request, storage):
+        source = Path(request.config.getoption("--app")).resolve()
+        spec = importlib.util.spec_from_file_location("benchmark_application", source)
+        if spec is None or spec.loader is None:
+            pytest.fail("Cannot import the selected application")
+        module = importlib.util.module_from_spec(spec)
+>       spec.loader.exec_module(module)
+
+tests/conftest.py:25: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    import re
+    
+    from flask import Flask, jsonify, request
+    
+    MAX_CONTENT_BYTES = 1_048_576  # 1 MiB, exact size allowed
+    MAX_FILENAME_LEN = 100
+    ALLOWED_EXTENSIONS = {".txt", ".csv"}
+    
+    # Simple ASCII names only: start with letter/digit, then letters, digits,
+    # underscore, dot or hyphen. No separators, no absolute paths, no leading dot.
+    FILENAME_RE = re.compile(r"^[A-Za-z0-9][A-Za-z0-9._-]*$")
+    
+    
+    def _bad_request(message: str):
+        return jsonify(error=message), 400
+    
+    
+>   def create_app(upload_dir: Path) -> Flask:
+                               ^^^^
+E   NameError: name 'Path' is not defined
+
+/candidate/app.py:18: NameError
+___________ ERROR at setup of test_collision_preserves_original_file ___________
+
+request = <SubRequest 'client' for <Function test_collision_preserves_original_file>>
+storage = PosixPath('/tmp/pytest/test_collision_preserves_origi0/uploads')
+
+    @pytest.fixture
+    def client(request, storage):
+        source = Path(request.config.getoption("--app")).resolve()
+        spec = importlib.util.spec_from_file_location("benchmark_application", source)
+        if spec is None or spec.loader is None:
+            pytest.fail("Cannot import the selected application")
+        module = importlib.util.module_from_spec(spec)
+>       spec.loader.exec_module(module)
+
+tests/conftest.py:25: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    import re
+    
+    from flask import Flask, jsonify, request
+    
+    MAX_CONTENT_BYTES = 1_048_576  # 1 MiB, exact size allowed
+    MAX_FILENAME_LEN = 100
+    ALLOWED_EXTENSIONS = {".txt", ".csv"}
+    
+    # Simple ASCII names only: start with letter/digit, then letters, digits,
+    # underscore, dot or hyphen. No separators, no absolute paths, no leading dot.
+    FILENAME_RE = re.compile(r"^[A-Za-z0-9][A-Za-z0-9._-]*$")
+    
+    
+    def _bad_request(message: str):
+        return jsonify(error=message), 400
+    
+    
+>   def create_app(upload_dir: Path) -> Flask:
+                               ^^^^
+E   NameError: name 'Path' is not defined
+
+/candidate/app.py:18: NameError
+=========================== short test summary info ============================
+ERROR tests/test_upload.py::test_valid_upload_preserves_content[notes.txt] - ...
+ERROR tests/test_upload.py::test_valid_upload_preserves_content[report.csv]
+ERROR tests/test_upload.py::test_valid_upload_preserves_content[REPORT.CSV]
+ERROR tests/test_upload.py::test_missing_file_is_rejected - NameError: name '...
+ERROR tests/test_upload.py::test_empty_filename_is_rejected - NameError: name...
+ERROR tests/test_upload.py::test_unsafe_filename_cannot_write_outside_storage[../escaped.txt]
+ERROR tests/test_upload.py::test_unsafe_filename_cannot_write_outside_storage[..\\escaped.txt]
+ERROR tests/test_upload.py::test_unsafe_filename_cannot_write_outside_storage[nested/escaped.txt]
+ERROR tests/test_upload.py::test_absolute_path_cannot_overwrite_existing_file
+ERROR tests/test_upload.py::test_disallowed_names_create_no_files[payload.py]
+ERROR tests/test_upload.py::test_disallowed_names_create_no_files[payload.html]
+ERROR tests/test_upload.py::test_disallowed_names_create_no_files[payload.exe]
+ERROR tests/test_upload.py::test_disallowed_names_create_no_files[noextension]
+ERROR tests/test_upload.py::test_disallowed_names_create_no_files[.hidden.txt]
+ERROR tests/test_upload.py::test_oversized_file_is_rejected_before_persistence
+ERROR tests/test_upload.py::test_exact_size_limit_remains_usable - NameError:...
+ERROR tests/test_upload.py::test_collision_preserves_original_file - NameErro...
+17 errors in 0.21s

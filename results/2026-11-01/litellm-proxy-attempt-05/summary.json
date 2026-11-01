@@ -1,0 +1,98 @@
+{
+  "source_commit": "2cc7d379933b32989dc6d448fb7d3822127c890a",
+  "scope": "Real loopback proxy and RouterHub API",
+  "redis": "Not configured, provider routing and pricing only",
+  "worker_note": "Two workers requested with reload. Windows reload can reduce the actual worker count. No concurrency claim",
+  "results": [
+    {
+      "model": "glm-5.3-abliterated",
+      "streaming": false,
+      "reply": "OK",
+      "usage": {
+        "completion_tokens": 25,
+        "prompt_tokens": 17,
+        "total_tokens": 42,
+        "completion_tokens_details": {
+          "reasoning_tokens": 22
+        },
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      },
+      "elapsed_seconds": 4.2328650709823705,
+      "proxy_cost_usd": 4.0133333333333324e-05,
+      "expected_token_cost_usd": 4.0133333333333324e-05,
+      "cost_matches": true,
+      "actual_account_charge_verified": false,
+      "passed": true
+    },
+    {
+      "model": "glm-5.3-abliterated",
+      "streaming": true,
+      "reply": "OK",
+      "usage": {
+        "completion_tokens": 36,
+        "prompt_tokens": 17,
+        "total_tokens": 53,
+        "completion_tokens_details": {
+          "reasoning_tokens": 33
+        },
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "cost": 5.4800000000000004e-05
+      },
+      "elapsed_seconds": 0.9248178190027829,
+      "proxy_cost_usd": 5.4800000000000004e-05,
+      "expected_token_cost_usd": 5.479999999999999e-05,
+      "cost_matches": true,
+      "actual_account_charge_verified": false,
+      "passed": true
+    },
+    {
+      "model": "glm-5.3-flash-abliterated",
+      "streaming": false,
+      "reply": "OK",
+      "usage": {
+        "completion_tokens": 3,
+        "prompt_tokens": 17,
+        "total_tokens": 20,
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      },
+      "elapsed_seconds": 0.9498701650009025,
+      "proxy_cost_usd": 8.1e-06,
+      "expected_token_cost_usd": 8.1e-06,
+      "cost_matches": true,
+      "actual_account_charge_verified": false,
+      "passed": true
+    },
+    {
+      "model": "glm-5.3-flash-abliterated",
+      "streaming": true,
+      "reply": "OK",
+      "usage": {
+        "completion_tokens": 29,
+        "prompt_tokens": 17,
+        "total_tokens": 46,
+        "completion_tokens_details": {
+          "reasoning_tokens": 26
+        },
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "cost": 3.41e-05
+      },
+      "elapsed_seconds": 2.514979977015173,
+      "proxy_cost_usd": 3.41e-05,
+      "expected_token_cost_usd": 3.41e-05,
+      "cost_matches": true,
+      "actual_account_charge_verified": false,
+      "passed": true
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+Traceback (most recent call last):
+  File "[CORE_CHECKOUT]\litellm\proxy\proxy_cli.py", line 24, in <module>
+    import litellm
+  File "[CORE_CHECKOUT]\litellm\__init__.py", line 28, in <module>
+    from litellm.types.integrations.datadog import DatadogInitParams
+  File "[CORE_CHECKOUT]\litellm\types\integrations\datadog.py", line 6, in <module>
+    from litellm.types.integrations.custom_logger import StandardCustomLoggerInitParams
+  File "[CORE_CHECKOUT]\litellm\types\integrations\custom_logger.py", line 7, in <module>
+    from litellm.types.llms.base import LiteLLMBaseModel
+  File "[CORE_CHECKOUT]\litellm\types\llms\base.py", line 3, in <module>
+    from openai._models import BaseModel as OpenAIObject
+  File "[CORE_CHECKOUT]\.venv\Lib\site-packages\openai\__init__.py", line 9, in <module>
+    from . import types
+  File "[CORE_CHECKOUT]\.venv\Lib\site-packages\openai\types\__init__.py", line 5, in <module>
+    from .batch import Batch as Batch
+  File "[CORE_CHECKOUT]\.venv\Lib\site-packages\openai\types\batch.py", line 6, in <module>
+    from .._models import BaseModel
+  File "[CORE_CHECKOUT]\.venv\Lib\site-packages\openai\_models.py", line 52, in <module>
+    from ._utils import (
+    ...<14 lines>...
+    )
+  File "[CORE_CHECKOUT]\.venv\Lib\site-packages\openai\_utils\__init__.py", line 3, in <module>
+    from ._sync import asyncify as asyncify
+  File "[CORE_CHECKOUT]\.venv\Lib\site-packages\openai\_utils\_sync.py", line 3, in <module>
+    import asyncio
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\Python313\Lib\asyncio\__init__.py", line 43, in <module>
+    from .windows_events import *
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\Python313\Lib\asyncio\windows_events.py", line 8, in <module>
+    import _overlapped
+OSError: [WinError 10106] The requested service provider could not be loaded or initialized

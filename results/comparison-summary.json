@@ -1,0 +1,86 @@
+{
+  "task": "Public local upload-repair acceptance task, 17 test cases",
+  "date": "2026-11-01",
+  "rows": [
+    {
+      "cohort": "Default reasoning",
+      "model": "glm-5.3",
+      "full_passes": 3,
+      "attempts": 3,
+      "median_request_seconds": 19.338127052993514,
+      "mean_estimated_token_cost_usd": 0.0010070768309333334,
+      "scores": [
+        17,
+        17,
+        17
+      ]
+    },
+    {
+      "cohort": "Default reasoning",
+      "model": "glm-5.3-uncensored",
+      "full_passes": 2,
+      "attempts": 3,
+      "median_request_seconds": 16.416634516004706,
+      "mean_estimated_token_cost_usd": 0.0023561850060190475,
+      "scores": [
+        0,
+        17,
+        17
+      ]
+    },
+    {
+      "cohort": "Default reasoning",
+      "model": "glm-5.3-abliterated",
+      "full_passes": 0,
+      "attempts": 3,
+      "median_request_seconds": 40.68745664600283,
+      "mean_estimated_token_cost_usd": 0.005624533333333332,
+      "scores": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "cohort": "Low reasoning",
+      "model": "glm-5.3",
+      "full_passes": 3,
+      "attempts": 3,
+      "median_request_seconds": 5.5160144660039805,
+      "mean_estimated_token_cost_usd": 0.0003063816812190476,
+      "scores": [
+        17,
+        17,
+        17
+      ]
+    },
+    {
+      "cohort": "Low reasoning",
+      "model": "glm-5.3-uncensored",
+      "full_passes": 3,
+      "attempts": 3,
+      "median_request_seconds": 7.193853130011121,
+      "mean_estimated_token_cost_usd": 0.0024110545267809523,
+      "scores": [
+        17,
+        17,
+        17
+      ]
+    },
+    {
+      "cohort": "Low reasoning",
+      "model": "glm-5.3-abliterated",
+      "full_passes": 3,
+      "attempts": 3,
+      "median_request_seconds": 3.307526794989826,
+      "mean_estimated_token_cost_usd": 0.0008938666666666666,
+      "scores": [
+        17,
+        17,
+        17
+      ]
+    }
+  ],
+  "actual_account_charge_verified": false,
+  "note": "Small hosted-entry smoke test, not an isolated checkpoint or general capability benchmark"
+}

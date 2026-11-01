@@ -1,0 +1,14 @@
+{
+  "run": "glm-5.3-uncensored-run-01",
+  "requested_model": "glm-5.3-uncensored",
+  "finish_reason": "stop",
+  "passed": 17,
+  "total": 17,
+  "candidate_executed": true,
+  "status": "evaluated",
+  "failed": 0,
+  "errors": 0,
+  "skipped": 0,
+  "candidate_sha256": "31c078d4f95192e2e179ffe0a2e793657b38131c1beb4db37892a8bb58bb7b04",
+  "container_exit_code": 0
+}

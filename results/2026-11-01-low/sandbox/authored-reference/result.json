@@ -1,0 +1,14 @@
+{
+  "run": "routerhub-trusted-fixture-6rkdob7d",
+  "requested_model": "authored-reference-not-a-model",
+  "finish_reason": null,
+  "passed": 17,
+  "total": 17,
+  "candidate_executed": true,
+  "status": "evaluated",
+  "failed": 0,
+  "errors": 0,
+  "skipped": 0,
+  "candidate_sha256": "e5bc37d9a0f60c8bdaac3a29e1de1e382fa0c84c43fb291eee044596790e85d6",
+  "container_exit_code": 0
+}

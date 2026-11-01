@@ -22,7 +22,13 @@ def fixture_check(app: str, report: Path):
     failures = sum(case.find("failure") is not None for case in cases)
     errors = sum(case.find("error") is not None for case in cases)
     skipped = sum(case.find("skipped") is not None for case in cases)
-    return {"total": len(cases), "failed": failures, "errors": errors, "skipped": skipped, "exit_code": result.returncode}
+    return {
+        "total": len(cases),
+        "failed": failures,
+        "errors": errors,
+        "skipped": skipped,
+        "exit_code": result.returncode,
+    }
 
 
 def main():
@@ -32,7 +38,11 @@ def main():
         reference = fixture_check("reference/app.py", directory / "reference.xml")
     expected_baseline = {"total": 17, "failed": 12, "errors": 0, "skipped": 0, "exit_code": 1}
     expected_reference = {"total": 17, "failed": 0, "errors": 0, "skipped": 0, "exit_code": 0}
-    collector = subprocess.run([sys.executable, "-m", "pytest", "test_collector.py", "-q"], cwd=ROOT, check=False)
+    collector = subprocess.run(
+        [sys.executable, "-m", "pytest", "test_collector.py", "test_verification_helpers.py", "-q"],
+        cwd=ROOT,
+        check=False,
+    )
     print(json.dumps({"authored_fixtures_only": True, "baseline": baseline, "reference": reference}, indent=2))
     return 0 if baseline == expected_baseline and reference == expected_reference and collector.returncode == 0 else 1
 

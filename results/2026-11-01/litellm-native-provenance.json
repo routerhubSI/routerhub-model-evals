@@ -1,0 +1,12 @@
+{
+  "commit": "74a78d089053a2043a10d407b98300bd6047ddf5",
+  "python": "3.13.14",
+  "native": {
+    "litellm\\rust_bridge\\_native.pyd": "b0af580a9592dbb65cdaf741bccd892276abdcea43e7b4b55ab2799ea9cc120e"
+  },
+  "consumer_source_commit": "2cc7d379933b32989dc6d448fb7d3822127c890a",
+  "source_difference": [
+    "litellm/model_prices_and_context_window_backup.json"
+  ],
+  "equivalence": "Rust sources, provider registry, root catalogue, Python code and lockfile unchanged; only Python backup catalogue synchronized"
+}

@@ -1,0 +1,36 @@
+data: {"id":"chatcmpl-c8bfa25946da07f1f541ef0feb74c305","object":"chat.completion.chunk","created":1793500903,"model":"routerhub-glm","choices":[{"index":0,"delta":{"role":"assistant","content":""}}]}
+
+data: {"id":"chatcmpl-c8bfa25946da07f1f541ef0feb74c305","created":1793500903,"model":"routerhub-glm","object":"chat.completion.chunk","choices":[{"index":0,"delta":{"reasoning_content":"The"}}]}
+
+data: {"id":"chatcmpl-c8bfa25946da07f1f541ef0feb74c305","created":1793500903,"model":"routerhub-glm","object":"chat.completion.chunk","choices":[{"index":0,"delta":{"reasoning_content":" user has"}}]}
+
+data: {"id":"chatcmpl-c8bfa25946da07f1f541ef0feb74c305","created":1793500903,"model":"routerhub-glm","object":"chat.completion.chunk","choices":[{"index":0,"delta":{"reasoning_content":" asked me to"}}]}
+
+data: {"id":"chatcmpl-c8bfa25946da07f1f541ef0feb74c305","created":1793500903,"model":"routerhub-glm","object":"chat.completion.chunk","choices":[{"index":0,"delta":{"reasoning_content":" reply with exactly"}}]}
+
+data: {"id":"chatcmpl-c8bfa25946da07f1f541ef0feb74c305","created":1793500903,"model":"routerhub-glm","object":"chat.completion.chunk","choices":[{"index":0,"delta":{"reasoning_content":" \"OK\"."}}]}
+
+data: {"id":"chatcmpl-c8bfa25946da07f1f541ef0feb74c305","created":1793500903,"model":"routerhub-glm","object":"chat.completion.chunk","choices":[{"index":0,"delta":{"reasoning_content":" This is a"}}]}
+
+data: {"id":"chatcmpl-c8bfa25946da07f1f541ef0feb74c305","created":1793500903,"model":"routerhub-glm","object":"chat.completion.chunk","choices":[{"index":0,"delta":{"reasoning_content":" simple instruction-follow"}}]}
+
+data: {"id":"chatcmpl-c8bfa25946da07f1f541ef0feb74c305","created":1793500903,"model":"routerhub-glm","object":"chat.completion.chunk","choices":[{"index":0,"delta":{"reasoning_content":"ing test"}}]}
+
+data: {"id":"chatcmpl-c8bfa25946da07f1f541ef0feb74c305","created":1793500903,"model":"routerhub-glm","object":"chat.completion.chunk","choices":[{"index":0,"delta":{"reasoning_content":". I should"}}]}
+
+data: {"id":"chatcmpl-c8bfa25946da07f1f541ef0feb74c305","created":1793500903,"model":"routerhub-glm","object":"chat.completion.chunk","choices":[{"index":0,"delta":{"reasoning_content":" respond"}}]}
+
+data: {"id":"chatcmpl-c8bfa25946da07f1f541ef0feb74c305","created":1793500903,"model":"routerhub-glm","object":"chat.completion.chunk","choices":[{"index":0,"delta":{"reasoning_content":" with just"}}]}
+
+data: {"id":"chatcmpl-c8bfa25946da07f1f541ef0feb74c305","created":1793500903,"model":"routerhub-glm","object":"chat.completion.chunk","choices":[{"index":0,"delta":{"reasoning_content":" \"OK\""}}]}
+
+data: {"id":"chatcmpl-c8bfa25946da07f1f541ef0feb74c305","created":1793500903,"model":"routerhub-glm","object":"chat.completion.chunk","choices":[{"index":0,"delta":{"reasoning_content":" and nothing else"}}]}
+
+data: {"id":"chatcmpl-c8bfa25946da07f1f541ef0feb74c305","created":1793500903,"model":"routerhub-glm","object":"chat.completion.chunk","choices":[{"index":0,"delta":{"reasoning_content":".","content":"OK"}}]}
+
+data: {"id":"chatcmpl-c8bfa25946da07f1f541ef0feb74c305","object":"chat.completion.chunk","created":1793500903,"model":"routerhub-glm","choices":[{"index":0,"delta":{},"finish_reason":"stop"}]}
+
+data: {"id":"chatcmpl-c8bfa25946da07f1f541ef0feb74c305","created":1793500903,"model":"routerhub-glm","object":"chat.completion.chunk","choices":[],"usage":{"completion_tokens":36,"prompt_tokens":17,"total_tokens":53,"completion_tokens_details":{"reasoning_tokens":33},"prompt_tokens_details":{"cached_tokens":0},"cost":0.000054800000000000004}}
+
+data: [DONE]
+

@@ -1,0 +1,101 @@
+{
+  "source_commit": "2cc7d379933b32989dc6d448fb7d3822127c890a",
+  "native_sha256": "b0af580a9592dbb65cdaf741bccd892276abdcea43e7b4b55ab2799ea9cc120e",
+  "scope": "Actual checked-out LiteLLM SDK and RouterHub API, not mocks",
+  "results": [
+    {
+      "model": "glm-5.3-abliterated",
+      "streaming": false,
+      "reply": "OK",
+      "finish_reason": "stop",
+      "usage": {
+        "completion_tokens": 21,
+        "prompt_tokens": 17,
+        "total_tokens": 38,
+        "completion_tokens_details": {
+          "reasoning_tokens": 18
+        },
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      },
+      "request_elapsed_seconds": 2.445710558007704,
+      "litellm_calculated_cost_usd": 3.479999999999999e-05,
+      "expected_token_cost_usd": 3.479999999999999e-05,
+      "cost_matches": true,
+      "actual_account_charge_verified": false,
+      "passed": true
+    },
+    {
+      "model": "glm-5.3-abliterated",
+      "streaming": true,
+      "reply": "OK",
+      "finish_reason": "stop",
+      "usage": {
+        "completion_tokens": 17,
+        "prompt_tokens": 17,
+        "total_tokens": 34,
+        "completion_tokens_details": {
+          "reasoning_tokens": 14
+        },
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "cost": 2.9466666666666663e-05
+      },
+      "request_elapsed_seconds": 1.0492570989881642,
+      "litellm_calculated_cost_usd": 2.9466666666666663e-05,
+      "expected_token_cost_usd": 2.9466666666666663e-05,
+      "cost_matches": true,
+      "actual_account_charge_verified": false,
+      "passed": true
+    },
+    {
+      "model": "glm-5.3-flash-abliterated",
+      "streaming": false,
+      "reply": "OK",
+      "finish_reason": "stop",
+      "usage": {
+        "completion_tokens": 25,
+        "prompt_tokens": 17,
+        "total_tokens": 42,
+        "completion_tokens_details": {
+          "reasoning_tokens": 22
+        },
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      },
+      "request_elapsed_seconds": 1.0515417460119352,
+      "litellm_calculated_cost_usd": 3.0099999999999996e-05,
+      "expected_token_cost_usd": 3.0099999999999996e-05,
+      "cost_matches": true,
+      "actual_account_charge_verified": false,
+      "passed": true
+    },
+    {
+      "model": "glm-5.3-flash-abliterated",
+      "streaming": true,
+      "reply": "OK",
+      "finish_reason": "stop",
+      "usage": {
+        "completion_tokens": 36,
+        "prompt_tokens": 17,
+        "total_tokens": 53,
+        "completion_tokens_details": {
+          "reasoning_tokens": 33
+        },
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "cost": 4.1099999999999996e-05
+      },
+      "request_elapsed_seconds": 0.5718380409816746,
+      "litellm_calculated_cost_usd": 4.1099999999999996e-05,
+      "expected_token_cost_usd": 4.11e-05,
+      "cost_matches": true,
+      "actual_account_charge_verified": false,
+      "passed": true
+    }
+  ]
+}

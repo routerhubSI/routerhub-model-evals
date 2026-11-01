@@ -1,8 +1,8 @@
 # Candidate isolation
 
-This is a proposed Docker runbook, not a claim that arbitrary code is safe inside
-a container. Docker is not installed on the development workstation, so this
-procedure still needs verification before model candidates are evaluated.
+This Docker runbook was verified on disposable GitHub Linux runners. It does
+not claim that arbitrary code is safe inside a container. Docker is not installed
+on the development workstation, and no generated candidate was run there.
 
 Use a dedicated, disposable Linux VM with an updated container runtime. Build the
 test image from the trusted benchmark commit before collecting any model output.
@@ -37,3 +37,9 @@ Apply the same sandbox and resource limits to every candidate and reference run.
 The candidate can still inspect the tests, and these are public acceptance tests,
 not a held-out general coding benchmark. Do not treat passing them as proof of
 security, harmlessness or general superiority.
+
+`python evaluate_candidates.py --inputs results/2026-11-01-low --out sandbox-reports`
+builds the trusted image, verifies the authored reference in the same sandbox,
+then scores each collected candidate. It needs Docker, not an API key. The
+trusted runner emits its report before the temporary filesystem disappears when
+the container stops. Invalid, missing or incomplete reports are not successes.

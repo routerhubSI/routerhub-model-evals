@@ -1,0 +1,14 @@
+{
+  "run": "glm-5.3-run-01",
+  "requested_model": "glm-5.3",
+  "finish_reason": "stop",
+  "passed": 17,
+  "total": 17,
+  "candidate_executed": true,
+  "status": "evaluated",
+  "failed": 0,
+  "errors": 0,
+  "skipped": 0,
+  "candidate_sha256": "af8bde6fed4ef996966350df4c670a764672227442f364f54af22eff3c30177f",
+  "container_exit_code": 0
+}

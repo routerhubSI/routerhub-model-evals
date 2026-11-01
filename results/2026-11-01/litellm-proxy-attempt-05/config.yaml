@@ -1,0 +1,24 @@
+{
+  "model_list": [
+    {
+      "model_name": "routerhub-glm",
+      "litellm_params": {
+        "model": "routerhub/glm-5.3-abliterated",
+        "api_key": "os.environ/ROUTERHUB_API_KEY"
+      }
+    },
+    {
+      "model_name": "routerhub-flash",
+      "litellm_params": {
+        "model": "routerhub/glm-5.3-flash-abliterated",
+        "api_key": "os.environ/ROUTERHUB_API_KEY"
+      }
+    }
+  ],
+  "general_settings": {
+    "master_key": "os.environ/LITELLM_MASTER_KEY"
+  },
+  "router_settings": {
+    "num_retries": 0
+  }
+}

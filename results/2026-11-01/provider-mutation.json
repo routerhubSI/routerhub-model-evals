@@ -1,0 +1,5 @@
+{
+  "mutation": "Change RouterHub environment-variable mapping",
+  "result": "expected assertion failure",
+  "restored_original_bytes": true
+}

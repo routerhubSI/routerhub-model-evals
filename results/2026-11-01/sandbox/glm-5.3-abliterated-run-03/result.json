@@ -1,0 +1,9 @@
+{
+  "run": "glm-5.3-abliterated-run-03",
+  "requested_model": "glm-5.3-abliterated",
+  "finish_reason": "length",
+  "passed": 0,
+  "total": 17,
+  "candidate_executed": false,
+  "status": "no-code-returned"
+}
