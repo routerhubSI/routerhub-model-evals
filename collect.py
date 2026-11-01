@@ -102,7 +102,7 @@ def main() -> int:
     content = message.get("content")
     source = candidate_source(content) if isinstance(content, str) else None
     if source is not None:
-        (args.out / "app.py").write_text(source, encoding="utf-8")
+        (args.out / "app.py").write_text(source, encoding="utf-8", newline="\n")
     metadata = {
         "status": "collected-not-executed",
         "collected_at": datetime.now(timezone.utc).isoformat(),

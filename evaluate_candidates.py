@@ -59,7 +59,6 @@ def evaluate(directory, output):
             IMAGE,
             "--app",
             "/candidate/app.py",
-            "--junitxml=/tmp/report.xml",
             "-q",
         ],
         check=True,
@@ -69,16 +68,22 @@ def evaluate(directory, output):
         try:
             completed = run(["docker", "start", "--attach", container], timeout=90)
             result["candidate_executed"] = True
-            (output / "stdout.txt").write_text(completed.stdout, encoding="utf-8")
-            (output / "stderr.txt").write_text(completed.stderr, encoding="utf-8")
         except subprocess.TimeoutExpired:
             result.update(status="sandbox-timeout", candidate_executed=True)
             return result
-        copied = run(["docker", "cp", container + ":/tmp/report.xml", str(output / "report.xml")])
-        if copied.returncode != 0:
+        try:
+            payload = json.loads(completed.stdout)
+        except json.JSONDecodeError:
+            result["status"] = "invalid-sandbox-output"
+            (output / "stderr.txt").write_text(completed.stderr, encoding="utf-8")
+            return result
+        (output / "stdout.txt").write_text(payload.get("stdout", ""), encoding="utf-8")
+        (output / "stderr.txt").write_text(payload.get("stderr", ""), encoding="utf-8")
+        if not payload.get("report_xml"):
             result["status"] = "missing-test-report"
             return result
         report = output / "report.xml"
+        report.write_text(payload["report_xml"], encoding="utf-8")
         if report.stat().st_size > 1024 * 1024:
             result["status"] = "oversized-test-report"
             return result

@@ -33,13 +33,13 @@ patch is not a security certification or evidence of lower refusal rates.
 
 ## Check the trusted fixtures locally
 
-Use Python 3.13 in a fresh virtual environment and install `requirements.txt`.
+Use Python 3.13 in a fresh virtual environment and install the hashed `requirements.lock`.
 These commands run only the repository's authored fixtures, not model output.
 
 ```sh
 python -m venv .venv
 # Activate the virtual environment using your operating system's normal command.
-python -m pip install -r requirements.txt
+python -m pip install --require-hashes -r requirements.lock
 python -m pytest tests --app fixtures/vulnerable/app.py -q
 python -m pytest tests --app reference/app.py -q
 python -m pytest test_collector.py -q

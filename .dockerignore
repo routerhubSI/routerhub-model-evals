@@ -1,5 +1,7 @@
 *
 !Dockerfile
 !requirements.txt
+!requirements.lock
+!sandbox_runner.py
 !tests/
 !tests/*.py

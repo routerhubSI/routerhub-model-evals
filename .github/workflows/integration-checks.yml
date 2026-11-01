@@ -10,8 +10,16 @@ on:
         description: RouterHub documentation commit
         required: true
         default: 9d1d21ffce258a85c36ae4d9c7884c3f32c9b6d6
+      native_run_id:
+        description: Optional verified native artifact run for a backup-catalogue-only change
+        required: false
+      check_docs:
+        description: Build documentation
+        type: boolean
+        default: true
 permissions:
   contents: read
+  actions: read
 jobs:
   provider:
     runs-on: windows-latest
@@ -32,14 +40,49 @@ jobs:
       - name: Install verified uv wheel
         run: python -m pip install 'https://files.pythonhosted.org/packages/7c/9d/714523188aea3054644d8e69ae8089aac70325a3cee2d3d05509d4f23398/uv-0.13.6-py3-none-win_amd64.whl#sha256=7c9bc35ccb65932d8dc10a0669f9c805eaa3c9827ce18ecbecb1bd67944b2cdf'
       - name: Build the actual source extension and install locked dependencies
+        if: inputs.native_run_id == ''
         run: uv sync --inexact --frozen
+      - name: Install locked dependencies for a verified native reuse
+        if: inputs.native_run_id != ''
+        run: uv sync --inexact --frozen --no-install-project
+      - name: Reuse a verified native build only for a backup-catalogue-only change
+        if: inputs.native_run_id != ''
+        env:
+          GH_TOKEN: ${{ github.token }}
+          NATIVE_RUN: ${{ inputs.native_run_id }}
+        run: |
+          gh run download $env:NATIVE_RUN --repo routerhubSI/routerhub-model-evals --name windows-native-and-provenance --dir .verified-native
+          @'
+          import hashlib, json, pathlib, shutil, subprocess
+          root = pathlib.Path('.verified-native')
+          data = json.loads((root / 'native-provenance.json').read_text())
+          subprocess.run(['git','fetch','--no-tags','--depth=1','origin',data['commit']], check=True)
+          changed = subprocess.check_output(['git','diff','--name-only',data['commit'],'HEAD'], text=True).splitlines()
+          assert all(p == 'litellm/model_prices_and_context_window_backup.json' for p in changed), changed
+          for name, expected in data['native'].items():
+              source = root / name
+              assert hashlib.sha256(source.read_bytes()).hexdigest() == expected
+              shutil.copy2(source, name)
+          pathlib.Path('native-provenance.json').write_text(json.dumps(data, indent=2))
+          print('Reused hash-verified binary. The only source change is the Python backup catalogue')
+          '@ | uv run --no-sync python -
+      - name: Prepare byte-exact bundled tokenizer files outside the unit tests
+        run: |
+          @'
+          import pathlib, subprocess
+          root = pathlib.Path('litellm/litellm_core_utils/tokenizers')
+          for path in root.iterdir():
+              if len(path.name) == 40:
+                  path.write_bytes(subprocess.check_output(['git','show','HEAD:' + path.as_posix()]))
+          '@ | uv run --no-sync python -
       - name: Record native build provenance
         run: |
           @'
           import hashlib, json, pathlib, platform, subprocess
           paths = tuple(pathlib.Path('litellm/rust_bridge').glob('_native*.pyd'))
           assert paths, 'No real native extension was built'
-          report = {'commit': subprocess.check_output(['git','rev-parse','HEAD'], text=True).strip(), 'python': platform.python_version(), 'native': {str(p): hashlib.sha256(p.read_bytes()).hexdigest() for p in paths}}
+          previous = json.loads(pathlib.Path('native-provenance.json').read_text()) if pathlib.Path('native-provenance.json').exists() else None
+          report = {'commit': subprocess.check_output(['git','rev-parse','HEAD'], text=True).strip(), 'python': platform.python_version(), 'native': {str(p): hashlib.sha256(p.read_bytes()).hexdigest() for p in paths}, 'reused_build': previous}
           pathlib.Path('native-provenance.json').write_text(json.dumps(report, indent=2))
           print(json.dumps(report, indent=2))
           '@ | uv run --no-sync python -
@@ -58,6 +101,7 @@ jobs:
           if-no-files-found: warn
           retention-days: 3
   documentation:
+    if: inputs.check_docs
     runs-on: ubuntu-latest
     timeout-minutes: 40
     steps:
