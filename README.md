@@ -12,6 +12,8 @@ vulnerable fixture, an authored reference solution, independent acceptance tests
 a fixed prompt and an opt-in response collector. Passing reference tests checks
 the harness, not the performance of a model.
 
+[![GLM 5.3 reasoning-configuration experiment](assets/glm-reasoning-result.png)](RESULTS.md)
+
 The first authorized collection is under `results/2026-11-01`. Three abliterated
 attempts exhausted their 4,096-token budget in reasoning and returned no code.
 Those failures are retained. `results/2026-11-01-low` is a separately labelled

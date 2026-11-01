@@ -28,12 +28,12 @@ scope are documented in [LIVE-VERIFICATION.md](LIVE-VERIFICATION.md). Account
 debits, actual cache hits, tools, Responses and Messages remain unverified.
 
 Before a maintainer review, the human contributor must review and sign the
-[LiteLLM CLA](https://cla-assistant.io/BerriAI/litellm), rewrite the marked PR
+[LiteLLM CLA](https://cla-assistant.io/BerriAI/litellm) and rewrite the marked PR
 summary in their own words. Live testing was subsequently authorized and the
 key was read privately on the test machine. Never place a key in GitHub comments
 or send it in a public chat.
 
-Run the documented SDK and proxy flow against real RouterHub inference, both
+For re-verification, repeat the documented SDK and proxy flow against real RouterHub inference, both
 ordinary and streamed Chat Completions. Record exact commands, redacted replies,
 usage and pricing calculations at the tested commit. Validate cache accounting
 only when actual cache-hit usage is returned. Do not mark mock output as live
