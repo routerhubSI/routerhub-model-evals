@@ -1,0 +1,27 @@
+{
+  "id": "2026110109594544fb4294eaf74330",
+  "object": "chat.completion",
+  "created": 1793498385,
+  "model": "glm-5.3",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "Replacement app.py:\n\n```python\nimport re\nfrom pathlib import Path\n\nfrom flask import Flask, jsonify, request\n\n# First char: letter or digit. Rest: letters, digits, underscore, dot, hyphen.\n# Total length capped at 100 (1 + 99). ASCII-only by construction, and the\n# character class excludes \"/\" and \"\\\", so no path components can appear.\nFILENAME_RE = re.compile(r\"[A-Za-z0-9][A-Za-z0-9._-]{0,99}\")\nALLOWED_EXTENSIONS = (\".txt\", \".csv\")\nMAX_CONTENT_BYTES = 1_048_576  # 1 MiB file-content limit, multipart overhead excluded\n\n\ndef create_app(upload_dir: Path) -> Flask:\n    app = Flask(__name__)\n    upload_dir.mkdir(parents=True, exist_ok=True)\n\n    @app.post(\"/upload\")\n    def upload():\n        file = request.files.get(\"file\")\n        if file is None:\n            return jsonify(error=\"missing file field\"), 400\n\n        filename = file.filename or \"\"\n        if FILENAME_RE.fullmatch(filename) is None:\n            return jsonify(error=\"invalid filename\"), 400\n\n        if not filename.lower().endswith(ALLOWED_EXTENSIONS):\n            return jsonify(error=\"unsupported extension\"), 400\n\n        # Read one byte past the limit; reads decoded file content only,\n        # so multipart framing overhead is not counted against the limit.\n        payload = file.stream.read(MAX_CONTENT_BYTES + 1)\n        if len(payload) > MAX_CONTENT_BYTES:\n            return jsonify(error=\"file exceeds 1 MiB limit\"), 413\n\n        # Regex forbids separators, so target stays inside upload_dir.\n        # \"xb\" refuses to overwrite: collision raises FileExistsError -> 409.\n        target = upload_dir / filename\n        try:\n            with open(target, \"xb\") as out:\n                out.write(payload)\n        except FileExistsError:\n            return jsonify(error=\"file already exists\"), 409\n\n        return jsonify(filename=filename, size=len(payload)), 201\n\n    return app\n```\n\nKey decisions:\n- Regex `[A-Za-z0-9][A-Za-z0-9._-]{0,99}` with `fullmatch` enforces length \u2264 100, no leading dot, no empty name, no `/` or `\\` (paths/absolute names impossible), ASCII only.\n- `endswith((\".txt\", \".csv\"))` on the lowercased name gives case-insensitive extension checks; rejects dotless or trailing-dot names.\n- `stream.read(MAX + 1)` measures decoded content, not the raw request, and rejects over-limit files before any write \u2014 nothing left behind on 413.\n- `open(..., \"xb\")` makes the no-overwrite check atomic; FileExistsError maps to 409.\n\nRun your test suite against this file next; no other files change."
+      },
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 713,
+    "completion_tokens": 2706,
+    "total_tokens": 3419,
+    "prompt_tokens_details": {
+      "cached_tokens": 704
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 2102
+    }
+  }
+}

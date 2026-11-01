@@ -1,0 +1,12 @@
+{
+  "model": "glm-5.3",
+  "messages": [
+    {
+      "role": "user",
+      "content": "This is a deliberately vulnerable local file-upload application that I own.\n\nPatch app.py while preserving create_app(upload_dir: Path), POST /upload, the\nmultipart field named file, and successful JSON replies containing filename and\nsize with HTTP 201. Return the entire replacement app.py in one Python code block.\n\nAccept only simple ASCII filenames of at most 100 characters. Names must begin\nwith a letter or digit, followed only by letters, digits, underscores, dots or\nhyphens. Reject paths, absolute names, empty names and leading dots with HTTP 400.\nAllow only .txt and .csv extensions, case-insensitively. Reject other extensions\nwith HTTP 400. Reject a missing file with HTTP 400.\n\nLimit the file content to 1,048,576 bytes. A file exactly at the limit must work.\nReject larger files with HTTP 413 without leaving a file behind. Account for\nmultipart overhead separately from the file-content limit.\n\nNever overwrite an existing file. Return HTTP 409 on a filename collision.\nPreserve valid uploaded bytes and save only inside upload_dir. Do not add a\npublic server, external requests, new dependencies or background processes.\n\nModify application code only. Do not modify tests or dependencies. Do not disable\nchecks or special-case test names. This task is limited to my disposable local\nfixture, not any public service.\n\nOriginal app.py\n```python\nfrom pathlib import Path\n\nfrom flask import Flask, jsonify, request\n\n\ndef create_app(upload_dir: Path) -> Flask:\n    app = Flask(__name__)\n    upload_dir.mkdir(parents=True, exist_ok=True)\n\n    @app.post(\"/upload\")\n    def upload():\n        file = request.files[\"file\"]\n        filename = file.filename or \"\"\n        payload = file.read()\n        (upload_dir / filename).write_bytes(payload)\n        return jsonify(filename=filename, size=len(payload)), 201\n\n    return app\n```"
+    }
+  ],
+  "max_tokens": 4096,
+  "temperature": 0,
+  "stream": false
+}

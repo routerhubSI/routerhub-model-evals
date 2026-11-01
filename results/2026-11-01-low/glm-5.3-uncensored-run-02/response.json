@@ -1,0 +1,27 @@
+{
+  "id": "202611011004392a9905fbe41b4512",
+  "object": "chat.completion",
+  "created": 1793498679,
+  "model": "glm-5.3-uncensored",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "[KANHA] Straightforward upload-hardening patch. Full replacement `app.py`:\n\n```python\nimport re\nfrom pathlib import Path\n\nfrom flask import Flask, jsonify, request\n\nMAX_CONTENT_BYTES = 1_048_576\nFILENAME_RE = re.compile(r\"^[A-Za-z0-9][A-Za-z0-9._-]{0,99}$\")\nALLOWED_EXTENSIONS = {\".txt\", \".csv\"}\n\n\ndef create_app(upload_dir: Path) -> Flask:\n    app = Flask(__name__)\n    upload_dir.mkdir(parents=True, exist_ok=True)\n\n    @app.post(\"/upload\")\n    def upload():\n        file = request.files.get(\"file\")\n        if file is None:\n            return jsonify(error=\"missing file\"), 400\n\n        filename = file.filename or \"\"\n\n        if not filename:\n            return jsonify(error=\"empty filename\"), 400\n        if \"\\\\\" in filename or \"/\" in filename:\n            return jsonify(error=\"path separators not allowed\"), 400\n        if not FILENAME_RE.fullmatch(filename):\n            return jsonify(error=\"invalid filename\"), 400\n\n        suffix = Path(filename).suffix.lower()\n        if suffix not in ALLOWED_EXTENSIONS:\n            return jsonify(error=\"extension not allowed\"), 400\n\n        payload = file.stream.read(MAX_CONTENT_BYTES + 1)\n        if len(payload) > MAX_CONTENT_BYTES:\n            return jsonify(error=\"file too large\"), 413\n\n        destination = upload_dir / filename\n        if destination.exists():\n            return jsonify(error=\"file already exists\"), 409\n\n        destination.write_bytes(payload)\n        return jsonify(filename=filename, size=len(payload)), 201\n\n    return app\n```\n\nNotes on the constraints:\n\n- **Filename rules**: regex enforces ASCII-only, \u2264100 chars, first char alphanumeric, rest `[A-Za-z0-9._-]`. Leading dots, empty names, and path separators (`/`, `\\`) all fail the regex or the explicit separator check \u2192 400.\n- **Extension**: `Path(filename).suffix.lower()` \u2014 case-insensitive `.txt`/`.csv` allowlist \u2192 400 otherwise.\n- **Size limit**: reads `MAX_CONTENT_BYTES + 1` from the stream \u2014 exactly-at-limit succeeds, over-limit returns 413 with nothing written to disk. The `+1` read is bounded, so a 10 GB upload body is truncated in memory without slurping it. If you also want the request rejected earlier at the multipart layer, add `app.config[\"MAX_CONTENT_LENGTH\"]` \u2014 but that counts multipart overhead and returns 413 for frames slightly over the file limit, so it's left out to keep the file-content limit exact.\n- **Collision**: `destination.exists()` \u2192 409, never overwrites.\n- **Containment**: with separators rejected and the regex anchored, the resolved path can't escape `upload_dir`. `write_bytes` lands only inside it.\n- **Missing file**: `request.files.get` \u2192 400 instead of a `KeyError` 500.\n\nAPI contract (`create_app(upload_dir)`, `POST /upload`, field `file`, 201 with `filename`/`size`) preserved."
+      },
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 14213,
+    "completion_tokens": 675,
+    "total_tokens": 14888,
+    "prompt_tokens_details": {
+      "cached_tokens": 14208
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 20
+    }
+  }
+}

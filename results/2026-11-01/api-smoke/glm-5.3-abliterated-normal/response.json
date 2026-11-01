@@ -1,0 +1,28 @@
+{
+  "id": "chatcmpl-a41328b6efce92d0c71143bcc2bd784e",
+  "object": "chat.completion",
+  "created": 1793498511,
+  "model": "glm-5.3-abliterated",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "OK",
+        "reasoning": "The user wants me to reply with exactly \"OK\". Simple instruction following."
+      },
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 17,
+    "completion_tokens": 18,
+    "total_tokens": 35,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 15
+    }
+  }
+}

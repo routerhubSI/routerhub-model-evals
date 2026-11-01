@@ -1,0 +1,27 @@
+{
+  "id": "20261101100432b6c0eb629ecd4323",
+  "object": "chat.completion",
+  "created": 1793498672,
+  "model": "glm-5.3-uncensored",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "```python\nimport re\nfrom pathlib import Path\n\nfrom flask import Flask, jsonify, request\n\nFILENAME_RE = re.compile(r\"^[A-Za-z0-9][A-Za-z0-9._-]{0,99}$\")\nALLOWED_EXTENSIONS = {\".txt\", \".csv\"}\nMAX_CONTENT_BYTES = 1_048_576\n\n\ndef create_app(upload_dir: Path) -> Flask:\n    app = Flask(__name__)\n    upload_dir.mkdir(parents=True, exist_ok=True)\n\n    @app.post(\"/upload\")\n    def upload():\n        file = request.files.get(\"file\")\n        if file is None:\n            return jsonify(error=\"missing file\"), 400\n\n        filename = file.filename or \"\"\n\n        if not filename:\n            return jsonify(error=\"empty filename\"), 400\n        if \"/\" in filename or \"\\\\\" in filename:\n            return jsonify(error=\"paths not allowed\"), 400\n        if filename.startswith(\".\"):\n            return jsonify(error=\"leading dot not allowed\"), 400\n        if Path(filename).is_absolute():\n            return jsonify(error=\"absolute path not allowed\"), 400\n        if not FILENAME_RE.match(filename):\n            return jsonify(error=\"invalid filename\"), 400\n\n        extension = Path(filename).suffix.lower()\n        if extension not in ALLOWED_EXTENSIONS:\n            return jsonify(error=\"extension not allowed\"), 400\n\n        payload = file.read(MAX_CONTENT_BYTES + 1)\n        if len(payload) > MAX_CONTENT_BYTES:\n            return jsonify(error=\"file too large\"), 413\n\n        destination = upload_dir / filename\n        if destination.exists():\n            return jsonify(error=\"file already exists\"), 409\n\n        destination.write_bytes(payload)\n        return jsonify(filename=filename, size=len(payload)), 201\n\n    return app\n```\n\nKey changes:\n- Filename validated against `^[A-Za-z0-9][A-Za-z0-9._-]{0,99}$` (max 100 chars, no paths, no leading dots, no empty names).\n- Extension whitelist `.txt`/`.csv`, case-insensitive via `suffix.lower()`.\n- Size limit enforced by reading `MAX_CONTENT_BYTES + 1` \u2014 exact-limit files pass, larger files get 413 before any write, so no partial file is left behind. Multipart framing overhead is handled by the parser and never counted against the content limit.\n- Collision check before write yields 409; existing files are never overwritten.\n- Writes only to `upload_dir / filename` with a sanitized basename."
+      },
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 14213,
+    "completion_tokens": 527,
+    "total_tokens": 14740,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 11
+    }
+  }
+}

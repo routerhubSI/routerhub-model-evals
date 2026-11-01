@@ -1,0 +1,27 @@
+{
+  "id": "202611010959073adaed1ff61a42c7",
+  "object": "chat.completion",
+  "created": 1793498347,
+  "model": "glm-5.3-uncensored",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "[KANHA] Hardened app.py: strict filename validation, extension whitelist, size cap with overflow detection, collision-safe exclusive write. Interface preserved.\n\n```python\nimport re\n\nfrom flask import Flask, jsonify, request\n\nMAX_CONTENT_BYTES = 1_048_576  # 1 MiB, exact size allowed\nMAX_FILENAME_LEN = 100\nALLOWED_EXTENSIONS = {\".txt\", \".csv\"}\n\n# Simple ASCII names only: start with letter/digit, then letters, digits,\n# underscore, dot or hyphen. No separators, no absolute paths, no leading dot.\nFILENAME_RE = re.compile(r\"^[A-Za-z0-9][A-Za-z0-9._-]*$\")\n\n\ndef _bad_request(message: str):\n    return jsonify(error=message), 400\n\n\ndef create_app(upload_dir: Path) -> Flask:\n    app = Flask(__name__)\n    upload_dir.mkdir(parents=True, exist_ok=True)\n\n    @app.post(\"/upload\")\n    def upload():\n        file = request.files.get(\"file\")\n        if file is None:\n            return _bad_request(\"missing file field\")\n\n        filename = file.filename or \"\"\n        if not filename:\n            return _bad_request(\"empty filename\")\n        if len(filename) > MAX_FILENAME_LEN:\n            return _bad_request(\"filename too long\")\n        if not FILENAME_RE.match(filename):\n            return _bad_request(\n                \"invalid filename: must be simple ASCII \"\n                \"(letters, digits, underscore, dot, hyphen), \"\n                \"starting with a letter or digit\"\n            )\n\n        if \".\" not in filename or Path(filename).suffix.lower() not in ALLOWED_EXTENSIONS:\n            return _bad_request(\"only .txt and .csv files are accepted\")\n\n        # Read at most one byte past the limit to detect overflow without\n        # buffering unbounded data. Multipart framing overhead is consumed\n        # by the parser and never counted against this content limit.\n        data = file.stream.read(MAX_CONTENT_BYTES + 1)\n        if len(data) > MAX_CONTENT_BYTES:\n            return jsonify(error=\"file too large\"), 413\n\n        dest = upload_dir / filename\n        # Defense in depth: regex already forbids separators, but assert the\n        # destination stays inside upload_dir.\n        if dest.resolve().parent != upload_dir.resolve():\n            return _bad_request(\"invalid destination\")\n\n        # Exclusive create: never overwrite an existing file.\n        try:\n            with open(dest, \"xb\") as out:\n                out.write(data)\n        except FileExistsError:\n            return jsonify(error=\"file already exists\"), 409\n\n        return jsonify(filename=filename, size=len(data)), 201\n\n    return app\n```\n\nKey changes:\n\n- **Filename validation** \u2014 regex `^[A-Za-z0-9][A-Za-z0-9._-]*$` plus 100-char cap blocks path traversal, absolute names, empty names, leading dots, and non-ASCII.\n- **Extension whitelist** \u2014 case-insensitive `.txt`/`.csv` only.\n- **Size limit** \u2014 `read(MAX + 1)` detects overflow in a single bounded read; exactly 1,048,576 bytes succeeds, one byte more returns 413 before any write occurs.\n- **No overwrite** \u2014 `open(..., \"xb\")` is an atomic exclusive create; a race between `exists()` checks can't cause silent overwrite.\n- **Containment** \u2014 validated name plus a `resolve().parent` assertion guarantees the write lands inside `upload_dir`.\n\n[KANHA] out."
+      },
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 14213,
+    "completion_tokens": 1355,
+    "total_tokens": 15568,
+    "prompt_tokens_details": {
+      "cached_tokens": 13760
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 617
+    }
+  }
+}

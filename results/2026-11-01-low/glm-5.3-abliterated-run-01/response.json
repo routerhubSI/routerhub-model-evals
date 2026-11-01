@@ -1,0 +1,27 @@
+{
+  "id": "chatcmpl-4924996f3733da6a839f1d2279b4bbfd",
+  "object": "chat.completion",
+  "created": 1793498561,
+  "model": "glm-5.3-abliterated",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "```python\nimport re\n\nfrom pathlib import Path\n\nfrom flask import Flask, jsonify, request\n\n\nMAX_CONTENT_LENGTH = 1_048_576 + 4096  # file limit + multipart overhead\nMAX_FILE_SIZE = 1_048_576\nNAME_RE = re.compile(r\"^[A-Za-z0-9][A-Za-z0-9._-]{0,99}$\")\n\n\ndef create_app(upload_dir: Path) -> Flask:\n    app = Flask(__name__)\n    app.config[\"MAX_CONTENT_LENGTH\"] = MAX_CONTENT_LENGTH\n    upload_dir.mkdir(parents=True, exist_ok=True)\n\n    @app.post(\"/upload\")\n    def upload():\n        if \"file\" not in request.files:\n            return jsonify(error=\"missing file\"), 400\n\n        file = request.files[\"file\"]\n        filename = file.filename or \"\"\n\n        if not NAME_RE.fullmatch(filename):\n            return jsonify(error=\"invalid filename\"), 400\n\n        dot = filename.rfind(\".\")\n        if dot == -1:\n            return jsonify(error=\"missing extension\"), 400\n        ext = filename[dot + 1 :].lower()\n        if ext not in (\"txt\", \"csv\"):\n            return jsonify(error=\"disallowed extension\"), 400\n\n        target = upload_dir / filename\n        if target.exists():\n            return jsonify(error=\"file exists\"), 409\n\n        payload = file.read()\n        if len(payload) > MAX_FILE_SIZE:\n            return jsonify(error=\"file too large\"), 413\n\n        target.write_bytes(payload)\n        return jsonify(filename=filename, size=len(payload)), 201\n\n    return app\n```\n\nNotes on the key decisions:\n\n- **Filename validation**: the regex requires a leading letter/digit (rejecting empty names, leading dots, and absolute paths like `/etc/passwd`), allows only `[A-Za-z0-9._-]`, and caps length at 100. Since `/` and `\\` are not in the allowed set, path traversal and absolute names are rejected with 400.\n- **Extension check**: case-insensitive `.txt`/`.csv` only; a name with no dot is rejected.\n- **Size limit**: `MAX_CONTENT_LENGTH` is set above the 1 MiB file limit so Flask's multipart overhead (headers, boundaries) doesn't cause false 413s, while the actual payload is checked against exactly 1,048,576 bytes \u2014 a file at the limit succeeds, larger ones get 413. The existence check happens before reading, and the file is only written after validation, so no partial file is left behind on rejection.\n- **Collision handling**: `target.exists()` returns 409 before any write, so existing files are never overwritten."
+      },
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 408,
+    "completion_tokens": 569,
+    "total_tokens": 977,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0
+    }
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "id": "20261101095925793372b1c1db4bb4",
+  "object": "chat.completion",
+  "created": 1793498365,
+  "model": "glm-5.3",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "```python\nimport re\nfrom pathlib import Path\n\nfrom flask import Flask, jsonify, request\n\nMAX_CONTENT_BYTES = 1_048_576  # 1 MiB file-content limit\nFILENAME_RE = re.compile(r\"^[A-Za-z0-9][A-Za-z0-9._-]{0,99}$\")\nALLOWED_EXTENSIONS = (\".txt\", \".csv\")\n\n\ndef create_app(upload_dir: Path) -> Flask:\n    app = Flask(__name__)\n    upload_dir.mkdir(parents=True, exist_ok=True)\n\n    @app.post(\"/upload\")\n    def upload():\n        file = request.files.get(\"file\")\n        if file is None:\n            return jsonify(error=\"missing file field\"), 400\n\n        filename = file.filename or \"\"\n        if not FILENAME_RE.fullmatch(filename):\n            return jsonify(error=\"invalid filename\"), 400\n        if not filename.lower().endswith(ALLOWED_EXTENSIONS):\n            return jsonify(error=\"invalid extension\"), 400\n\n        # Read at most limit+1 bytes from the decoded file part, so\n        # multipart framing overhead never counts against the limit.\n        payload = file.stream.read(MAX_CONTENT_BYTES + 1)\n        if len(payload) > MAX_CONTENT_BYTES:\n            return jsonify(error=\"file too large\"), 413\n\n        # Regex forbids separators, so the target stays inside upload_dir.\n        # \"xb\" fails atomically on collision; nothing is written before the\n        # size check passes, so oversize uploads leave no file behind.\n        try:\n            with open(upload_dir / filename, \"xb\") as out:\n                out.write(payload)\n        except FileExistsError:\n            return jsonify(error=\"file already exists\"), 409\n\n        return jsonify(filename=filename, size=len(payload)), 201\n\n    return app\n```\n\nKey points:\n- Regex `^[A-Za-z0-9][A-Za-z0-9._-]{0,99}$` enforces ASCII-only, \u2264100 chars, first char letter/digit; this also rejects empty names, leading dots, `/`, `\\`, and absolute paths.\n- `file.stream.read(limit + 1)` measures decoded content only \u2014 exactly 1,048,576 bytes passes, 1 over returns 413 with nothing written.\n- `open(..., \"xb\")` makes overwrite impossible even under a race; collision returns 409.\n- No new dependencies, no server entry point."
+      },
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 713,
+    "completion_tokens": 1644,
+    "total_tokens": 2357,
+    "prompt_tokens_details": {
+      "cached_tokens": 704
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 1137
+    }
+  }
+}

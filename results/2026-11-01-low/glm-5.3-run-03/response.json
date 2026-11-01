@@ -1,0 +1,27 @@
+{
+  "id": "2026110110043909f5c9a6dfe942f5",
+  "object": "chat.completion",
+  "created": 1793498679,
+  "model": "glm-5.3",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "```python\nimport re\nfrom pathlib import Path\n\nfrom flask import Flask, jsonify, request\n\nMAX_CONTENT_BYTES = 1_048_576\nNAME_RE = re.compile(r\"^[A-Za-z0-9][A-Za-z0-9._-]{0,99}$\")\nALLOWED_EXTS = {\".txt\", \".csv\"}\n\n\ndef create_app(upload_dir: Path) -> Flask:\n    app = Flask(__name__)\n    app.config[\"MAX_CONTENT_LENGTH\"] = MAX_CONTENT_BYTES + 64 * 1024  # overhead margin\n    upload_dir.mkdir(parents=True, exist_ok=True)\n\n    @app.errorhandler(413)\n    def too_large(_e):\n        return jsonify(error=\"file too large\"), 413\n\n    @app.post(\"/upload\")\n    def upload():\n        file = request.files.get(\"file\")\n        if file is None:\n            return jsonify(error=\"missing file\"), 400\n\n        filename = file.filename or \"\"\n\n        if not NAME_RE.fullmatch(filename):\n            return jsonify(error=\"invalid filename\"), 400\n\n        ext = Path(filename).suffix.lower()\n        if ext not in ALLOWED_EXTS:\n            return jsonify(error=\"invalid extension\"), 400\n\n        payload = file.read(MAX_CONTENT_BYTES + 1)\n        if len(payload) > MAX_CONTENT_BYTES:\n            return jsonify(error=\"file too large\"), 413\n\n        target = upload_dir / filename\n        if target.exists():\n            return jsonify(error=\"file exists\"), 409\n\n        target.write_bytes(payload)\n        return jsonify(filename=filename, size=len(payload)), 201\n\n    return app\n```\n\nNotes:\n- Regex enforces ASCII, \u2264100 chars, no leading dot, no paths/absolute names; empty names fail the regex.\n- Extension checked case-insensitively after name validation.\n- Size capped at exactly 1,048,576 bytes; read with +1 to detect overflow, and `MAX_CONTENT_LENGTH` adds a small margin so multipart overhead (boundaries, headers) doesn't reject valid files at the limit.\n- Files only written inside `upload_dir`; regex prevents traversal, so no `resolve()` edge cases."
+      },
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 713,
+    "completion_tokens": 452,
+    "total_tokens": 1165,
+    "prompt_tokens_details": {
+      "cached_tokens": 704
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0
+    }
+  }
+}

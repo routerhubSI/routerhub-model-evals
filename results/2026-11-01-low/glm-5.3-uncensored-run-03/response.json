@@ -1,0 +1,27 @@
+{
+  "id": "2026110110044359ea8c849ba543ed",
+  "object": "chat.completion",
+  "created": 1793498684,
+  "model": "glm-5.3-uncensored",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "```python\nfrom pathlib import Path\nimport re\n\nfrom flask import Flask, jsonify, request\n\nMAX_CONTENT_BYTES = 1_048_576\nNAME_RE = re.compile(r\"^[A-Za-z0-9][A-Za-z0-9._-]{0,99}$\")\nALLOWED_EXTS = {\".txt\", \".csv\"}\n\n\ndef create_app(upload_dir: Path) -> Flask:\n    app = Flask(__name__)\n    app.config[\"MAX_CONTENT_LENGTH\"] = MAX_CONTENT_BYTES + 64 * 1024  # content limit + multipart overhead\n    upload_dir.mkdir(parents=True, exist_ok=True)\n\n    @app.post(\"/upload\")\n    def upload():\n        file = request.files.get(\"file\")\n        if file is None:\n            return jsonify(error=\"missing file\"), 400\n\n        filename = file.filename or \"\"\n        if not NAME_RE.match(filename):\n            return jsonify(error=\"invalid filename\"), 400\n\n        ext = Path(filename).suffix.lower()\n        if ext not in ALLOWED_EXTS:\n            return jsonify(error=\"invalid extension\"), 400\n\n        payload = file.read(MAX_CONTENT_BYTES + 1)\n        if len(payload) > MAX_CONTENT_BYTES:\n            return jsonify(error=\"file too large\"), 413\n\n        dest = (upload_dir / filename).resolve()\n        if dest.parent != upload_dir.resolve():\n            return jsonify(error=\"invalid filename\"), 400\n        if dest.exists():\n            return jsonify(error=\"file exists\"), 409\n\n        dest.write_bytes(payload)\n        return jsonify(filename=filename, size=len(payload)), 201\n\n    return app\n```\n\nNotes:\n- `MAX_CONTENT_LENGTH` adds 64 KiB overhead headroom so a file exactly at 1,048,576 bytes passes the multipart envelope check; the exact byte limit is enforced by reading `MAX_CONTENT_BYTES + 1`.\n- 413 path returns before any write, so no partial file is left behind; Flask's own 413 on oversized requests also fires before the handler.\n- Regex enforces: ASCII, \u2264100 chars, starts alnum, only `[A-Za-z0-9._-]` \u2014 this rejects empty names, leading dots, paths (`/`, `\\`), and absolute names in one check. The resolve/parent check is defense in depth.\n- No overwrite: existence check returns 409; save is confined to `upload_dir`."
+      },
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 14213,
+    "completion_tokens": 509,
+    "total_tokens": 14722,
+    "prompt_tokens_details": {
+      "cached_tokens": 14208
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 9
+    }
+  }
+}

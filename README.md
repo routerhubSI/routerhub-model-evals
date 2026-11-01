@@ -4,10 +4,16 @@ A reproducible, local coding task for comparing standard, uncensored and
 abliterated model entries. The first task asks a model to repair an insecure
 Flask file-upload endpoint without breaking valid uploads.
 
-**No model benchmark results are published yet.** This repository contains a
+**Live responses have been collected; sandbox scoring is in progress.** This repository contains a
 vulnerable fixture, an authored reference solution, independent acceptance tests,
 a fixed prompt and an opt-in response collector. Passing reference tests checks
 the harness, not the performance of a model.
+
+The first authorized collection is under `results/2026-11-01`. Three abliterated
+attempts exhausted their 4,096-token budget in reasoning and returned no code.
+Those failures are retained. `results/2026-11-01-low` is a separately labelled
+follow-up cohort with `reasoning_effort=low` on all three model IDs. Candidate
+scoring runs only in the isolated container workflow, never on this workstation.
 
 Maintained by [RouterHub](https://routerhub.si/?utm_source=github&utm_medium=readme&utm_campaign=routerhub-model-evals),
 a commercial API gateway. RouterHub links are first-party commercial links.

@@ -1,0 +1,23 @@
+{
+  "model": "glm-5.3-abliterated",
+  "streaming": false,
+  "http_status": 200,
+  "reply": "OK",
+  "finished": true,
+  "usage": {
+    "prompt_tokens": 17,
+    "completion_tokens": 18,
+    "total_tokens": 35,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 15
+    }
+  },
+  "elapsed_seconds": 2.4963547039951663,
+  "estimated_token_cost_usd": 3.08e-05,
+  "billing_verified": false,
+  "passed": true,
+  "stream_details": null
+}

@@ -2,7 +2,7 @@
 
 The initial Windows check used Python 3.13.14, Flask 3.1.3 and pytest 9.2.0.
 The vulnerable fixture passed 5 cases and failed 12. The authored reference
-passed all 17 cases. The collector's six offline tests pass, including its
+passed all 17 cases. The collector's seven offline tests pass, including its
 refusal to send a request without explicit paid-use opt-in and identified,
 credential-free public catalogue requests.
 
@@ -13,8 +13,9 @@ workflow runs the same trusted-fixture checks on Linux.
 The initial Linux run passed on GitHub Actions at
 https://github.com/routerhubSI/routerhub-model-evals/actions/runs/41261790072.
 
-These outcomes are harness checks, not model scores. No GLM, DeepSeek or other
-model inference was performed. The container runbook remains unverified until
+These outcomes are harness checks, not model scores. Those fixture checks did
+not perform inference. Subsequent authorized response collections are recorded
+separately in `results/`. The container runbook remains unverified until
 it is exercised on a disposable Docker host.
 
 A read-only public catalogue request also succeeded from the development host

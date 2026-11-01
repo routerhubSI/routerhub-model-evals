@@ -1,0 +1,39 @@
+{
+  "status": "collected-not-executed",
+  "collected_at": "2026-11-01T02:00:04.747838+00:00",
+  "requested_model": "glm-5.3-uncensored",
+  "returned_model": "glm-5.3-uncensored",
+  "request_elapsed_seconds": 16.416634516004706,
+  "finish_reason": "stop",
+  "usage": {
+    "prompt_tokens": 14213,
+    "completion_tokens": 1148,
+    "total_tokens": 15361,
+    "prompt_tokens_details": {
+      "cached_tokens": 14208
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 539
+    }
+  },
+  "published_catalogue_entry": {
+    "id": "glm-5.3-uncensored",
+    "name": "GLM 5.3 Uncensored",
+    "provider": "Z.ai",
+    "description": "GLM 5.3 Uncensored",
+    "inputPrice": 0.2,
+    "outputPrice": 0.6285714285714286,
+    "cachedInputPrice": 0.11659198571428571,
+    "context": null,
+    "protocols": [
+      "chat"
+    ],
+    "availability": "preview"
+  },
+  "billing": "Record actual provider charges separately. Elapsed time is not tokens per second",
+  "original_app_sha256": "7ebf5b4087a0202ce7d1f591c7dde8b1dd8f4b682b5a4889d8f5711ad5e4f1b4",
+  "prompt_sha256": "d878f4e53041fcf683fdc588d2cd60c2c16172041e026d454f69209b75c1a889",
+  "candidate_sha256": "29a83c623a240ae07e586ad7b135c5104704a2a2e30c8d71a4ecb73aa1be5054",
+  "candidate_executed": false,
+  "tests_passed": null
+}

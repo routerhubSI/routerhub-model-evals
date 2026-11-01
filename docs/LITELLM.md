@@ -19,7 +19,10 @@ is added without verification.
 Ruff lint/format checks and the new test file's strict type check pass locally.
 Executing those unit tests requires the upstream native extension. Its Windows
 build is blocked by the missing MSVC linker, so no unit-test pass is claimed.
-There is no fabricated native-module substitute or live inference result.
+There is no fabricated native-module substitute. Direct HTTP checks now return
+valid replies and usage for normal and streamed requests on both GLM entries.
+Those records are under `results/2026-11-01/api-smoke`; they do not establish
+that the pending LiteLLM SDK or proxy integration works end to end.
 
 Before a maintainer review, the human contributor must review and sign the
 [LiteLLM CLA](https://cla-assistant.io/BerriAI/litellm), rewrite the marked PR

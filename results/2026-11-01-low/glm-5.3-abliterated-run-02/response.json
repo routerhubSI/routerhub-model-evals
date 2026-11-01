@@ -1,0 +1,27 @@
+{
+  "id": "chatcmpl-15afd6cf4abb0bd3b59399def7ba69c8",
+  "object": "chat.completion",
+  "created": 1793498678,
+  "model": "glm-5.3-abliterated",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "```python\nimport re\n\nfrom pathlib import Path\n\nfrom flask import Flask, jsonify, request\n\n\nMAX_CONTENT_LENGTH = 1_048_576\nNAME_RE = re.compile(r\"^[A-Za-z0-9][A-Za-z0-9._-]{0,99}$\")\nALLOWED_EXTENSIONS = {\".txt\", \".csv\"}\n\n\ndef create_app(upload_dir: Path) -> Flask:\n    app = Flask(__name__)\n    app.config[\"MAX_CONTENT_LENGTH\"] = MAX_CONTENT_LENGTH + 64 * 1024\n    upload_dir.mkdir(parents=True, exist_ok=True)\n\n    @app.post(\"/upload\")\n    def upload():\n        if \"file\" not in request.files:\n            return jsonify(error=\"missing file\"), 400\n\n        file = request.files[\"file\"]\n        filename = file.filename or \"\"\n\n        if not NAME_RE.match(filename):\n            return jsonify(error=\"invalid filename\"), 400\n\n        suffix = Path(filename).suffix.lower()\n        if suffix not in ALLOWED_EXTENSIONS:\n            return jsonify(error=\"invalid extension\"), 400\n\n        payload = file.read()\n        if len(payload) > MAX_CONTENT_LENGTH:\n            return jsonify(error=\"file too large\"), 413\n\n        destination = upload_dir / filename\n        try:\n            with open(destination, \"xb\") as out:\n                out.write(payload)\n        except FileExistsError:\n            return jsonify(error=\"filename already exists\"), 409\n\n        return jsonify(filename=filename, size=len(payload)), 201\n\n    return app\n```\n\nNotes on the key decisions:\n\n- **Filename validation**: `NAME_RE` enforces ASCII-only names of 1\u2013100 chars, starting with a letter/digit, with no path separators, no leading dot, and no empty names \u2014 all rejected with 400.\n- **Extension check**: case-insensitive, restricted to `.txt`/`.csv`.\n- **Missing file**: `request.files` is checked before indexing, so a missing `file` field returns 400 instead of raising.\n- **Size limit**: the file content is capped at exactly 1,048,576 bytes (a file at the limit succeeds); larger payloads return 413. `MAX_CONTENT_LENGTH` is set higher to account for multipart overhead separately, and the content itself is checked after reading. Flask's built-in limit returns 413 for grossly oversized requests, and no file is written before the content check, so nothing is left behind.\n- **No overwrite**: files are opened with `\"xb\"` (exclusive create), so a collision returns 409 without touching the existing file.\n- **Bytes preserved**: the payload is written verbatim, only inside `upload_dir`."
+      },
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 408,
+    "completion_tokens": 554,
+    "total_tokens": 962,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0
+    }
+  }
+}

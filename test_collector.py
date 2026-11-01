@@ -23,6 +23,11 @@ def test_refusal_text_does_not_become_a_candidate():
     assert candidate_source("I cannot provide that implementation.") is None
 
 
+def test_empty_completion_is_not_a_python_candidate():
+    assert candidate_source("") is None
+    assert candidate_source("```python\n\n```") is None
+
+
 def test_plain_valid_python_remains_unexecuted():
     source = candidate_source("import os\nos.remove('DO_NOT_RUN')\n")
     assert source is not None

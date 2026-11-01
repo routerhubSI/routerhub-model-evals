@@ -1,0 +1,39 @@
+{
+  "status": "collected-not-executed",
+  "collected_at": "2026-11-01T01:59:25.542452+00:00",
+  "requested_model": "glm-5.3",
+  "returned_model": "glm-5.3",
+  "request_elapsed_seconds": 18.334370149997994,
+  "finish_reason": "stop",
+  "usage": {
+    "prompt_tokens": 713,
+    "completion_tokens": 1496,
+    "total_tokens": 2209,
+    "prompt_tokens_details": {
+      "cached_tokens": 256
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 792
+    }
+  },
+  "published_catalogue_entry": {
+    "id": "glm-5.3",
+    "name": "GLM 5.3",
+    "provider": "Z.ai",
+    "description": "GLM 5.3",
+    "inputPrice": 0.15,
+    "outputPrice": 0.4714285714285714,
+    "cachedInputPrice": 0.11659198571428571,
+    "context": null,
+    "protocols": [
+      "chat"
+    ],
+    "availability": "preview"
+  },
+  "billing": "Record actual provider charges separately. Elapsed time is not tokens per second",
+  "original_app_sha256": "7ebf5b4087a0202ce7d1f591c7dde8b1dd8f4b682b5a4889d8f5711ad5e4f1b4",
+  "prompt_sha256": "d878f4e53041fcf683fdc588d2cd60c2c16172041e026d454f69209b75c1a889",
+  "candidate_sha256": "af8bde6fed4ef996966350df4c670a764672227442f364f54af22eff3c30177f",
+  "candidate_executed": false,
+  "tests_passed": null
+}

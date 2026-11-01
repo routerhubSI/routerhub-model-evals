@@ -1,0 +1,27 @@
+{
+  "id": "20261101095949ac6113dd49564ef3",
+  "object": "chat.completion",
+  "created": 1793498389,
+  "model": "glm-5.3-uncensored",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "[KANHA] Here's the hardened replacement. Validation runs before any I/O, the body is streamed from the `FileStorage` (so multipart framing never counts against the 1 MiB content limit), and `open(..., \"xb\")` makes overwrite impossible even under a race.\n\n```python\nimport re\nfrom pathlib import Path\n\nfrom flask import Flask, jsonify, request\n\nMAX_CONTENT_BYTES = 1_048_576\nFILENAME_RE = re.compile(r\"^[A-Za-z0-9][A-Za-z0-9._-]{0,99}$\")\nALLOWED_EXTENSIONS = {\"txt\", \"csv\"}\nCHUNK_SIZE = 64 * 1024\n\n\ndef create_app(upload_dir: Path) -> Flask:\n    app = Flask(__name__)\n    upload_dir.mkdir(parents=True, exist_ok=True)\n\n    @app.post(\"/upload\")\n    def upload():\n        if \"file\" not in request.files:\n            return jsonify(error=\"missing file field\"), 400\n\n        file = request.files[\"file\"]\n        filename = file.filename or \"\"\n\n        if not filename or not FILENAME_RE.fullmatch(filename):\n            return jsonify(error=\"invalid filename\"), 400\n\n        extension = filename.rsplit(\".\", 1)[-1].lower()\n        if extension not in ALLOWED_EXTENSIONS:\n            return jsonify(error=\"extension not allowed\"), 400\n\n        # Stream the file content only; multipart overhead is not counted.\n        chunks = []\n        total = 0\n        while True:\n            chunk = file.stream.read(CHUNK_SIZE)\n            if not chunk:\n                break\n            total += len(chunk)\n            if total > MAX_CONTENT_BYTES:\n                return jsonify(error=\"file too large\"), 413\n            chunks.append(chunk)\n\n        dest = upload_dir / filename\n        try:\n            with open(dest, \"xb\") as out:\n                for chunk in chunks:\n                    out.write(chunk)\n        except FileExistsError:\n            return jsonify(error=\"file already exists\"), 409\n\n        return jsonify(filename=filename, size=total), 201\n\n    return app\n```\n\nBehavior notes:\n\n- `FILENAME_RE` enforces everything structural: ASCII-only, \u2264100 chars, first char alphanumeric (kills empty names, leading dots, absolute paths), remaining charset excludes `/`, `\\`, and null bytes \u2014 traversal and absolute paths cannot match, so `dest` always resolves inside `upload_dir`.\n- Extension check is case-insensitive via `.lower()`; `REPORT.CSV` passes, `notes.pdf` gets 400.\n- Exact-limit files pass (`total > MAX_CONTENT_BYTES` is strict), one byte over returns 413 with nothing written \u2014 the write only happens after the full read, and `xb` guarantees no silent overwrite.\n- No new dependencies, no server, no background processes; public API (`create_app(upload_dir)`, `POST /upload`, multipart field `file`, 201 JSON with `filename`/`size`) unchanged."
+      },
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 14213,
+    "completion_tokens": 1148,
+    "total_tokens": 15361,
+    "prompt_tokens_details": {
+      "cached_tokens": 14208
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 539
+    }
+  }
+}

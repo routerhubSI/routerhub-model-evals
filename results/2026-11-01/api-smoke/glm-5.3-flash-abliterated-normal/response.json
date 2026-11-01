@@ -1,0 +1,28 @@
+{
+  "id": "chatcmpl-8bad4657744f6a8eb36afd7941e89d42",
+  "object": "chat.completion",
+  "created": 1793498516,
+  "model": "glm-5.3-flash-abliterated",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "OK",
+        "reasoning": "The user wants me to reply with exactly \"OK\". No quotes, no extra text, just OK."
+      },
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 17,
+    "completion_tokens": 24,
+    "total_tokens": 41,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 21
+    }
+  }
+}

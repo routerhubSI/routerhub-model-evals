@@ -21,6 +21,8 @@ def candidate_source(content: str) -> str | None:
     if len(blocks) > 1:
         return None
     source = blocks[0] if blocks else content
+    if not source.strip():
+        return None
     try:
         ast.parse(source)
     except SyntaxError:
@@ -44,6 +46,7 @@ def main() -> int:
     parser.add_argument("--out", required=True, type=Path)
     parser.add_argument("--max-tokens", type=int, default=4096)
     parser.add_argument("--allow-paid", action="store_true")
+    parser.add_argument("--reasoning-effort", choices=("low", "high", "max"))
     args = parser.parse_args()
     if not args.allow_paid:
         parser.error("No request sent. Pass --allow-paid only after approving credit use")
@@ -70,6 +73,8 @@ def main() -> int:
         "temperature": 0,
         "stream": False,
     }
+    if args.reasoning_effort is not None:
+        body["reasoning_effort"] = args.reasoning_effort
     args.out.mkdir(parents=True)
     (args.out / "request.json").write_text(json.dumps(body, indent=2) + "\n", encoding="utf-8")
     request = Request(

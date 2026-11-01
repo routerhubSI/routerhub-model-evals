@@ -1,0 +1,27 @@
+{
+  "id": "20261101100432107786b2faa4414c",
+  "object": "chat.completion",
+  "created": 1793498673,
+  "model": "glm-5.3",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "```python\nimport re\nfrom pathlib import Path\n\nfrom flask import Flask, jsonify, request\n\nMAX_CONTENT_BYTES = 1_048_576\nALLOWED_EXTENSIONS = {\".txt\", \".csv\"}\nNAME_RE = re.compile(r\"^[A-Za-z0-9][A-Za-z0-9._-]{0,99}$\")\n\n\ndef create_app(upload_dir: Path) -> Flask:\n    app = Flask(__name__)\n    app.config[\"MAX_CONTENT_LENGTH\"] = MAX_CONTENT_BYTES + 64 * 1024  # content + multipart overhead\n    upload_dir.mkdir(parents=True, exist_ok=True)\n\n    @app.errorhandler(413)\n    def too_large(_e):\n        return jsonify(error=\"file too large\"), 413\n\n    @app.post(\"/upload\")\n    def upload():\n        file = request.files.get(\"file\")\n        if file is None:\n            return jsonify(error=\"missing file\"), 400\n\n        filename = file.filename or \"\"\n\n        if (\n            not filename\n            or \"/\" in filename\n            or \"\\\\\" in filename\n            or filename.startswith(\".\")\n            or Path(filename).is_absolute()\n            or Path(filename).name != filename\n            or not NAME_RE.match(filename)\n        ):\n            return jsonify(error=\"invalid filename\"), 400\n\n        ext = Path(filename).suffix.lower()\n        if ext not in ALLOWED_EXTENSIONS:\n            return jsonify(error=\"invalid extension\"), 400\n\n        target = upload_dir / filename\n        if target.exists():\n            return jsonify(error=\"file exists\"), 409\n\n        payload = file.stream.read(MAX_CONTENT_BYTES + 1)\n        if len(payload) > MAX_CONTENT_BYTES:\n            return jsonify(error=\"file too large\"), 413\n\n        target.write_bytes(payload)\n        return jsonify(filename=filename, size=len(payload)), 201\n\n    return app\n```\n\nNotes: `MAX_CONTENT_LENGTH` covers content plus multipart overhead; the exact read limit enforces the byte cap, so an oversized file is rejected with 413 before any write occurs. Filename validation forces names to stay inside `upload_dir`, and existence is checked before writing so collisions never overwrite."
+      },
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 713,
+    "completion_tokens": 443,
+    "total_tokens": 1156,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0
+    }
+  }
+}

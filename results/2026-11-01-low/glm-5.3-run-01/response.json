@@ -1,0 +1,27 @@
+{
+  "id": "2026110110043299117f6405f04448",
+  "object": "chat.completion",
+  "created": 1793498672,
+  "model": "glm-5.3",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "```python\nimport re\nfrom pathlib import Path\n\nfrom flask import Flask, jsonify, request\n\nMAX_CONTENT = 1_048_576\nNAME_RE = re.compile(r\"^[A-Za-z0-9][A-Za-z0-9._-]{0,99}$\")\nALLOWED_EXTS = {\".txt\", \".csv\"}\n\n\ndef create_app(upload_dir: Path) -> Flask:\n    app = Flask(__name__)\n    app.config[\"MAX_CONTENT_LENGTH\"] = MAX_CONTENT + 64 * 1024  # overhead margin\n    upload_dir.mkdir(parents=True, exist_ok=True)\n\n    @app.post(\"/upload\")\n    def upload():\n        if \"file\" not in request.files:\n            return jsonify(error=\"missing file\"), 400\n\n        file = request.files[\"file\"]\n        filename = file.filename or \"\"\n\n        if not NAME_RE.fullmatch(filename):\n            return jsonify(error=\"invalid filename\"), 400\n\n        if Path(filename).suffix.lower() not in ALLOWED_EXTS:\n            return jsonify(error=\"invalid extension\"), 400\n\n        dest = upload_dir / filename\n        if dest.exists():\n            return jsonify(error=\"file exists\"), 409\n\n        payload = file.stream.read(MAX_CONTENT + 1)\n        if len(payload) > MAX_CONTENT:\n            return jsonify(error=\"file too large\"), 413\n\n        dest.write_bytes(payload)\n        return jsonify(filename=filename, size=len(payload)), 201\n\n    @app.errorhandler(413)\n    def too_large(e):\n        return jsonify(error=\"file too large\"), 413\n\n    return app\n```\n\nNotes:\n- Regex enforces simple ASCII names, \u2264100 chars, no paths/absolute/empty/leading dots.\n- `read(MAX_CONTENT + 1)` caps memory and detects oversize; 413 returned before any write, so no file is left behind.\n- `MAX_CONTENT_LENGTH` covers multipart overhead separately from the content limit.\n- Collision checked with `dest.exists()` before writing; bytes saved only inside `upload_dir`."
+      },
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 713,
+    "completion_tokens": 424,
+    "total_tokens": 1137,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0
+    }
+  }
+}

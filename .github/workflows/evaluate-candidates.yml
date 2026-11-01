@@ -1,0 +1,36 @@
+name: Sandboxed model candidate evaluation
+on:
+  workflow_dispatch:
+    inputs:
+      source_ref:
+        description: Benchmark commit to evaluate
+        required: true
+      inputs:
+        description: Collected run directory
+        required: true
+        default: results/2026-11-01
+permissions:
+  contents: read
+jobs:
+  evaluate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          ref: ${{ inputs.source_ref }}
+          persist-credentials: false
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1
+        with:
+          python-version: '3.13.14'
+      - name: Evaluate without API credentials
+        env:
+          INPUT_DIRECTORY: ${{ inputs.inputs }}
+        run: python evaluate_candidates.py --inputs "$INPUT_DIRECTORY" --out sandbox-reports
+      - uses: actions/upload-artifact@4cec3d8aa04e39d1a68397de0c4cd6fb9dce8ec1
+        if: always()
+        with:
+          name: sandbox-reports
+          path: sandbox-reports
+          if-no-files-found: error
+          retention-days: 7

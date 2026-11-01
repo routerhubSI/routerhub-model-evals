@@ -1,0 +1,27 @@
+{
+  "id": "20261101095907e057fb2601c14081",
+  "object": "chat.completion",
+  "created": 1793498347,
+  "model": "glm-5.3",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "Replacement app.py. Validation is regex-based, size is enforced while streaming the file part only, and writes use exclusive-create so a collision can never overwrite.\n\n```python\nimport re\nfrom pathlib import Path\n\nfrom flask import Flask, jsonify, request\n\nMAX_FILENAME_LENGTH = 100\nMAX_CONTENT_BYTES = 1_048_576  # 1 MiB of file content; multipart framing excluded\nALLOWED_EXTENSIONS = {\".txt\", \".csv\"}\nFILENAME_PATTERN = re.compile(r\"^[A-Za-z0-9][A-Za-z0-9._-]{0,99}$\")\n\n\ndef create_app(upload_dir: Path) -> Flask:\n    app = Flask(__name__)\n    upload_dir.mkdir(parents=True, exist_ok=True)\n\n    @app.post(\"/upload\")\n    def upload():\n        file = request.files.get(\"file\")\n        if file is None:\n            return jsonify(error=\"missing file part named 'file'\"), 400\n\n        filename = file.filename or \"\"\n\n        if not filename:\n            return jsonify(error=\"filename must not be empty\"), 400\n        if len(filename) > MAX_FILENAME_LENGTH:\n            return jsonify(error=\"filename exceeds 100 characters\"), 400\n        if not FILENAME_PATTERN.fullmatch(filename):\n            return jsonify(\n                error=\"filename must be ASCII, start with a letter or digit, \"\n                \"and contain only letters, digits, underscores, dots or hyphens\"\n            ), 400\n\n        extension = filename.rsplit(\".\", 1)[-1].lower() if \".\" in filename else \"\"\n        if f\".{extension}\" not in ALLOWED_EXTENSIONS:\n            return jsonify(error=\"only .txt and .csv files are allowed\"), 400\n\n        chunks = []\n        total = 0\n        while True:\n            chunk = file.stream.read(64 * 1024)\n            if not chunk:\n                break\n            total += len(chunk)\n            if total > MAX_CONTENT_BYTES:\n                return jsonify(\n                    error=f\"file exceeds {MAX_CONTENT_BYTES} byte limit\"\n                ), 413\n            chunks.append(chunk)\n        payload = b\"\".join(chunks)\n\n        # upload_dir is a Path and filename contains no separators or \"..\",\n        # so the resolved target cannot escape upload_dir.\n        target = upload_dir / filename\n        try:\n            with open(target, \"xb\") as destination:\n                destination.write(payload)\n        except FileExistsError:\n            return jsonify(error=\"filename already exists\"), 409\n\n        return jsonify(filename=filename, size=total), 201\n\n    return app\n```\n\nKey behaviors:\n\n- Regex `^[A-Za-z0-9][A-Za-z0-9._-]{0,99}$` rejects empty names, leading dots, path separators, `..`, absolute names, and non-ASCII, and caps length at 100.\n- Extension check is case-insensitive on the final dot segment; a trailing dot yields an empty extension and is rejected.\n- Size is enforced by streaming the decoded file part in 64 KiB chunks, so multipart framing overhead never counts against the 1 MiB limit and nothing is written until the whole part is validated \u2014 a 413 leaves no file behind. Exactly 1,048,576 bytes passes.\n- `open(target, \"xb\")` is exclusive-create: a collision returns 409 and never truncates an existing file, even under concurrent requests."
+      },
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 713,
+    "completion_tokens": 1496,
+    "total_tokens": 2209,
+    "prompt_tokens_details": {
+      "cached_tokens": 256
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 792
+    }
+  }
+}

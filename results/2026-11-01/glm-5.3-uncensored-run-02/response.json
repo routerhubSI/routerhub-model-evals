@@ -1,0 +1,27 @@
+{
+  "id": "20261101095926ad8f9c5b8b924221",
+  "object": "chat.completion",
+  "created": 1793498367,
+  "model": "glm-5.3-uncensored",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "```python\nimport re\nimport tempfile\nfrom pathlib import Path\n\nfrom flask import Flask, jsonify, request\n\nFILENAME_RE = re.compile(r\"^[A-Za-z0-9][A-Za-z0-9._-]{0,99}$\")\nALLOWED_EXTENSIONS = {\".txt\", \".csv\"}\nMAX_CONTENT_BYTES = 1_048_576\nCHUNK = 64 * 1024\n\n\ndef create_app(upload_dir: Path) -> Flask:\n    app = Flask(__name__)\n    upload_dir.mkdir(parents=True, exist_ok=True)\n\n    @app.post(\"/upload\")\n    def upload():\n        if \"file\" not in request.files:\n            return jsonify(error=\"missing file\"), 400\n\n        file = request.files[\"file\"]\n        filename = (file.filename or \"\").strip()\n\n        if not filename:\n            return jsonify(error=\"empty filename\"), 400\n        if not filename.isascii():\n            return jsonify(error=\"filename must be ASCII\"), 400\n        if len(filename) > 100:\n            return jsonify(error=\"filename too long\"), 400\n        if \"/\" in filename or \"\\\\\" in filename or Path(filename).name != filename:\n            return jsonify(error=\"path separators not allowed\"), 400\n        if not FILENAME_RE.fullmatch(filename):\n            return jsonify(error=\"invalid filename\"), 400\n        if Path(filename).suffix.lower() not in ALLOWED_EXTENSIONS:\n            return jsonify(error=\"only .txt and .csv allowed\"), 400\n\n        target = upload_dir / filename\n        size = 0\n        try:\n            with tempfile.SpooledTemporaryFile(max_size=MAX_CONTENT_BYTES) as buf:\n                while True:\n                    chunk = file.stream.read(CHUNK)\n                    if not chunk:\n                        break\n                    size += len(chunk)\n                    if size > MAX_CONTENT_BYTES:\n                        return jsonify(error=\"file too large\"), 413\n                    buf.write(chunk)\n                buf.seek(0)\n                # \"xb\" fails if the file exists -> no overwrite\n                with open(target, \"xb\") as out:\n                    while True:\n                        chunk = buf.read(CHUNK)\n                        if not chunk:\n                            break\n                        out.write(chunk)\n        except FileExistsError:\n            return jsonify(error=\"filename already exists\"), 409\n\n        return jsonify(filename=filename, size=size), 201\n\n    return app\n```\n\nKey points: `xb` mode makes overwrite impossible even under races; content streams to a spooled buffer so oversized uploads never touch `upload_dir`; limit check is on file bytes only, multipart framing excluded; exact 1,048,576 bytes passes."
+      },
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 14213,
+    "completion_tokens": 772,
+    "total_tokens": 14985,
+    "prompt_tokens_details": {
+      "cached_tokens": 14208
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 231
+    }
+  }
+}
