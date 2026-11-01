@@ -56,8 +56,12 @@ job failed before its assertions because Windows CRLF conversion invalidated the
 bundled tokenizer hashes. The follow-up provider run fixes its preparation and
 passes; that earlier failure is not presented as a pass.
 
-The updated documentation wording is checked by the follow-up full build at
+The updated documentation commit `77451e7d744ceea89e385902f7ecb6e13ffc71df`
+also passes its full build at
 https://github.com/routerhubSI/routerhub-model-evals/actions/runs/41266757203.
+Both provider and documentation jobs in that run passed. Its artifact contains
+the rendered RouterHub page. These are organization checks, not the upstream
+repository's required checks or a release approval.
 
 ## Scope and remaining gates
 
