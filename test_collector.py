@@ -1,9 +1,11 @@
 import ast
+import io
 import subprocess
 import sys
 from pathlib import Path
+from unittest.mock import patch
 
-from collect import candidate_source
+from collect import USER_AGENT, candidate_source, read_json
 
 ROOT = Path(__file__).resolve().parent
 
@@ -38,3 +40,13 @@ def test_paid_opt_in_is_required_before_network_or_output(tmp_path):
     assert result.returncode == 2
     assert "No request sent" in result.stderr
     assert not output.exists()
+
+
+def test_public_catalogue_request_identifies_client_without_credentials():
+    with patch("collect.urlopen") as transport:
+        transport.return_value.__enter__.return_value = io.StringIO('{"models": []}')
+        assert read_json("https://routerhub.si/models.json") == {"models": []}
+    request = transport.call_args.args[0]
+    assert request.get_header("User-agent") == USER_AGENT
+    assert request.get_header("Accept") == "application/json"
+    assert request.get_header("Authorization") is None

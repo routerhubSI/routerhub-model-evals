@@ -13,6 +13,7 @@ from urllib.request import Request, urlopen
 ROOT = Path(__file__).resolve().parent
 CATALOGUE_URL = "https://routerhub.si/models.json"
 REQUEST_URL = "https://routerhub.si/v1/chat/completions"
+USER_AGENT = "RouterHub-model-evals/0.1 (+https://github.com/routerhubSI/routerhub-model-evals)"
 
 
 def candidate_source(content: str) -> str | None:
@@ -28,7 +29,12 @@ def candidate_source(content: str) -> str | None:
 
 
 def read_json(request: Request | str, timeout: int = 60):
-    with urlopen(request, timeout=timeout) as response:
+    prepared = (
+        Request(request, headers={"Accept": "application/json", "User-Agent": USER_AGENT})
+        if isinstance(request, str)
+        else request
+    )
+    with urlopen(prepared, timeout=timeout) as response:
         return json.load(response)
 
 
@@ -69,7 +75,12 @@ def main() -> int:
     request = Request(
         REQUEST_URL,
         data=json.dumps(body).encode("utf-8"),
-        headers={"Authorization": "Bearer " + key, "Content-Type": "application/json"},
+        headers={
+            "Authorization": "Bearer " + key,
+            "Content-Type": "application/json",
+            "Accept": "application/json",
+            "User-Agent": USER_AGENT,
+        },
     )
     started = time.perf_counter()
     try:

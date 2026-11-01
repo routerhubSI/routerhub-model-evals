@@ -2,8 +2,9 @@
 
 The initial Windows check used Python 3.13.14, Flask 3.1.3 and pytest 9.2.0.
 The vulnerable fixture passed 5 cases and failed 12. The authored reference
-passed all 17 cases. The collector's five offline tests passed, including its
-refusal to send a request without explicit paid-use opt-in.
+passed all 17 cases. The collector's six offline tests pass, including its
+refusal to send a request without explicit paid-use opt-in and identified,
+credential-free public catalogue requests.
 
 Run `python verify.py` to check these expectations again. This does not call
 RouterHub, evaluate a model response or start an application server. The
@@ -15,3 +16,6 @@ https://github.com/routerhubSI/routerhub-model-evals/actions/runs/41261790072.
 These outcomes are harness checks, not model scores. No GLM, DeepSeek or other
 model inference was performed. The container runbook remains unverified until
 it is exercised on a disposable Docker host.
+
+A read-only public catalogue request also succeeded from the development host
+using the collector's explicit application User-Agent. This is not inference.
