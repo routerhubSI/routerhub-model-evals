@@ -9,6 +9,9 @@ Run `python verify.py` to check these expectations again. This does not call
 RouterHub, evaluate a model response or start an application server. The
 workflow runs the same trusted-fixture checks on Linux.
 
+The initial Linux run passed on GitHub Actions at
+https://github.com/routerhubSI/routerhub-model-evals/actions/runs/41261790072.
+
 These outcomes are harness checks, not model scores. No GLM, DeepSeek or other
 model inference was performed. The container runbook remains unverified until
 it is exercised on a disposable Docker host.

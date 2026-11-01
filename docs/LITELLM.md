@@ -6,11 +6,20 @@ Companion documentation is in
 [routerhubSI/litellm-docs](https://github.com/routerhubSI/litellm-docs/tree/litellm_routerhub_docs).
 These are organization forks, not an endorsement or a released upstream feature.
 
+The upstream drafts are [provider PR 49550](https://github.com/BerriAI/litellm/pull/49550)
+and [documentation PR 2770](https://github.com/BerriAI/litellm-docs/pull/2770).
+Both were opened from RouterHub organization forks. Neither is merged.
+
 The first proposal adds the JSON provider entry, two GLM abliterated price/limit
 entries and mocked routing, authentication, usage-cost, streaming and error tests.
 No native Responses or Anthropic Messages capability is advertised for these
 Chat Completions entries. No tool, reasoning or structured-output capability flag
 is added without verification.
+
+Ruff lint/format checks and the new test file's strict type check pass locally.
+Executing those unit tests requires the upstream native extension. Its Windows
+build is blocked by the missing MSVC linker, so no unit-test pass is claimed.
+There is no fabricated native-module substitute or live inference result.
 
 Before a maintainer review, the human contributor must review and sign the
 [LiteLLM CLA](https://cla-assistant.io/BerriAI/litellm), rewrite the marked PR
