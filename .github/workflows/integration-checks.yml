@@ -1,0 +1,86 @@
+name: LiteLLM integration verification
+on:
+  workflow_dispatch:
+    inputs:
+      core_ref:
+        description: RouterHub LiteLLM commit
+        required: true
+        default: 74a78d089053a2043a10d407b98300bd6047ddf5
+      docs_ref:
+        description: RouterHub documentation commit
+        required: true
+        default: 9d1d21ffce258a85c36ae4d9c7884c3f32c9b6d6
+permissions:
+  contents: read
+jobs:
+  provider:
+    runs-on: windows-latest
+    timeout-minutes: 60
+    env:
+      CARGO_BUILD_JOBS: '2'
+      CARGO_INCREMENTAL: '0'
+      LITELLM_LOCAL_MODEL_COST_MAP: 'True'
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          repository: routerhubSI/litellm
+          ref: ${{ inputs.core_ref }}
+          persist-credentials: false
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1
+        with:
+          python-version: '3.13.14'
+      - name: Install verified uv wheel
+        run: python -m pip install 'https://files.pythonhosted.org/packages/7c/9d/714523188aea3054644d8e69ae8089aac70325a3cee2d3d05509d4f23398/uv-0.13.6-py3-none-win_amd64.whl#sha256=7c9bc35ccb65932d8dc10a0669f9c805eaa3c9827ce18ecbecb1bd67944b2cdf'
+      - name: Build the actual source extension and install locked dependencies
+        run: uv sync --inexact --frozen
+      - name: Record native build provenance
+        run: |
+          @'
+          import hashlib, json, pathlib, platform, subprocess
+          paths = tuple(pathlib.Path('litellm/rust_bridge').glob('_native*.pyd'))
+          assert paths, 'No real native extension was built'
+          report = {'commit': subprocess.check_output(['git','rev-parse','HEAD'], text=True).strip(), 'python': platform.python_version(), 'native': {str(p): hashlib.sha256(p.read_bytes()).hexdigest() for p in paths}}
+          pathlib.Path('native-provenance.json').write_text(json.dumps(report, indent=2))
+          print(json.dumps(report, indent=2))
+          '@ | uv run --no-sync python -
+      - name: Check provider tests and types
+        run: |
+          uv run --no-sync ruff check tests/unit/llms/openai_like/test_routerhub_provider.py
+          uv run --no-sync basedpyright tests/unit/llms/openai_like/test_routerhub_provider.py
+          uv run --no-sync python -m pytest tests/unit/llms/openai_like/test_routerhub_provider.py tests/unit/llms/openai_like/test_refuseless_provider.py -q
+      - uses: actions/upload-artifact@4cec3d8aa04e39d1a68397de0c4cd6fb9dce8ec1
+        if: always()
+        with:
+          name: windows-native-and-provenance
+          path: |
+            native-provenance.json
+            litellm/rust_bridge/_native*.pyd
+          if-no-files-found: warn
+          retention-days: 3
+  documentation:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          repository: routerhubSI/litellm-docs
+          ref: ${{ inputs.docs_ref }}
+          persist-credentials: false
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38
+        with:
+          node-version: '24.18.0'
+      - name: Install locked documentation dependencies
+        run: npm ci --no-audit --no-fund
+      - name: Check and build the full documentation site
+        run: |
+          node scripts/check-writing-style.js docs/providers/routerhub.md
+          npm run build -- --no-minify
+      - uses: actions/upload-artifact@4cec3d8aa04e39d1a68397de0c4cd6fb9dce8ec1
+        if: success()
+        with:
+          name: routerhub-rendered-documentation
+          path: |
+            build/docs/providers/routerhub.html
+            build/docs/providers/routerhub/index.html
+          if-no-files-found: error
+          retention-days: 3
